@@ -1,31 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model.bo;
 
-/**
- *
- * @author aluno
- */
-public class ItemVenda {
+public class ItemCompra {
+    
     private int id;
     private float qtdproduto;
     private float valorunitario;
     private char status;
-    
-    private Movimentacaoestoque movimentacaoEstoque;
+    private Movimentacaoestoque movimentacaoestoque;
 
-    public ItemVenda() {
+    public ItemCompra() {
     }
 
-    public ItemVenda(int id, float qtdproduto, float valorunitario, char status, Movimentacaoestoque movimentacaoEstoque) {
+    public ItemCompra(int id, float qtdproduto, float valorunitario, char status, Movimentacaoestoque movimentacaoestoque) {
         this.id = id;
         this.qtdproduto = qtdproduto;
         this.valorunitario = valorunitario;
         this.status = status;
-        this.movimentacaoEstoque = movimentacaoEstoque;
+        this.movimentacaoestoque = movimentacaoestoque;
     }
 
     public int getId() {
@@ -60,19 +52,19 @@ public class ItemVenda {
         this.status = status;
     }
 
-    public Movimentacaoestoque getMovimentacaoEstoque() {
-        return movimentacaoEstoque;
+    public Movimentacaoestoque getMovimentacaoestoque() {
+        return movimentacaoestoque;
     }
 
-    public void setMovimentacaoEstoque(Movimentacaoestoque movimentacaoEstoque) {
-        this.movimentacaoEstoque = movimentacaoEstoque;
+    public void setMovimentacaoestoque(Movimentacaoestoque movimentacaoestoque) {
+        this.movimentacaoestoque = movimentacaoestoque;
     }
-
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", movimentacaoEstoque=" + this.getMovimentacaoEstoque() + '}';
+        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", movimentacaoestoque=" + this.movimentacaoestoque.getId();
     }
+    
     
     
 }
