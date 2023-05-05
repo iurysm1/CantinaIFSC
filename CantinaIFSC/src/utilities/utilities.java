@@ -8,8 +8,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import view.TemplateRegistro;
 
-public class Utilities {
+public class utilities {
     
     public static void active(boolean active, JPanel painel) {
         
@@ -43,6 +44,8 @@ public class Utilities {
             }else if (componente instanceof JRadioButton){
                 ((JRadioButton) componente).setSelected(false);
             }
+            componente.setEnabled(ativa);
+            
             
         }
         
