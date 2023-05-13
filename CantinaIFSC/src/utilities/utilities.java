@@ -10,7 +10,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import view.TemplateRegistro;
 
-public class utilities {
+public class Utilities {
     
     public static void active(boolean active, JPanel painel) {
         
@@ -21,7 +21,7 @@ public class utilities {
                     componente.setEnabled(!active);
                     
                 }
-                else{
+                else if(((JButton) componente).getActionCommand()=="1"){
                 componente.setEnabled(active);}
                 
             }
