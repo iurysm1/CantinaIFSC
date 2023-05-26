@@ -64,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
 
         fotoMenu.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/INSTITUTO FEDERAL DE SANTA CATARINA 1920x1080.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/INSTITUTO FEDERAL DE SANTA CATARINA (3).png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         javax.swing.GroupLayout fotoMenuLayout = new javax.swing.GroupLayout(fotoMenu);
@@ -75,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
         );
         fotoMenuLayout.setVerticalGroup(
             fotoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, Short.MAX_VALUE)
         );
 
         Menu.setPreferredSize(new java.awt.Dimension(284, 40));
@@ -92,6 +92,7 @@ public class Menu extends javax.swing.JFrame {
         cadastros.setText("Cadastros");
 
         funcionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        funcionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-person-cook-16.png"))); // NOI18N
         funcionario.setText("Funcionários");
         funcionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +102,7 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(funcionario);
 
         clientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-busts-in-silhouette-16.png"))); // NOI18N
         clientes.setText("Clientes");
         clientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +112,7 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(clientes);
 
         fornecedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        fornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-delivery-truck-16.png"))); // NOI18N
         fornecedores.setText("Fornecedores");
         fornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +123,8 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(jSeparator1);
 
         cidade.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        cidade.setText("Cidade");
+        cidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-world-map-16.png"))); // NOI18N
+        cidade.setText("Cidades");
         cidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cidadeActionPerformed(evt);
@@ -129,7 +133,8 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(cidade);
 
         bairro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        bairro.setText("Bairro");
+        bairro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-houses-16.png"))); // NOI18N
+        bairro.setText("Bairros");
         bairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bairroActionPerformed(evt);
@@ -138,7 +143,8 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(bairro);
 
         endereco.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        endereco.setText("Endereço");
+        endereco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-casa-16.png"))); // NOI18N
+        endereco.setText("Endereços");
         endereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enderecoActionPerformed(evt);
@@ -148,7 +154,8 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(jSeparator2);
 
         produto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
-        produto.setText("Produto");
+        produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-hot-beverage-16.png"))); // NOI18N
+        produto.setText("Produtos");
         produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 produtoActionPerformed(evt);
@@ -157,7 +164,8 @@ public class Menu extends javax.swing.JFrame {
         cadastros.add(produto);
 
         carteirinha.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
-        carteirinha.setText("Carteirinha");
+        carteirinha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconsMenu/icons8-identification-card-16.png"))); // NOI18N
+        carteirinha.setText("Carteirinhas");
         carteirinha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carteirinhaActionPerformed(evt);
@@ -186,9 +194,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(fotoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(fotoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

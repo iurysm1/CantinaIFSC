@@ -33,13 +33,6 @@ public class BairroRegistro extends javax.swing.JFrame {
         return sair;
     }
 
-    public JTextField getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(JTextField descricao) {
-        this.descricao = descricao;
-    }
 
     public JTextField getId() {
         return id;
@@ -82,10 +75,8 @@ public class BairroRegistro extends javax.swing.JFrame {
         PainelDados = new javax.swing.JPanel();
         id = new javax.swing.JTextField();
         nomeDoBairro = new javax.swing.JTextField();
-        descricao = new javax.swing.JTextField();
         status = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         PainelBotoes = new javax.swing.JPanel();
@@ -95,7 +86,7 @@ public class BairroRegistro extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -105,7 +96,7 @@ public class BairroRegistro extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(236, 200, 174));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CADASTRO BAIRRO");
+        jLabel2.setText("CADASTRO DE BAIRRO");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -151,11 +142,6 @@ public class BairroRegistro extends javax.swing.JFrame {
         nomeDoBairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         nomeDoBairro.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        descricao.setBackground(new java.awt.Color(231, 231, 231));
-        descricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        descricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        descricao.setSelectionColor(new java.awt.Color(42, 96, 65));
-
         status.setBackground(new java.awt.Color(231, 231, 231));
         status.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Desativo" }));
@@ -163,9 +149,6 @@ public class BairroRegistro extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel9.setText("STATUS");
-
-        jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel16.setText("DESCRIÇÃO");
 
         jLabel29.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel29.setText("NOME");
@@ -293,18 +276,20 @@ public class BairroRegistro extends javax.swing.JFrame {
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelDadosLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel31)
-                    .addComponent(nomeDoBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                    .addComponent(id)
-                    .addComponent(jLabel29))
-                .addGap(109, 109, 109)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PainelDadosLayout.createSequentialGroup()
+                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel29)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(183, 183, 183))
+                    .addGroup(PainelDadosLayout.createSequentialGroup()
+                        .addComponent(nomeDoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -322,13 +307,9 @@ public class BairroRegistro extends javax.swing.JFrame {
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel29))
+                .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeDoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(nomeDoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -464,10 +445,8 @@ public class BairroRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PainelGeral;
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.JButton cancelar;
-    private javax.swing.JTextField descricao;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;

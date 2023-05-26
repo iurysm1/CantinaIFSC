@@ -10,18 +10,30 @@ public class Movimentacaoestoque {
     private char flagtipomovimento;
     private float qtdmovimentada;
     private char status;
+    
+    private ItemVenda itemVenda;
+    private Produto produto;
+    private ItemCompra compra;
+    private Funcionario funcionario;
 
     public Movimentacaoestoque() {
     }
 
-    public Movimentacaoestoque(int id, String datahoramovimento, String observacaomovimento, char flagtipomovimento, float qtdmovimentada, char status) {
+    public Movimentacaoestoque(int id, String datahoramovimento, String observacaomovimento, char flagtipomovimento, float qtdmovimentada, char status, ItemVenda itemVenda, Produto produto, ItemCompra compra, Funcionario funcionario) {
         this.id = id;
         this.datahoramovimento = datahoramovimento;
         this.observacaomovimento = observacaomovimento;
         this.flagtipomovimento = flagtipomovimento;
         this.qtdmovimentada = qtdmovimentada;
         this.status = status;
+        
+        this.itemVenda = itemVenda;
+        this.produto = produto;
+        this.compra = compra;
+        this.funcionario = funcionario;
     }
+
+    
 
     public int getId() {
         return id;
@@ -71,9 +83,42 @@ public class Movimentacaoestoque {
         this.status = status;
     }
 
+    public ItemVenda getItemVenda() {
+        return itemVenda;
+    }
+
+    public void setItemVenda(ItemVenda itemVenda) {
+        this.itemVenda = itemVenda;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public ItemCompra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(ItemCompra compra) {
+        this.compra = compra;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    
+    
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", datahoramovimento=" + this.getDatahoramovimento() + ", observacaomovimento=" + this.getObservacaomovimento() + ", flagtipomovimento=" + this.getFlagtipomovimento() + ", qtdmovimentada=" + this.getQtdmovimentada() + ", status=" + this.getStatus();
+        return "id=" + this.getId() + ", datahoramovimento=" + this.getDatahoramovimento() + ", observacaomovimento=" + this.getObservacaomovimento() + ", flagtipomovimento=" + this.getFlagtipomovimento() + ", qtdmovimentada=" + this.getQtdmovimentada() + ", status=" + this.getStatus()+", ItemCompra= "+this.getCompra()+", ItemVenda="+this.getItemVenda()+", Produto"+this.getProduto()+", Funcionario"+this.getFuncionario();
     }
     
     

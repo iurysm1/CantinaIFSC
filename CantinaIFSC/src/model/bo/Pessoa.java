@@ -1,7 +1,7 @@
 
 package model.bo;
 
-public class Pessoa {
+abstract class Pessoa {
     private int id;
     private String nome;
     private String fone1;

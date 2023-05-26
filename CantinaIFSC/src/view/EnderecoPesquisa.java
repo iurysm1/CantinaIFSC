@@ -56,7 +56,7 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
         ClienteTabela = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -65,7 +65,7 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(236, 200, 174));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("PESQUISA ENDEREÇO");
+        jLabel2.setText("PESQUISA DE ENDEREÇO");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -74,9 +74,9 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
         PainelTituloLayout.setHorizontalGroup(
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTituloLayout.createSequentialGroup()
-                .addContainerGap(322, Short.MAX_VALUE)
+                .addContainerGap(297, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(280, 280, 280)
+                .addGap(245, 245, 245)
                 .addComponent(jLabel1)
                 .addGap(15, 15, 15))
         );
@@ -89,7 +89,7 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(32, 32, 32))
+                .addGap(29, 29, 29))
         );
 
         PainelBotoes.setBackground(new java.awt.Color(255, 255, 255));

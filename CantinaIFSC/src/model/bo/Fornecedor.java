@@ -6,14 +6,14 @@ public class Fornecedor extends Pessoa{
     private String cnpj;
     private String inscricaoestadual;
     private String razaosocial;
-    private Compra compra;
 
-    public Fornecedor(String cnpj, String inscricaoestadual, String razaosocial, Compra compra, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
+
+    public Fornecedor(String cnpj, String inscricaoestadual, String razaosocial, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
         super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cnpj = cnpj;
         this.inscricaoestadual = inscricaoestadual;
         this.razaosocial = razaosocial;
-        this.compra = compra;
+ 
     }
 
  
@@ -45,17 +45,11 @@ public class Fornecedor extends Pessoa{
     public void setRazaosocial(String razaosocial) {
         this.razaosocial = razaosocial;
     }
-       public Compra getCompra() {
-        return compra;
-    }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
-    }
     
     @Override
     public String toString() {
-        return "cnpj=" + this.getCnpj() + ", inscricaoestadual=" + this.getInscricaoestadual() + ", razaosocial=" + this.getRazaosocial()+", endereco="+this.getEndereco()+", IdCompra:"+this.compra.getId();
+        return "cnpj=" + this.getCnpj() + ", inscricaoestadual=" + this.getInscricaoestadual() + ", razaosocial=" + this.getRazaosocial()+", endereco="+this.getEndereco();
     }
     
     

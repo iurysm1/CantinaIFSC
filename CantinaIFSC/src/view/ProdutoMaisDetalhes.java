@@ -29,7 +29,7 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         PainelGeral = new javax.swing.JPanel();
         PainelTitulo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         PainelBotoes = new javax.swing.JPanel();
         sair = new javax.swing.JButton();
@@ -40,7 +40,7 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1039, 723));
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -49,10 +49,10 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
         PainelTitulo.setBackground(new java.awt.Color(42, 96, 65));
         PainelTitulo.setPreferredSize(new java.awt.Dimension(859, 108));
 
-        jLabel2.setBackground(new java.awt.Color(236, 200, 174));
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("NomePRODUTO");
+        titulo.setBackground(new java.awt.Color(236, 200, 174));
+        titulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setText("NomePRODUTO");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -62,7 +62,7 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(389, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(titulo)
                 .addGap(334, 334, 334)
                 .addComponent(jLabel1)
                 .addGap(15, 15, 15))
@@ -71,7 +71,7 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(titulo)
                 .addGap(32, 32, 32))
             .addGroup(PainelTituloLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
@@ -267,9 +267,9 @@ public class ProdutoMaisDetalhes extends javax.swing.JFrame {
     private javax.swing.JButton carregar;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton sair;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

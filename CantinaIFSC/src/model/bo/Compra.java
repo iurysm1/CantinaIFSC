@@ -12,13 +12,12 @@ public class Compra {
     private char status;
     private String observacao;
     
-    private ItemCompra itemCompra;
-    private Contas contas;
+    private Fornecedor fornecedor;
 
     public Compra() {
     }
 
-    public Compra(int id, int numeronf, String datahoracompra, float valordesconto, char flagtipodesconto, char status, String observacao, ItemCompra itemCompra, Contas contas) {
+    public Compra(int id, int numeronf, String datahoracompra, float valordesconto, char flagtipodesconto, char status, String observacao, Fornecedor fornecedor) {
         this.id = id;
         this.numeronf = numeronf;
         this.datahoracompra = datahoracompra;
@@ -26,8 +25,8 @@ public class Compra {
         this.flagtipodesconto = flagtipodesconto;
         this.status = status;
         this.observacao = observacao;
-        this.itemCompra = itemCompra;
-        this.contas = contas;
+        this.fornecedor=fornecedor;
+
     }
 
     public int getId() {
@@ -86,25 +85,19 @@ public class Compra {
         this.observacao = observacao;
     }
 
-    public ItemCompra getItemCompra() {
-        return itemCompra;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setItemCompra(ItemCompra itemCompra) {
-        this.itemCompra = itemCompra;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public Contas getContas() {
-        return contas;
-    }
-
-    public void setContas(Contas contas) {
-        this.contas = contas;
-    }
+    
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", numeronf=" + this.getNumeronf() + ", datahoracompra=" + this.getDatahoracompra() + ", valordesconto=" + this.getValordesconto() + ", flagtipodesconto=" + this.getFlagtipodesconto() + ", status=" + this.getStatus() + ", observacao=" + this.getObservacao() + ", itemCompra=" + this.itemCompra.getId() + ", contas=" + this.contas.getId() + '}';
+        return "id=" + this.getId() + ", numeronf=" + this.getNumeronf() + ", datahoracompra=" + this.getDatahoracompra() + ", valordesconto=" + this.getValordesconto() + ", flagtipodesconto=" + this.getFlagtipodesconto() + ", status=" + this.getStatus() + ", observacao=" + this.getObservacao()+", fornecedor"+this.getFornecedor();
     }
     
     

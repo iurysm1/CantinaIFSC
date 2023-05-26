@@ -136,7 +136,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,7 +146,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(236, 200, 174));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CADASTRO CARTEIRINHA");
+        jLabel2.setText("CADASTRO DE CARTEIRINHA");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -157,7 +157,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
             .addGroup(PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(187, 187, 187)
+                .addGap(177, 177, 177)
                 .addComponent(jLabel3)
                 .addGap(15, 15, 15))
         );
@@ -170,7 +170,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(30, 30, 30))
+                .addGap(31, 31, 31))
         );
 
         PainelDados.setBackground(new java.awt.Color(255, 255, 255));

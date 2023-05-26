@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -22,9 +22,10 @@ public class Contas {
     private char flagtipoconta;
     private char status;
     
-    private Movimentocaixa movimentoCaixa;
+    private Venda venda;
+    private Compra compra;
 
-    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, char status, Movimentocaixa movimentoCaixa) {
+    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, char status, Venda venda, Compra compra) {
         this.id = id;
         this.datahoraemissao = datahoraemissao;
         this.datavencimento = datavencimento;
@@ -36,18 +37,13 @@ public class Contas {
         this.observacao = observacao;
         this.flagtipoconta = flagtipoconta;
         this.status = status;
-        this.movimentoCaixa = movimentoCaixa;
+        
+        this.venda = venda;
+        this.compra=compra;
+        
     }
 
     public Contas() {
-    }
-
-    public Movimentocaixa getMovimentoCaixa() {
-        return movimentoCaixa;
-    }
-
-    public void setMovimentoCaixa(Movimentocaixa movimentoCaixa) {
-        this.movimentoCaixa = movimentoCaixa;
     }
 
 
@@ -139,9 +135,26 @@ public class Contas {
         this.status = status;
     }
 
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+    
+
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", datahoraemissao=" + this.getDatahoraemissao() + ", datavencimento=" + this.getDatavencimento() + ", dataquitacao=" + this.getDataquitacao() + ", valoremitido=" + this.getValoremitido() + ", valordesconto=" + this.getValordesconto() + ", valoracrescimo=" + this.getValoracrescimo() + ", valorquitado=" + this.getValorquitado() + ", observacao=" + this.getObservacao() + ", flagtipoconta=" + this.getFlagtipoconta() + ", status=" + this.getStatus()+ ", idMovimentoCaixa="+this.getMovimentoCaixa();
+        return "id=" + this.getId() + ", datahoraemissao=" + this.getDatahoraemissao() + ", datavencimento=" + this.getDatavencimento() + ", dataquitacao=" + this.getDataquitacao() + ", valoremitido=" + this.getValoremitido() + ", valordesconto=" + this.getValordesconto() + ", valoracrescimo=" + this.getValoracrescimo() + ", valorquitado=" + this.getValorquitado() + ", observacao=" + this.getObservacao() + ", flagtipoconta=" + this.getFlagtipoconta() + ", status=" + this.getStatus()+ ", idCompra: "+this.getCompra()+", idVenda: "+this.getVenda();
     }
     
     

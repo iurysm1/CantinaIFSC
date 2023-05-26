@@ -1,23 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import utilities.Utilities;
 
-/**
- *
- * @author iury.marques
- */
+
 public class EnderecoRegistro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TemplateRegistro
-     */
+
     public EnderecoRegistro() {
         initComponents();
   
@@ -41,19 +32,19 @@ public class EnderecoRegistro extends javax.swing.JFrame {
     }
 
     public JTextField getNome() {
-        return nome;
+        return bairro;
     }
 
     public void setNome(JTextField nome) {
-        this.nome = nome;
+        this.bairro = nome;
     }
 
     public JTextField getDescricao() {
-        return descricao;
+        return cidade;
     }
 
     public void setDescricao(JTextField descricao) {
-        this.descricao = descricao;
+        this.cidade = descricao;
     }
 
     public JPanel getPainelBotoes() {
@@ -83,6 +74,26 @@ public class EnderecoRegistro extends javax.swing.JFrame {
     public JButton getSair() {
         return sair;
     }
+
+    public JButton getNovoBairro() {
+        return novoBairro;
+    }
+
+    public JButton getNovoCidade() {
+        return novoCidade;
+    }
+
+
+    public JButton getPesquisaBairro() {
+        return pesquisaBairro;
+    }
+
+    public JButton getPesquisaCidade() {
+        return pesquisaCidade;
+    }
+
+
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,8 +110,8 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         PainelDados = new javax.swing.JPanel();
         id = new javax.swing.JTextField();
-        nome = new javax.swing.JTextField();
-        descricao = new javax.swing.JTextField();
+        bairro = new javax.swing.JTextField();
+        cidade = new javax.swing.JTextField();
         matricula = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
@@ -114,8 +125,14 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         gravar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
+        novoBairro = new javax.swing.JButton();
+        pesquisaBairro = new javax.swing.JButton();
+        novoCidade = new javax.swing.JButton();
+        pesquisaCidade = new javax.swing.JButton();
+        logradouro = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -125,7 +142,7 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(236, 200, 174));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CADASTRO ENDEREÇO");
+        jLabel2.setText("CADASTRO DE ENDEREÇO");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -136,20 +153,21 @@ public class EnderecoRegistro extends javax.swing.JFrame {
             .addGroup(PainelTituloLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(228, 228, 228)
+                .addGap(204, 204, 204)
                 .addComponent(jLabel3)
                 .addGap(15, 15, 15))
         );
         PainelTituloLayout.setVerticalGroup(
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTituloLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3)
+                .addGroup(PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTituloLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3))
+                    .addGroup(PainelTituloLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2)))
                 .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTituloLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32))
         );
 
         PainelDados.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,15 +183,15 @@ public class EnderecoRegistro extends javax.swing.JFrame {
             }
         });
 
-        nome.setBackground(new java.awt.Color(231, 231, 231));
-        nome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        nome.setSelectionColor(new java.awt.Color(42, 96, 65));
+        bairro.setBackground(new java.awt.Color(231, 231, 231));
+        bairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        bairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        bairro.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        descricao.setBackground(new java.awt.Color(231, 231, 231));
-        descricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        descricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        descricao.setSelectionColor(new java.awt.Color(42, 96, 65));
+        cidade.setBackground(new java.awt.Color(231, 231, 231));
+        cidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        cidade.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         matricula.setBackground(new java.awt.Color(231, 231, 231));
         matricula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -192,10 +210,10 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         jLabel9.setText("STATUS");
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel16.setText("DESCRIÇÃO");
+        jLabel16.setText("CIDADE");
 
         jLabel29.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel29.setText("LOGRADOURO");
+        jLabel29.setText("BAIRRO");
 
         jLabel31.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel31.setText("ID");
@@ -314,6 +332,34 @@ public class EnderecoRegistro extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        novoBairro.setBackground(new java.awt.Color(0, 145, 173));
+        novoBairro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/adicionar (1).png"))); // NOI18N
+        novoBairro.setActionCommand("0");
+        novoBairro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        novoBairro.setBorderPainted(false);
+
+        pesquisaBairro.setBackground(new java.awt.Color(40, 150, 90));
+        pesquisaBairro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/lupa.png"))); // NOI18N
+        pesquisaBairro.setActionCommand("0");
+        pesquisaBairro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pesquisaBairro.setBorderPainted(false);
+
+        novoCidade.setBackground(new java.awt.Color(0, 145, 173));
+        novoCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/adicionar (1).png"))); // NOI18N
+        novoCidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        novoCidade.setBorderPainted(false);
+
+        pesquisaCidade.setBackground(new java.awt.Color(40, 150, 90));
+        pesquisaCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/lupa.png"))); // NOI18N
+        pesquisaCidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pesquisaCidade.setBorderPainted(false);
+
+        logradouro.setBackground(new java.awt.Color(231, 231, 231));
+        logradouro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        logradouro.setSelectionColor(new java.awt.Color(42, 96, 65));
+
+        jLabel1.setText("LOGRADOURO");
+
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
         PainelDados.setLayout(PainelDadosLayout);
         PainelDadosLayout.setHorizontalGroup(
@@ -323,25 +369,43 @@ public class EnderecoRegistro extends javax.swing.JFrame {
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelDadosLayout.createSequentialGroup()
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel29)
+                            .addGroup(PainelDadosLayout.createSequentialGroup()
+                                .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(novoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pesquisaBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(107, 107, 107)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18))
-                        .addGap(26, 26, 26)
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel16)
+                            .addGroup(PainelDadosLayout.createSequentialGroup()
+                                .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(novoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pesquisaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(PainelDadosLayout.createSequentialGroup()
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29))
-                        .addGap(117, 117, 117)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31))
+                        .addGap(18, 18, 18)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))))
-                .addGap(35, 35, 35))
+                            .addGroup(PainelDadosLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(PainelDadosLayout.createSequentialGroup()
+                                .addComponent(logradouro)
+                                .addGap(107, 107, 107)))
+                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(35, 35, 35))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -350,27 +414,37 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         PainelDadosLayout.setVerticalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(6, 6, 6)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel31))
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel29))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PainelDadosLayout.createSequentialGroup()
+                        .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(status)
+                    .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logradouro, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(novoCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pesquisaCidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pesquisaBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(novoBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addGap(36, 36, 36)
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout PainelGeralLayout = new javax.swing.GroupLayout(PainelGeral);
@@ -387,9 +461,8 @@ public class EnderecoRegistro extends javax.swing.JFrame {
             PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelGeralLayout.createSequentialGroup()
                 .addComponent(PainelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -486,10 +559,12 @@ public class EnderecoRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PainelDados;
     private javax.swing.JPanel PainelGeral;
     private javax.swing.JPanel PainelTitulo;
+    private javax.swing.JTextField bairro;
     private javax.swing.JButton cancelar;
-    private javax.swing.JTextField descricao;
+    private javax.swing.JTextField cidade;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -497,9 +572,13 @@ public class EnderecoRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField logradouro;
     private javax.swing.JTextField matricula;
-    private javax.swing.JTextField nome;
     private javax.swing.JButton novo;
+    private javax.swing.JButton novoBairro;
+    private javax.swing.JButton novoCidade;
+    private javax.swing.JButton pesquisaBairro;
+    private javax.swing.JButton pesquisaCidade;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton sair;
     private javax.swing.JComboBox<String> status;

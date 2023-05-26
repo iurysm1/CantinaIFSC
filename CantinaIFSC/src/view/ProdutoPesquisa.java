@@ -41,15 +41,15 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         sair = new javax.swing.JButton();
         carregar = new javax.swing.JButton();
         PainelPesquisa = new javax.swing.JPanel();
-        pesquisar = new javax.swing.JButton();
         pesquisa = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
         PainelDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         PianelFoto = new javax.swing.JPanel();
-        FOTO = new javax.swing.JLabel();
+        foto = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,22 +67,23 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelTituloLayout.setHorizontalGroup(
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTituloLayout.createSequentialGroup()
-                .addContainerGap(456, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(346, 346, 346)
+                .addGap(496, 496, 496)
                 .addComponent(jLabel6)
                 .addGap(15, 15, 15))
         );
         PainelTituloLayout.setVerticalGroup(
             PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTituloLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32))
             .addGroup(PainelTituloLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PainelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTituloLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel6))
+                    .addGroup(PainelTituloLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         PainelBotoes.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,6 +131,11 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
 
         PainelPesquisa.setBackground(new java.awt.Color(255, 255, 255));
 
+        pesquisa.setBackground(new java.awt.Color(231, 231, 231));
+        pesquisa.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pesquisa.setForeground(new java.awt.Color(153, 153, 153));
+        pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+
         pesquisar.setBackground(new java.awt.Color(40, 150, 90));
         pesquisar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,27 +145,24 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         pesquisar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         pesquisar.setIconTextGap(10);
 
-        pesquisa.setBackground(new java.awt.Color(231, 231, 231));
-        pesquisa.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        pesquisa.setForeground(new java.awt.Color(153, 153, 153));
-        pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
         PainelPesquisaLayout.setHorizontalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
-                .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pesquisar)
+                .addGap(19, 19, 19))
         );
         PainelPesquisaLayout.setVerticalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelPesquisaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         PainelDados.setBackground(new java.awt.Color(255, 255, 255));
@@ -168,13 +171,13 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Descrição"
+                "ID", "Nome", "Código de barras", "Preço"
             }
         ));
         jTable1.setMaximumSize(new java.awt.Dimension(190, 80));
@@ -184,36 +187,41 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setMinWidth(40);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(60);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(60);
         }
 
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
         PainelDados.setLayout(PainelDadosLayout);
         PainelDadosLayout.setHorizontalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelDadosLayout.setVerticalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         );
 
-        FOTO.setText("FOTO");
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/galeria-de-imagens 32.png"))); // NOI18N
 
         javax.swing.GroupLayout PianelFotoLayout = new javax.swing.GroupLayout(PianelFoto);
         PianelFoto.setLayout(PianelFotoLayout);
         PianelFotoLayout.setHorizontalGroup(
             PianelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PianelFotoLayout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(FOTO, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addContainerGap(168, Short.MAX_VALUE)
+                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
         PianelFotoLayout.setVerticalGroup(
             PianelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PianelFotoLayout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(FOTO)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(234, 234, 234)
+                .addComponent(foto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PainelGeralLayout = new javax.swing.GroupLayout(PainelGeral);
@@ -222,15 +230,17 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
             PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PainelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelGeralLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PainelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PainelGeralLayout.createSequentialGroup()
-                        .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PianelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(PainelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(82, 82, 82))
+                    .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PainelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PainelGeralLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(PianelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27))
         );
         PainelGeralLayout.setVerticalGroup(
             PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +303,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and displayfoto form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TemplateRegistro().setVisible(true);
@@ -302,7 +312,6 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel FOTO;
     private javax.swing.JPanel PainelBotoes;
     private javax.swing.JPanel PainelDados;
     private javax.swing.JPanel PainelGeral;
@@ -311,6 +320,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel PianelFoto;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton carregar;
+    private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;

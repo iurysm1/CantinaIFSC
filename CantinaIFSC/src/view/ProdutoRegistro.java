@@ -138,7 +138,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,7 +148,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(236, 200, 174));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CADASTRO PRODUTO");
+        jLabel2.setText("CADASTRO DE PRODUTO");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/ifsc-logo.png"))); // NOI18N
 
@@ -212,7 +212,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         status.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
 
         jLabel29.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel29.setText("Nome do Produto");
+        jLabel29.setText("NOME DO PRODUTO");
 
         jLabel30.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel30.setText("Preço");

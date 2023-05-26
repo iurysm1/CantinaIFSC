@@ -7,17 +7,18 @@ public class Cliente extends Pessoa{
     private String rg;
     private String matricula;
     private String dataNascimento;
+    private Carteirinha carteirinha;
 
     public Cliente() {
     }
 
-    public Cliente(String cpf, String rg, String matricula, String dataNascimento, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
+    public Cliente(String cpf, String rg, String matricula, String dataNascimento, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco, Carteirinha carteirinha) {
         super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cpf = cpf;
         this.rg = rg;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
-        
+        this.carteirinha = carteirinha;
     }
 
 
@@ -54,9 +55,18 @@ public class Cliente extends Pessoa{
         this.dataNascimento = dataNascimento;
     }
 
+    public Carteirinha getCarteirinha() {
+        return carteirinha;
+    }
+
+    public void setCarteirinha(Carteirinha carteirinha) {
+        this.carteirinha = carteirinha;
+    }
+    
+
     @Override
     public String toString() {
-        return "cpf=" + this.getCpf() + ", rg=" + this.getRg() + ", matricula=" + this.getMatricula() + ", dataNascimento=" + this.getDataNascimento()+", Endereco="+this.getEndereco();
+        return "cpf=" + this.getCpf() + ", rg=" + this.getRg() + ", matricula=" + this.getMatricula() + ", dataNascimento=" + this.getDataNascimento()+", Endereco="+this.getEndereco()+", Carteirinha="+this.getCarteirinha();
     }
     
     

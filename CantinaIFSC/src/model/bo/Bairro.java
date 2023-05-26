@@ -6,6 +6,7 @@ package model.bo;
 public class Bairro {
     private String descricao;
     private int id;
+    private char status;
 
     public Bairro() {
     }
@@ -31,9 +32,18 @@ public class Bairro {
         this.id = id;
     }
 
+    public char getStatus() {
+        return status;
+    }
+
+    public void setStatus(char status) {
+        this.status = status;
+    }
+    
+
     @Override
     public String toString() {
-        return "descricao=" + this.getDescricao() + ", id=" + this.getId() ;
+        return "descricao=" + this.getDescricao() + ", id=" + this.getId()+", status="+this.getStatus() ;
     }
     
     

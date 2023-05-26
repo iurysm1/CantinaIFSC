@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import utilities.Utilities;
 import view.ClientePesquisa;
 import view.ClienteRegistro;
+import view.EnderecoPesquisa;
+import view.EnderecoRegistro;
 
 
 public class ClienteRegistroController implements ActionListener{
@@ -21,6 +23,8 @@ public class ClienteRegistroController implements ActionListener{
         this.clienteRegistro.getGravar().addActionListener(this);
         this.clienteRegistro.getCancelar().addActionListener(this);
         this.clienteRegistro.getPesquisar().addActionListener(this);
+        this.clienteRegistro.getNovoCep().addActionListener(this);
+        this.clienteRegistro.getPesquisarCep().addActionListener(this);
         
         Utilities.active(true, this.clienteRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
@@ -40,6 +44,7 @@ public class ClienteRegistroController implements ActionListener{
         }else if(e.getSource()==this.clienteRegistro.getNovo()){
             Utilities.active(false, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.clienteRegistro.getPainelDados());
+            
         }else if(e.getSource()==this.clienteRegistro.getGravar()){
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
@@ -47,6 +52,16 @@ public class ClienteRegistroController implements ActionListener{
         }else if(e.getSource()==this.clienteRegistro.getCancelar()){
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
+            
+        }else if(e.getSource()==this.clienteRegistro.getNovoCep()){
+            EnderecoRegistro enderecoRegistro = new EnderecoRegistro();
+            EnderecoRegistroController enderecoRegistroController = new EnderecoRegistroController(enderecoRegistro);
+            enderecoRegistro.setVisible(true);
+            
+        }else if (e.getSource()==this.clienteRegistro.getPesquisarCep()){
+            EnderecoPesquisa enderecoPesquisa= new EnderecoPesquisa();
+            EnderecoPesquisaController enderecoPesquisaController= new EnderecoPesquisaController(enderecoPesquisa);
+            enderecoPesquisa.setVisible(true);
         }
         
     }

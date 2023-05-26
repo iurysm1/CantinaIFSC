@@ -10,12 +10,14 @@ public class Caixa {
     private float valorfechamento;
     private String observacao;
     private char status;
-    private Movimentacaoestoque movimentoestoque;
+    
+    
+    private Funcionario funcionario;
 
     public Caixa() {
     }
 
-    public Caixa(int id, String datahoraabertura, String datahorafechamento, float valorabertura, float valorfechamento, String observacao, char status, Movimentacaoestoque movimentoestoque) {
+    public Caixa(int id, String datahoraabertura, String datahorafechamento, float valorabertura, float valorfechamento, String observacao, char status, Funcionario funcionario) {
         this.id = id;
         this.datahoraabertura = datahoraabertura;
         this.datahorafechamento = datahorafechamento;
@@ -23,7 +25,7 @@ public class Caixa {
         this.valorfechamento = valorfechamento;
         this.observacao = observacao;
         this.status = status;
-        this.movimentoestoque = movimentoestoque;
+        this.funcionario=funcionario;
     }
 
     public int getId() {
@@ -82,17 +84,18 @@ public class Caixa {
         this.status = status;
     }
 
-    public Movimentacaoestoque getMovimentoestoque() {
-        return movimentoestoque;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setMovimentoestoque(Movimentacaoestoque movimentoestoque) {
-        this.movimentoestoque = movimentoestoque;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
+    
     @Override
     public String toString() {
-        return "Caixa{" + "id=" + this.getId() + ", datahoraabertura=" + this.getDatahoraabertura() + ", datahorafechamento=" + this.getDatahorafechamento() + ", valorabertura=" + this.getValorabertura() + ", valorfechamento=" + this.getValorfechamento() + ", observacao=" + this.getObservacao() + ", status=" + this.getStatus() + ", movimentoestoque=" + this.movimentoestoque.getId();
+        return "Caixa{" + "id=" + this.getId() + ", datahoraabertura=" + this.getDatahoraabertura() + ", datahorafechamento=" + this.getDatahorafechamento() + ", valorabertura=" + this.getValorabertura() + ", valorfechamento=" + this.getValorfechamento() + ", observacao=" + this.getObservacao() + ", status=" + this.getStatus() + ", funcionario=" + this.getFuncionario();
     }
     
     

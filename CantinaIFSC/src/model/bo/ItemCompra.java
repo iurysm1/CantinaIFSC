@@ -7,17 +7,21 @@ public class ItemCompra {
     private float qtdproduto;
     private float valorunitario;
     private char status;
-    private Movimentacaoestoque movimentacaoestoque;
+    
+    private Produto produto;
+    private Compra compra;
 
     public ItemCompra() {
     }
 
-    public ItemCompra(int id, float qtdproduto, float valorunitario, char status, Movimentacaoestoque movimentacaoestoque) {
+    public ItemCompra(int id, float qtdproduto, float valorunitario, char status, Produto produto, Compra compra) {
         this.id = id;
         this.qtdproduto = qtdproduto;
         this.valorunitario = valorunitario;
         this.status = status;
-        this.movimentacaoestoque = movimentacaoestoque;
+        this.produto=produto;
+        this.compra=compra;
+  
     }
 
     public int getId() {
@@ -52,17 +56,26 @@ public class ItemCompra {
         this.status = status;
     }
 
-    public Movimentacaoestoque getMovimentacaoestoque() {
-        return movimentacaoestoque;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setMovimentacaoestoque(Movimentacaoestoque movimentacaoestoque) {
-        this.movimentacaoestoque = movimentacaoestoque;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", movimentacaoestoque=" + this.movimentacaoestoque.getId();
+        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", compra="+this.getCompra()+", produto="+this.getProduto();
     }
     
     
