@@ -357,7 +357,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nomeDoBairro" min="-2" pref="426" max="-2" attributes="0"/>
+                                  <Component id="nomeCidade" min="-2" pref="426" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="273" pref="273" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -391,7 +391,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nomeDoBairro" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="nomeCidade" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="uf" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -424,7 +424,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="nomeDoBairro">
+            <Component class="javax.swing.JTextField" name="nomeCidade">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e7" green="e7" red="e7" type="rgb"/>

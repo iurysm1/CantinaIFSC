@@ -1,8 +1,12 @@
 
 package controller;
 
+import DAO.Persiste;
+import static DAO.Persiste.fornecedores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import model.bo.Fornecedor;
 import view.FornecedorPesquisa;
 
 public class FornecedorPesquisaController implements ActionListener{
@@ -13,6 +17,8 @@ public class FornecedorPesquisaController implements ActionListener{
         this.fornecedorPesquisa = fornecedorPesquisa;
         
         this.fornecedorPesquisa.getSair().addActionListener(this);
+        this.fornecedorPesquisa.getPesquisar().addActionListener(this);
+        this.fornecedorPesquisa.getCarregar().addActionListener(this);
     }
 
 
@@ -23,6 +29,14 @@ public class FornecedorPesquisaController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.fornecedorPesquisa.getSair()){
             this.fornecedorPesquisa.dispose();
+        }else if(e.getSource()==this.fornecedorPesquisa.getPesquisar()){
+            Persiste.getInstance();
+            
+            DefaultTableModel tabela = (DefaultTableModel) this.fornecedorPesquisa.getTabelaDados().getModel();
+            for (Fornecedor fornecedorAtual : fornecedores) {
+                
+                tabela.addRow(new Object[]{fornecedorAtual.getId(),fornecedorAtual.getCnpj(),fornecedorAtual.getRazaosocial()});
+            }
         }
     }
     

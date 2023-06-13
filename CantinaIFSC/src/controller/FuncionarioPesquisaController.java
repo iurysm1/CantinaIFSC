@@ -1,8 +1,12 @@
 
 package controller;
 
+import DAO.Persiste;
+import static DAO.Persiste.funcionarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import model.bo.Funcionario;
 import view.FuncionarioPesquisa;
 
 class FuncionarioPesquisaController implements ActionListener{
@@ -14,12 +18,20 @@ class FuncionarioPesquisaController implements ActionListener{
         
         this.funcionarioPesquisa.getSair().addActionListener(this);
         this.funcionarioPesquisa.getCarregar().addActionListener(this);
+        this.funcionarioPesquisa.getPesquisar().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.funcionarioPesquisa.getSair()){
             this.funcionarioPesquisa.dispose();
+        }else if(e.getSource()==this.funcionarioPesquisa.getPesquisar()){
+            Persiste.getInstance();
+            
+            DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
+            for (Funcionario funcionarioAtual : funcionarios) {
+                tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getCpf(),funcionarioAtual.getNome()});
+            }
         }
     }
     

@@ -11,7 +11,7 @@ public class Bairro {
     public Bairro() {
     }
 
-    public Bairro(String descricao, int id) {
+    public Bairro(int id, String descricao) {
         this.descricao = descricao;
         this.id = id;
     }

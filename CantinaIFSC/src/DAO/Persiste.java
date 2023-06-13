@@ -23,16 +23,47 @@ public class Persiste {
     private static Persiste uniqueInstance;
     
     private Persiste() {
+        Movimentacaoestoque movimentacaoEstoque = new Movimentacaoestoque();
+        Caixa caixa = new Caixa();
+        Venda venda = new Venda();
+        
+        Bairro bairro = new Bairro(1, "Divineia");
+        Bairro bairro2= new Bairro(2, "Aguada");
+        Bairro bairro3 = new Bairro(3, "Centro");
+        bairros.add(bairro);
+        bairros.add(bairro2);
+        bairros.add(bairro3);
+        
+        Cidade cidade= new Cidade(1, "Imbituba", "SC");
+        cidades.add(cidade);
+        
+        Endereco endereco = new Endereco(1, "88780000", "Rua João de Oliveira", 's', bairro, cidade);
+        enderecos.add(endereco);
+        
+        Cliente cliente = new Cliente("088-211-509.09", "6567895", "1", "22/02/2002", 1, "Iury", "999999", "299999", "iury@gmail.com", 's', "Presidio imbituba", endereco);
+        clientes.add(cliente);
+    
+        Carteirinha carteirinha = new Carteirinha(1, "123", "01/01/2023", "10/10/2025", cliente);
+        carteirinhas.add(carteirinha);
+      
+        Funcionario funcionario = new Funcionario("09921150909", "111", "iury.marques", "2202", movimentacaoEstoque, venda, caixa, 1, "IuryFuncionario", "999999", "299999999", "funcionario@gmail.com", 's', "FuncionarioComplemento", endereco);
+        funcionarios.add(funcionario);
+        
+        Fornecedor fornecedor = new Fornecedor("99999/0", "1234567", "FornecedorLTDA", 1, "IuryFornecedor", "9999", "999", "fornecedor@gmail.com", 's', "FornecedorEnd", endereco);
+        fornecedores.add(fornecedor);
+        
+        
+        Produto produto = new Produto(1, "Salsicha", "111", 's', 2);
+        produtos.add(produto);
     }
     
     public static synchronized Persiste getInstance() {
         if (uniqueInstance==null){
             uniqueInstance=new Persiste();
-        }222222
+        }
         
         return uniqueInstance;
     }
-    public String teste="Teste";
     public static ArrayList<Bairro>bairros = new ArrayList<>();
     public static ArrayList<Caixa>caixas = new ArrayList<>();
     public static ArrayList<Carteirinha>carteirinhas = new ArrayList<>();
@@ -50,8 +81,6 @@ public class Persiste {
     public static ArrayList<Produto>produtos =new ArrayList<>();
     public static ArrayList<Venda>vendas = new ArrayList<>();
     
-    public String getTeste(){
-        return this.teste;
-    }
+    
 
 }

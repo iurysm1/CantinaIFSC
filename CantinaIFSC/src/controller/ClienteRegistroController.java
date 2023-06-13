@@ -3,6 +3,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.bo.Cliente;
 import utilities.Utilities;
 import view.ClientePesquisa;
 import view.ClienteRegistro;
@@ -46,6 +47,11 @@ public class ClienteRegistroController implements ActionListener{
             Utilities.limpaComponentes(true, this.clienteRegistro.getPainelDados());
             
         }else if(e.getSource()==this.clienteRegistro.getGravar()){
+            Cliente cliente = new Cliente();
+            
+            
+            
+            
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
             

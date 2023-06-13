@@ -71,12 +71,12 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         this.id = id;
     }
 
-    public JTextField getMatricula() {
-        return matricula;
+    public JTextField getCodigoBarra() {
+        return codigoBarra;
     }
 
-    public void setMatricula(JTextField matricula) {
-        this.matricula = matricula;
+    public void setCodigoBarra(JTextField codigoBarra) {
+        this.codigoBarra = codigoBarra;
     }
 
     public JTextField getNome() {
@@ -87,12 +87,12 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         this.nome = nome;
     }
 
-    public JTextField getRg() {
-        return rg;
+    public JTextField getPreco() {
+        return preco;
     }
 
-    public void setRg(JTextField rg) {
-        this.rg = rg;
+    public void setPreco(JTextField preco) {
+        this.preco = preco;
     }
 
     public JComboBox<String> getStatus() {
@@ -120,8 +120,8 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         PainelDados = new javax.swing.JPanel();
         id = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        rg = new javax.swing.JTextField();
-        matricula = new javax.swing.JTextField();
+        preco = new javax.swing.JTextField();
+        codigoBarra = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
@@ -193,15 +193,15 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         nome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         nome.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        rg.setBackground(new java.awt.Color(231, 231, 231));
-        rg.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        rg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        rg.setSelectionColor(new java.awt.Color(42, 96, 65));
+        preco.setBackground(new java.awt.Color(231, 231, 231));
+        preco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        preco.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        preco.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        matricula.setBackground(new java.awt.Color(231, 231, 231));
-        matricula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        matricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        matricula.setSelectionColor(new java.awt.Color(42, 96, 65));
+        codigoBarra.setBackground(new java.awt.Color(231, 231, 231));
+        codigoBarra.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        codigoBarra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        codigoBarra.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("CODIGO DE BARRA");
@@ -272,7 +272,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
                             .addGroup(PainelDadosLayout.createSequentialGroup()
-                                .addComponent(rg, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                .addComponent(preco, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                                 .addGap(100, 100, 100))))
                     .addGroup(PainelDadosLayout.createSequentialGroup()
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +281,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
                             .addComponent(jLabel18)
                             .addComponent(jLabel29)
                             .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(matricula, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                                .addComponent(codigoBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                                 .addComponent(nome)))
                         .addGap(100, 100, 100)))
                 .addComponent(PainelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,11 +310,11 @@ public class ProdutoRegistro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -577,6 +577,7 @@ public class ProdutoRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PainelGeral;
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.JButton cancelar;
+    private javax.swing.JTextField codigoBarra;
     private javax.swing.JLabel foto;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
@@ -587,12 +588,11 @@ public class ProdutoRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JTextField matricula;
     private javax.swing.JTextField nome;
     private javax.swing.JButton novaFoto;
     private javax.swing.JButton novo;
     private javax.swing.JButton pesquisar;
-    private javax.swing.JTextField rg;
+    private javax.swing.JTextField preco;
     private javax.swing.JButton sair;
     private javax.swing.JComboBox<String> status;
     // End of variables declaration//GEN-END:variables

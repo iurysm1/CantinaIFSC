@@ -8,18 +8,19 @@ public class Produto {
     private String descricao;
     private String codigobarra;
     private char status;
+    private float preco;
     
 
 
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String codigobarra, char status) {
+    public Produto(int id, String descricao, String codigobarra, char status, float preco) {
         this.id = id;
         this.descricao = descricao;
         this.codigobarra = codigobarra;
         this.status = status;
-
+        this.preco=preco;
     }
 
     public int getId() {
@@ -54,11 +55,19 @@ public class Produto {
         this.status = status;
     }
 
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
 
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", descricao=" + this.getDescricao() + ", codigobarra=" + this.getCodigobarra() + ", status=" + this.getStatus();
+        return "id=" + this.getId() + ", descricao=" + this.getDescricao() + ", codigobarra=" + this.getCodigobarra() + ", status=" + this.getStatus()+", preço="+this.getPreco();
     }
     
     

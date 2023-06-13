@@ -42,12 +42,12 @@ public class CidadeRegistro extends javax.swing.JFrame {
         this.id = id;
     }
 
-    public JTextField getNomeDoBairro() {
-        return nomeDoBairro;
+    public JTextField getNomeCidade() {
+        return nomeCidade;
     }
 
-    public void setNomeDoBairro(JTextField nomeDoBairro) {
-        this.nomeDoBairro = nomeDoBairro;
+    public void setNomeCidade(JTextField nomeCidade) {
+        this.nomeCidade = nomeCidade;
     }
 
     public JTextField getUf() {
@@ -65,7 +65,7 @@ public class CidadeRegistro extends javax.swing.JFrame {
     public JPanel getPainelDados() {
         return PainelDados;
     }
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +88,7 @@ public class CidadeRegistro extends javax.swing.JFrame {
         sair = new javax.swing.JButton();
         PainelDados = new javax.swing.JPanel();
         id = new javax.swing.JTextField();
-        nomeDoBairro = new javax.swing.JTextField();
+        nomeCidade = new javax.swing.JTextField();
         uf = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
@@ -261,10 +261,10 @@ public class CidadeRegistro extends javax.swing.JFrame {
             }
         });
 
-        nomeDoBairro.setBackground(new java.awt.Color(231, 231, 231));
-        nomeDoBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nomeDoBairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        nomeDoBairro.setSelectionColor(new java.awt.Color(42, 96, 65));
+        nomeCidade.setBackground(new java.awt.Color(231, 231, 231));
+        nomeCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nomeCidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        nomeCidade.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         uf.setBackground(new java.awt.Color(231, 231, 231));
         uf.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -309,7 +309,7 @@ public class CidadeRegistro extends javax.swing.JFrame {
                     .addGroup(PainelDadosLayout.createSequentialGroup()
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel29)
-                            .addComponent(nomeDoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nomeCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(273, 273, 273)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -334,7 +334,7 @@ public class CidadeRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeDoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -481,7 +481,7 @@ public class CidadeRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField nomeDoBairro;
+    private javax.swing.JTextField nomeCidade;
     private javax.swing.JButton novo;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton sair;

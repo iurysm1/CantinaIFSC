@@ -3,6 +3,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.bo.Carteirinha;
 import utilities.Utilities;
 import view.CarteirinhaPesquisa;
 import view.CarteirinhaRegistro;
@@ -34,6 +35,13 @@ public class CarteirinhaRegistroController implements ActionListener{
             Utilities.active(false, this.carteirinhaRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.carteirinhaRegistro.getPainelDados());
         }else if(e.getSource()==this.carteirinhaRegistro.getGravar()){
+            Carteirinha carteirinha = new Carteirinha();
+            
+            carteirinha.setId(DAO.Persiste.carteirinhas.size()+1);
+            carteirinha.setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
+            carteirinha.setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
+            carteirinha.setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
+            
             Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());
         }else if(e.getSource()==this.carteirinhaRegistro.getCancelar()){

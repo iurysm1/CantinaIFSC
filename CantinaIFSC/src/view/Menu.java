@@ -4,6 +4,7 @@
  */
 package view;
 
+import DAO.Persiste;
 import controller.BairroRegistroController;
 import controller.CarteirinhaRegistroController;
 import controller.CidadeRegistroController;
@@ -27,7 +28,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        
+        Persiste.getInstance();
         
     }
 

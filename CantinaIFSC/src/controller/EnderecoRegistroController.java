@@ -3,6 +3,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.bo.Cidade;
+import model.bo.Endereco;
 import utilities.Utilities;
 import view.BairroPesquisa;
 import view.BairroRegistro;
@@ -40,6 +42,15 @@ public class EnderecoRegistroController implements ActionListener{
            Utilities.active(false, this.enderecoRegistro.getPainelBotoes());
            Utilities.limpaComponentes(true, this.enderecoRegistro.getPainelDados());
        }else if(e.getSource()==this.enderecoRegistro.getGravar()){
+           Endereco endereco = new Endereco();
+           Cidade cidade;
+           
+           endereco.setId(DAO.Persiste.enderecos.size()+1);
+           endereco.setLogradouro(this.enderecoRegistro.getLogradouro().getText());
+           endereco.setCep(this.enderecoRegistro.getCep().getText());
+           endereco.setCidade(cidade = new Cidade(2, "Cidade2", "SC"));
+           DAO.Persiste.enderecos.add(endereco);
+           
            Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
            Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());
        }else if(e.getSource()==this.enderecoRegistro.getCancelar()){

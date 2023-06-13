@@ -144,9 +144,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="id" min="-2" pref="132" max="-2" attributes="0"/>
+                                  <Component id="id" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="597" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <Component id="status" min="-2" pref="132" max="-2" attributes="0"/>

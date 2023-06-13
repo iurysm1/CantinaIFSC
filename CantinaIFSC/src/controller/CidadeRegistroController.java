@@ -2,6 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import model.bo.Bairro;
+import model.bo.Cidade;
 import utilities.Utilities;
 import view.CidadePesquisa;
 import view.CidadeRegistro;
@@ -10,7 +15,7 @@ import view.CidadeRegistro;
 public class CidadeRegistroController implements ActionListener{
     
     CidadeRegistro cidadeRegistro;
-
+    public static int codigo;
     public CidadeRegistroController(CidadeRegistro cidadeRegistro) {
         
         this.cidadeRegistro = cidadeRegistro;
@@ -25,7 +30,22 @@ public class CidadeRegistroController implements ActionListener{
         Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
     }
-
+    
+    WindowListener disposeListener = new WindowAdapter() {
+            public void windowClosed(WindowEvent e){
+                if (codigo!=0){
+                    Cidade cidade = new Cidade();
+                    cidade=DAO.Persiste.cidades.get(codigo-1);
+                    Utilities.active(false, cidadeRegistro.getPainelBotoes());
+                    Utilities.limpaComponentes(true, cidadeRegistro.getPainelDados());
+                    
+                    cidadeRegistro.getId().setText(cidade.getId()+"");
+                    cidadeRegistro.getNomeCidade().setText(cidade.getDescricao());
+                    cidadeRegistro.getUf().setText(cidade.getUf());
+                    cidadeRegistro.getId().setEnabled(false);
+                }
+            }
+    };
     
 
     
@@ -41,6 +61,21 @@ public class CidadeRegistroController implements ActionListener{
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
         }else if (e.getSource()==this.cidadeRegistro.getGravar()){
+            Cidade cidade=new Cidade();
+            
+            cidade.setId(DAO.Persiste.cidades.size()+1);
+            cidade.setUf(this.cidadeRegistro.getUf().getText());
+            cidade.setDescricao(this.cidadeRegistro.getNomeCidade().getText());
+           
+            
+            if(this.cidadeRegistro.getId().getText().equalsIgnoreCase("")){
+                DAO.Persiste.cidades.add(cidade);
+            }else{
+                int index=Integer.parseInt(this.cidadeRegistro.getId().getText())-1;
+                DAO.Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
+                DAO.Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
+            }
+            
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
         }else if (e.getSource()==this.cidadeRegistro.getSair()){
@@ -48,6 +83,7 @@ public class CidadeRegistroController implements ActionListener{
         }else if (e.getSource()==this.cidadeRegistro.getPesquisar()){
             CidadePesquisa cidadePesquisa=new CidadePesquisa();
             CidadePesquisaController cidadePesquisaController = new CidadePesquisaController(cidadePesquisa);
+            cidadePesquisa.addWindowListener(disposeListener);
             cidadePesquisa.setVisible(true);
         }
     }

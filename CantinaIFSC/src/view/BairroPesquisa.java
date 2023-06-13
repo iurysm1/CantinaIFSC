@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -48,6 +49,15 @@ public class BairroPesquisa extends javax.swing.JFrame {
     public JButton getPesquisar() {
         return pesquisar;
     }
+
+    public JPanel getPainelTitulo() {
+        return PainelTitulo;
+    }
+
+    public JTable getTabelaDados() {
+        return tabelaDados;
+    }
+    
     
 
     /**
@@ -71,9 +81,9 @@ public class BairroPesquisa extends javax.swing.JFrame {
         pesquisar = new javax.swing.JButton();
         pesquisa = new javax.swing.JTextField();
         ClienteTabela = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PainelGeral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -193,25 +203,19 @@ public class BairroPesquisa extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "ID", "CPF", "Nome"
+                "ID", "Nome"
             }
         ));
-        ClienteTabela.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(80);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(80);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(160);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(160);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(160);
+        ClienteTabela.setViewportView(tabelaDados);
+        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
+            tabelaDados.getColumnModel().getColumn(0).setMinWidth(80);
+            tabelaDados.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tabelaDados.getColumnModel().getColumn(0).setMaxWidth(80);
         }
 
         javax.swing.GroupLayout PainelGeralLayout = new javax.swing.GroupLayout(PainelGeral);
@@ -309,9 +313,9 @@ public class BairroPesquisa extends javax.swing.JFrame {
     private javax.swing.JButton carregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField pesquisa;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton sair;
+    private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,4 +1,4 @@
-
+ 
 package model.bo;
 
 public class Carteirinha {
@@ -6,19 +6,22 @@ public class Carteirinha {
     private String codigobarra;
     private String datageracao;
     private String datacancelamento;
-    
+    private Cliente cliente;
 
     public Carteirinha() {
     }
 
-    public Carteirinha(int id, String codigobarra, String datageracao, String datacancelamento) {
+    public Carteirinha(int id, String codigobarra, String datageracao, String datacancelamento, Cliente cliente) {
         this.id = id;
         this.codigobarra = codigobarra;
         this.datageracao = datageracao;
         this.datacancelamento = datacancelamento;
-
+        this.cliente=cliente;
     }
+    
 
+    
+    
     public int getId() {
         return id;
     }
@@ -50,7 +53,15 @@ public class Carteirinha {
     public void setDatacancelamento(String datacancelamento) {
         this.datacancelamento = datacancelamento;
     }
-
+    
+    public int getIdCliente(){
+        return cliente.getId();
+    }
+    
+    public String getNomeCliente(){
+        return cliente.getNome();
+                
+    }
 
     @Override
     public String toString() {

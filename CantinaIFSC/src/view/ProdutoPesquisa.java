@@ -5,6 +5,8 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,6 +23,22 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
 
     public JButton getSair() {
         return sair;
+    }
+
+    public JTextField getPesquisa() {
+        return pesquisa;
+    }
+
+    public JButton getPesquisar() {
+        return pesquisar;
+    }
+
+    public JTable getTabelaDados() {
+        return tabelaDados;
+    }
+
+    public JButton getCarregar() {
+        return carregar;
     }
     
     /**
@@ -45,7 +63,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         pesquisar = new javax.swing.JButton();
         PainelDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
         PianelFoto = new javax.swing.JPanel();
         foto = new javax.swing.JLabel();
 
@@ -168,28 +186,25 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelDados.setBackground(new java.awt.Color(255, 255, 255));
         PainelDados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Código de barras", "Preço"
             }
         ));
-        jTable1.setMaximumSize(new java.awt.Dimension(190, 80));
-        jTable1.setMinimumSize(new java.awt.Dimension(190, 80));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(40);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(60);
+        tabelaDados.setMaximumSize(new java.awt.Dimension(190, 80));
+        tabelaDados.setMinimumSize(new java.awt.Dimension(190, 80));
+        jScrollPane1.setViewportView(tabelaDados);
+        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
+            tabelaDados.getColumnModel().getColumn(0).setMinWidth(40);
+            tabelaDados.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tabelaDados.getColumnModel().getColumn(0).setMaxWidth(40);
+            tabelaDados.getColumnModel().getColumn(3).setMinWidth(60);
+            tabelaDados.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tabelaDados.getColumnModel().getColumn(3).setMaxWidth(60);
         }
 
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
@@ -324,9 +339,9 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField pesquisa;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton sair;
+    private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
 }

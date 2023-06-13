@@ -24,6 +24,22 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         
     }
 
+    public JTextField getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public void setCodigoBarra(JTextField codigoBarra) {
+        this.codigoBarra = codigoBarra;
+    }
+
+    public JFormattedTextField getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(JFormattedTextField dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
     public JPanel getPainelBotoes() {
         return PainelBotoes;
     }
@@ -52,12 +68,12 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         return sair;
     }
 
-    public JFormattedTextField getData() {
-        return data;
+    public JFormattedTextField getDataCancelamento() {
+        return dataCancelamento;
     }
 
-    public void setData(JFormattedTextField data) {
-        this.data = data;
+    public void setDataCancelamento(JFormattedTextField data) {
+        this.dataCancelamento = data;
     }
 
     public JTextField getId() {
@@ -68,36 +84,36 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         this.id = id;
     }
 
-    public JFormattedTextField getjDataCancelamento() {
-        return dataCancelamento;
+    public JFormattedTextField getjCriacao() {
+        return dataCriacao;
     }
 
-    public void setDataCancelamento(JFormattedTextField jFormattedTextField1) {
-        this.dataCancelamento = jFormattedTextField1;
+    public void setCriacao(JFormattedTextField jFormattedTextField1) {
+        this.dataCriacao = jFormattedTextField1;
     }
 
     public JTextField getMatricula() {
-        return matricula;
+        return codigoBarra;
     }
 
     public void setMatricula(JTextField matricula) {
-        this.matricula = matricula;
+        this.codigoBarra = matricula;
     }
 
     public JTextField getNome() {
-        return nome;
+        return nomeCliente;
     }
 
     public void setNome(JTextField nome) {
-        this.nome = nome;
+        this.nomeCliente = nome;
     }
 
     public JTextField getRg() {
-        return rg;
+        return idCliente;
     }
 
     public void setRg(JTextField rg) {
-        this.rg = rg;
+        this.idCliente = rg;
     }
 
     
@@ -116,9 +132,9 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         PainelDados = new javax.swing.JPanel();
         id = new javax.swing.JTextField();
-        nome = new javax.swing.JTextField();
-        rg = new javax.swing.JTextField();
-        matricula = new javax.swing.JTextField();
+        nomeCliente = new javax.swing.JTextField();
+        idCliente = new javax.swing.JTextField();
+        codigoBarra = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
@@ -126,8 +142,8 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        data = new javax.swing.JFormattedTextField();
         dataCancelamento = new javax.swing.JFormattedTextField();
+        dataCriacao = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         PainelBotoes = new javax.swing.JPanel();
         pesquisar = new javax.swing.JButton();
@@ -186,23 +202,23 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
             }
         });
 
-        nome.setBackground(new java.awt.Color(231, 231, 231));
-        nome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nome.setActionCommand("0");
-        nome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        nome.setSelectionColor(new java.awt.Color(42, 96, 65));
+        nomeCliente.setBackground(new java.awt.Color(231, 231, 231));
+        nomeCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nomeCliente.setActionCommand("2");
+        nomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        nomeCliente.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        rg.setBackground(new java.awt.Color(231, 231, 231));
-        rg.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        rg.setActionCommand("0");
-        rg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        rg.setSelectionColor(new java.awt.Color(42, 96, 65));
+        idCliente.setBackground(new java.awt.Color(231, 231, 231));
+        idCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        idCliente.setActionCommand("2");
+        idCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        idCliente.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        matricula.setBackground(new java.awt.Color(231, 231, 231));
-        matricula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        matricula.setActionCommand("0");
-        matricula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        matricula.setSelectionColor(new java.awt.Color(42, 96, 65));
+        codigoBarra.setBackground(new java.awt.Color(231, 231, 231));
+        codigoBarra.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        codigoBarra.setActionCommand("0");
+        codigoBarra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        codigoBarra.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("CODIGO DE BARRA");
@@ -227,25 +243,25 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel31.setText("ID");
 
-        data.setBackground(new java.awt.Color(231, 231, 231));
-        data.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
-        try {
-            data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        data.setActionCommand("0");
-        data.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        data.setSelectionColor(new java.awt.Color(42, 96, 65));
-
         dataCancelamento.setBackground(new java.awt.Color(231, 231, 231));
-        dataCancelamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
+        dataCancelamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
         try {
-            dataCancelamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            dataCancelamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         dataCancelamento.setActionCommand("0");
+        dataCancelamento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        dataCancelamento.setSelectionColor(new java.awt.Color(42, 96, 65));
+
+        dataCriacao.setBackground(new java.awt.Color(231, 231, 231));
+        dataCriacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
+        try {
+            dataCriacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        dataCriacao.setActionCommand("0");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("STATUS");
@@ -373,23 +389,23 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel31)
                     .addComponent(jLabel26)
-                    .addComponent(dataCancelamento, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(dataCriacao, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                     .addComponent(id))
                 .addGap(46, 46, 46)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel30)
                     .addComponent(jLabel27)
-                    .addComponent(rg, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(data))
+                    .addComponent(idCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(dataCancelamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29)
                     .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(PainelDadosLayout.createSequentialGroup()
                             .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel18)
-                                .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(codigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(19, 19, 19)
                             .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -408,8 +424,8 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -418,9 +434,9 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dataCancelamento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -540,10 +556,12 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PainelGeral;
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.JButton cancelar;
-    private javax.swing.JFormattedTextField data;
+    private javax.swing.JTextField codigoBarra;
     private javax.swing.JFormattedTextField dataCancelamento;
+    private javax.swing.JFormattedTextField dataCriacao;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
+    private javax.swing.JTextField idCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -553,11 +571,9 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JTextField matricula;
-    private javax.swing.JTextField nome;
+    private javax.swing.JTextField nomeCliente;
     private javax.swing.JButton novo;
     private javax.swing.JButton pesquisar;
-    private javax.swing.JTextField rg;
     private javax.swing.JButton sair;
     private javax.swing.JComboBox<String> status;
     // End of variables declaration//GEN-END:variables
