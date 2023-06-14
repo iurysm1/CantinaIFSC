@@ -57,6 +57,7 @@ public class CidadeRegistroController implements ActionListener{
         if(e.getSource()==this.cidadeRegistro.getNovo()){
             Utilities.active(false, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.cidadeRegistro.getPainelDados());
+            this.cidadeRegistro.getId().setEnabled(false);
         }else if(e.getSource()==this.cidadeRegistro.getCancelar()){
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());

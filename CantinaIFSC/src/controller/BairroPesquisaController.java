@@ -33,6 +33,7 @@ public class BairroPesquisaController implements ActionListener{
         
         if(e.getSource()==this.bairroPesquisa.getCarregar()){
             
+            controller.EnderecoRegistroController.codigoBairro=(int) this.bairroPesquisa.getTabelaDados().getValueAt(this.bairroPesquisa.getTabelaDados().getSelectedRow(), 0);
            controller.BairroRegistroController.codigo=(int) this.bairroPesquisa.getTabelaDados().getValueAt(this.bairroPesquisa.getTabelaDados().getSelectedRow(), 0);
            
             this.bairroPesquisa.dispose();

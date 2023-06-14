@@ -42,7 +42,6 @@ public class CidadePesquisaController implements ActionListener{
             DefaultTableModel tabela = (DefaultTableModel) this.cidadePesquisa.getTabelaDados().getModel();
 
             int contador=tabela.getRowCount();
-            System.out.println("antes "+contador);
             
             for (int i = contador; i > 0; i--) {
                 tabela.removeRow(i);
@@ -50,9 +49,10 @@ public class CidadePesquisaController implements ActionListener{
             for (Cidade cidadeAtual : cidades) {
                 tabela.addRow(new Object[]{cidadeAtual.getId(), cidadeAtual.getUf(), cidadeAtual.getDescricao()});
             }
-            System.out.println(contador);
+           
             
         }else if(e.getSource()==this.cidadePesquisa.getCarregar()){
+            controller.EnderecoRegistroController.codigoCidade=(int) this.cidadePesquisa.getTabelaDados().getValueAt(this.cidadePesquisa.getTabelaDados().getSelectedRow(), 0);
             controller.CidadeRegistroController.codigo=(int) this.cidadePesquisa.getTabelaDados().getValueAt(this.cidadePesquisa.getTabelaDados().getSelectedRow(), 0);
             
           this.cidadePesquisa.dispose();

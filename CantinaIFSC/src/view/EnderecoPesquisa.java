@@ -185,17 +185,20 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "CIDADE", "LOGRADOURO"
+                "ID", "LOGRADOURO", "CIDADE", "BAIRRO"
             }
         ));
         ClienteTabela.setViewportView(tabelaDados);
         if (tabelaDados.getColumnModel().getColumnCount() > 0) {
-            tabelaDados.getColumnModel().getColumn(0).setMinWidth(80);
-            tabelaDados.getColumnModel().getColumn(0).setPreferredWidth(80);
-            tabelaDados.getColumnModel().getColumn(0).setMaxWidth(80);
-            tabelaDados.getColumnModel().getColumn(1).setMinWidth(160);
-            tabelaDados.getColumnModel().getColumn(1).setPreferredWidth(160);
-            tabelaDados.getColumnModel().getColumn(1).setMaxWidth(160);
+            tabelaDados.getColumnModel().getColumn(0).setMinWidth(60);
+            tabelaDados.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tabelaDados.getColumnModel().getColumn(0).setMaxWidth(60);
+            tabelaDados.getColumnModel().getColumn(2).setMinWidth(260);
+            tabelaDados.getColumnModel().getColumn(2).setPreferredWidth(260);
+            tabelaDados.getColumnModel().getColumn(2).setMaxWidth(260);
+            tabelaDados.getColumnModel().getColumn(3).setMinWidth(260);
+            tabelaDados.getColumnModel().getColumn(3).setPreferredWidth(260);
+            tabelaDados.getColumnModel().getColumn(3).setMaxWidth(260);
         }
 
         javax.swing.GroupLayout PainelGeralLayout = new javax.swing.GroupLayout(PainelGeral);
