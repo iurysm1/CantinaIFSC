@@ -819,6 +819,9 @@
                   <Color blue="41" green="60" red="2a" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpf1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="data">
               <Properties>

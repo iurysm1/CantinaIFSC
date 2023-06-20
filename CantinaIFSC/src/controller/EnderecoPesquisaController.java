@@ -45,8 +45,12 @@ public class EnderecoPesquisaController implements ActionListener{
            
            
        }else if(e.getSource()==this.enderecoPesquisa.getCarregar()){
+           ClienteRegistroController.codigoEndereco=(int) this.enderecoPesquisa.getTabelaDados().getValueAt(this.enderecoPesquisa.getTabelaDados().getSelectedRow(), 0);
+           
            EnderecoRegistroController.codigo=(int) this.enderecoPesquisa.getTabelaDados().getValueAt(this.enderecoPesquisa.getTabelaDados().getSelectedRow(), 0);
            this.enderecoPesquisa.dispose();
+           
+           FornecedorRegistroController.codigoEndereco=(int) this.enderecoPesquisa.getTabelaDados().getValueAt(this.enderecoPesquisa.getTabelaDados().getSelectedRow(), 0);
        }
     }
     

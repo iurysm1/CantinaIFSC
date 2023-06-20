@@ -155,6 +155,14 @@ public class FornecedorRegistro extends javax.swing.JFrame {
     public JButton getAdicionarCep() {
         return adicionarCep;
     }
+
+    public JTextField getInscricaoEstadual() {
+        return inscricaoEstadual;
+    }
+
+    public void setInscricaoEstadual(JTextField inscricaoEstadual) {
+        this.inscricaoEstadual = inscricaoEstadual;
+    }
     
     
     
@@ -205,7 +213,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
+        inscricaoEstadual = new javax.swing.JTextField();
         PainelBotoes = new javax.swing.JPanel();
         pesquisar = new javax.swing.JButton();
         novo = new javax.swing.JButton();
@@ -391,9 +399,9 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Endereço");
 
-        jTextField1.setBackground(new java.awt.Color(231, 231, 231));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
-        jTextField1.setSelectionColor(new java.awt.Color(42, 96, 65));
+        inscricaoEstadual.setBackground(new java.awt.Color(231, 231, 231));
+        inscricaoEstadual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
+        inscricaoEstadual.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
         PainelDados.setLayout(PainelDadosLayout);
@@ -410,7 +418,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
                                     .addComponent(jLabel31))
                                 .addGap(18, 18, 18)
                                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
+                                    .addComponent(inscricaoEstadual)
                                     .addGroup(PainelDadosLayout.createSequentialGroup()
                                         .addComponent(jLabel30)
                                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -482,7 +490,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
                                 .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cnpj)
                                 .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel29)
@@ -767,6 +775,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
     private javax.swing.JTextField fone2;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
+    private javax.swing.JTextField inscricaoEstadual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
@@ -786,7 +795,6 @@ public class FornecedorRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField logradouro;
     private javax.swing.JTextField nome;
     private javax.swing.JButton novo;

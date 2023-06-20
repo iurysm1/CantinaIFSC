@@ -5,14 +5,14 @@ public class Fornecedor extends Pessoa{
     
     private String cnpj;
     private String inscricaoestadual;
-    private String razaosocial;
+    
 
 
-    public Fornecedor(String cnpj, String inscricaoestadual, String razaosocial, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
+    public Fornecedor(String cnpj, String inscricaoestadual, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
         super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cnpj = cnpj;
         this.inscricaoestadual = inscricaoestadual;
-        this.razaosocial = razaosocial;
+        
  
     }
 
@@ -38,18 +38,10 @@ public class Fornecedor extends Pessoa{
         this.inscricaoestadual = inscricaoestadual;
     }
 
-    public String getRazaosocial() {
-        return razaosocial;
-    }
-
-    public void setRazaosocial(String razaosocial) {
-        this.razaosocial = razaosocial;
-    }
-
     
     @Override
     public String toString() {
-        return "cnpj=" + this.getCnpj() + ", inscricaoestadual=" + this.getInscricaoestadual() + ", razaosocial=" + this.getRazaosocial()+", endereco="+this.getEndereco();
+        return "cnpj=" + this.getCnpj() + ", inscricaoestadual=" + this.getInscricaoestadual() +", endereco="+this.getEndereco();
     }
     
     

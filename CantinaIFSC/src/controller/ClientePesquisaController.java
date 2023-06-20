@@ -30,13 +30,16 @@ public class ClientePesquisaController implements ActionListener{
         if(e.getSource()==this.clientePesquisa.getSair()){
             this.clientePesquisa.dispose();
         }else if(e.getSource()==this.clientePesquisa.getCarregar()){
+            ClienteRegistroController.codigo=(int) this.clientePesquisa.getTabelaDados().getValueAt(this.clientePesquisa.getTabelaDados().getSelectedRow(), 0);
+            this.clientePesquisa.dispose();
+            
             
         }else if (e.getSource()==this.clientePesquisa.getPesquisar()){
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.clientePesquisa.getTabelaDados().getModel();
             for (Cliente cliente : clientes) {
-                tabela.addRow(new Object[]{cliente.getId(),cliente.getNome(),cliente.getCpf()});
+                tabela.addRow(new Object[]{cliente.getId(),cliente.getCpf(),cliente.getNome()});
             }
             
             

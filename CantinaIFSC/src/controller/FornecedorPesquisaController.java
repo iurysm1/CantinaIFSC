@@ -35,8 +35,12 @@ public class FornecedorPesquisaController implements ActionListener{
             DefaultTableModel tabela = (DefaultTableModel) this.fornecedorPesquisa.getTabelaDados().getModel();
             for (Fornecedor fornecedorAtual : fornecedores) {
                 
-                tabela.addRow(new Object[]{fornecedorAtual.getId(),fornecedorAtual.getCnpj(),fornecedorAtual.getRazaosocial()});
+                tabela.addRow(new Object[]{fornecedorAtual.getId(),fornecedorAtual.getCnpj(),fornecedorAtual.getNome()});
             }
+        }else if (e.getSource()==this.fornecedorPesquisa.getCarregar()){
+            FornecedorRegistroController.codigo=(int) this.fornecedorPesquisa.getTabelaDados().getValueAt(this.fornecedorPesquisa.getTabelaDados().getSelectedRow(), 0);
+            this.fornecedorPesquisa.dispose();
+            
         }
     }
     

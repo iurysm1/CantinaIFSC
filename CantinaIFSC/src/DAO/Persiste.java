@@ -40,7 +40,7 @@ public class Persiste {
         Endereco endereco = new Endereco(1, "88780000", "Rua João de Oliveira", 's', bairro, cidade);
         enderecos.add(endereco);
         
-        Cliente cliente = new Cliente("088-211-509.09", "6567895", "1", "22/02/2002", 1, "Iury", "999999", "299999", "iury@gmail.com", 's', "Presidio imbituba", endereco);
+        Cliente cliente = new Cliente("08821150909", "6567895", "1", "22022002", 1, "Iury Silveira Marques", "999999", "299999", "iury@gmail.com", 's', "Presidio imbituba", endereco);
         clientes.add(cliente);
     
         Carteirinha carteirinha = new Carteirinha(1, "123", "01/01/2023", "10/10/2025", cliente);
@@ -49,7 +49,7 @@ public class Persiste {
         Funcionario funcionario = new Funcionario("09921150909", "111", "iury.marques", "2202", movimentacaoEstoque, venda, caixa, 1, "IuryFuncionario", "999999", "299999999", "funcionario@gmail.com", 's', "FuncionarioComplemento", endereco);
         funcionarios.add(funcionario);
         
-        Fornecedor fornecedor = new Fornecedor("99999/0", "1234567", "FornecedorLTDA", 1, "IuryFornecedor", "9999", "999", "fornecedor@gmail.com", 's', "FornecedorEnd", endereco);
+        Fornecedor fornecedor = new Fornecedor("13347016000017", "1234567", 1, "IuryFornecedor", "9999", "9992", "fornecedor@gmail.com", 's', "FornecedorEnd", endereco);
         fornecedores.add(fornecedor);
         
         

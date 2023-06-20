@@ -2,6 +2,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -161,6 +162,22 @@ public class ClienteRegistro extends javax.swing.JFrame {
 
     public JButton getPesquisarCep() {
         return pesquisarCep;
+    }
+
+    public JTextField getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(JTextField matricula) {
+        this.matricula = matricula;
+    }
+
+    public JComboBox<String> getStatus() {
+        return status;
+    }
+
+    public void setStatus(JComboBox<String> status) {
+        this.status = status;
     }
     
 
@@ -401,6 +418,11 @@ public class ClienteRegistro extends javax.swing.JFrame {
         }
         cpf1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cpf1.setSelectionColor(new java.awt.Color(42, 96, 65));
+        cpf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpf1ActionPerformed(evt);
+            }
+        });
 
         data.setBackground(new java.awt.Color(231, 231, 231));
         data.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
@@ -787,6 +809,10 @@ public class ClienteRegistro extends javax.swing.JFrame {
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
 
     }//GEN-LAST:event_sairActionPerformed
+
+    private void cpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpf1ActionPerformed
 
     /**
      * @param args the command line arguments
