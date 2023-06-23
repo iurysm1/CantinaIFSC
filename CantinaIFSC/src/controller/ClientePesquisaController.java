@@ -32,6 +32,8 @@ public class ClientePesquisaController implements ActionListener{
         }else if(e.getSource()==this.clientePesquisa.getCarregar()){
             ClienteRegistroController.codigo=(int) this.clientePesquisa.getTabelaDados().getValueAt(this.clientePesquisa.getTabelaDados().getSelectedRow(), 0);
             this.clientePesquisa.dispose();
+            CarteirinhaRegistroController.codigoCliente=(int) this.clientePesquisa.getTabelaDados().getValueAt(this.clientePesquisa.getTabelaDados().getSelectedRow(), 0);
+            this.clientePesquisa.dispose();
             
             
         }else if (e.getSource()==this.clientePesquisa.getPesquisar()){

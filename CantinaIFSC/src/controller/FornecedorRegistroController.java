@@ -10,6 +10,7 @@ import model.bo.Fornecedor;
 import utilities.Utilities;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
+import view.Feedback;
 import view.FornecedorPesquisa;
 import view.FornecedorRegistro;
 
@@ -112,9 +113,12 @@ public class FornecedorRegistroController implements ActionListener {
             fornecedor.setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
             
             fornecedor.setEndereco(DAO.Persiste.enderecos.get(idEndereco));
-            
+            Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
                 DAO.Persiste.fornecedores.add(fornecedor);
+                feedbackController.codigoFB=8;
+                feedbackController.cadastroClasse();
             }else{
                 int index=Integer.parseInt(this.fornecedorRegistro.getId().getText())-1;
                 
@@ -126,8 +130,12 @@ public class FornecedorRegistroController implements ActionListener {
                 DAO.Persiste.fornecedores.get(index).setFone2(this.fornecedorRegistro.getFone2().getText());
                 DAO.Persiste.fornecedores.get(index).setEndereco(DAO.Persiste.enderecos.get(idEndereco));
                 DAO.Persiste.fornecedores.get(index).setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
+                
+                feedbackController.codigoFB=8;
+                feedbackController.atualizacaoClasse();
             }
             
+            feedback.setVisible(true);
             Utilities.active(true, this.fornecedorRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.fornecedorRegistro.getPainelDados());
             

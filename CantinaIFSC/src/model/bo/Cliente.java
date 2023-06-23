@@ -7,7 +7,7 @@ public class Cliente extends Pessoa{
     private String rg;
     private String matricula;
     private String dataNascimento;
-
+    
 
     public Cliente() {
     }
@@ -18,7 +18,7 @@ public class Cliente extends Pessoa{
         this.rg = rg;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
-        
+   
         
     }
 
@@ -56,6 +56,8 @@ public class Cliente extends Pessoa{
         this.dataNascimento = dataNascimento;
     }
 
+ 
+    
 
 
     @Override

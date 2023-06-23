@@ -10,12 +10,14 @@ import model.bo.Cidade;
 import utilities.Utilities;
 import view.CidadePesquisa;
 import view.CidadeRegistro;
+import view.Feedback;
 
 
 public class CidadeRegistroController implements ActionListener{
     
     CidadeRegistro cidadeRegistro;
     public static int codigo;
+    
     public CidadeRegistroController(CidadeRegistro cidadeRegistro) {
         
         this.cidadeRegistro = cidadeRegistro;
@@ -67,15 +69,24 @@ public class CidadeRegistroController implements ActionListener{
             cidade.setId(DAO.Persiste.cidades.size()+1);
             cidade.setUf(this.cidadeRegistro.getUf().getText());
             cidade.setDescricao(this.cidadeRegistro.getNomeCidade().getText());
-           
+           Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.cidadeRegistro.getId().getText().equalsIgnoreCase("")){
                 DAO.Persiste.cidades.add(cidade);
+                feedbackController.codigoFB=2;
+                feedbackController.cadastroClasse();
             }else{
                 int index=Integer.parseInt(this.cidadeRegistro.getId().getText())-1;
                 DAO.Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
                 DAO.Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
+                feedbackController.codigoFB=2;
+                feedbackController.atualizacaoClasse();
             }
+            
+            
+            
+            feedback.setVisible(true);
             
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());

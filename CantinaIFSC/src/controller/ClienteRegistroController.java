@@ -12,6 +12,7 @@ import view.ClientePesquisa;
 import view.ClienteRegistro;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
+import view.Feedback;
 
 public class ClienteRegistroController implements ActionListener {
 
@@ -131,9 +132,14 @@ public class ClienteRegistroController implements ActionListener {
             cliente.setEmail(this.clienteRegistro.getEmail().getText());
             cliente.setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
             cliente.setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+            Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
+
             
             if(this.clienteRegistro.getId().getText().equalsIgnoreCase("")){
                 DAO.Persiste.clientes.add(cliente);
+                feedbackController.codigoFB=6;
+                feedbackController.cadastroClasse();
             }else{
                 int index = Integer.parseInt(this.clienteRegistro.getId().getText())-1;
                 
@@ -146,9 +152,11 @@ public class ClienteRegistroController implements ActionListener {
                 DAO.Persiste.clientes.get(index).setEmail(this.clienteRegistro.getEmail().getText());
                 DAO.Persiste.clientes.get(index).setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
                 DAO.Persiste.clientes.get(index).setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+                feedbackController.codigoFB=6;
+                feedbackController.atualizacaoClasse();
             }
             
-            
+            feedback.setVisible(true);
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
 

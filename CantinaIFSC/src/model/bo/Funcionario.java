@@ -7,14 +7,16 @@ public class Funcionario extends Pessoa{
     private String rg;
     private String usuario;
     private String senha;
+    private String dataNascimento;
 
 
-    public Funcionario(String cpf, String rg, String usuario, String senha, Movimentacaoestoque movimentacaoEstoque, Venda venda, Caixa caixa, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
+    public Funcionario(String cpf, String rg, String usuario, String senha, Movimentacaoestoque movimentacaoEstoque, Venda venda, Caixa caixa, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco, String dataNascimento) {
         super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cpf = cpf;
         this.rg = rg;
         this.usuario = usuario;
         this.senha = senha;
+        this.dataNascimento=dataNascimento;
     }
 
     public Funcionario() {
@@ -51,6 +53,14 @@ public class Funcionario extends Pessoa{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
 

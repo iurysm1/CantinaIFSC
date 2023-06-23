@@ -169,7 +169,7 @@
                                       <Component id="jSeparator2" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="cidade" min="-2" pref="426" max="-2" attributes="0"/>
                                           <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
@@ -209,17 +209,17 @@
                                           <Component id="cpf1" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="id" min="-2" pref="189" max="-2" attributes="0"/>
                                                   <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="id" min="-2" pref="183" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                                   <Component id="data" min="-2" pref="184" max="-2" attributes="0"/>
+                                                  <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="105" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                               <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -227,7 +227,7 @@
                                               <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -240,7 +240,7 @@
                                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="fone2" min="-2" pref="193" max="-2" attributes="0"/>
+                                                      <Component id="fone2" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>

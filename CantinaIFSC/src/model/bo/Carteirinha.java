@@ -6,7 +6,8 @@ public class Carteirinha {
     private String codigobarra;
     private String datageracao;
     private String datacancelamento;
-    private Cliente cliente;
+    private Cliente  cliente;
+   
 
     public Carteirinha() {
     }
@@ -53,15 +54,16 @@ public class Carteirinha {
     public void setDatacancelamento(String datacancelamento) {
         this.datacancelamento = datacancelamento;
     }
-    
-    public int getIdCliente(){
-        return cliente.getId();
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
-    public String getNomeCliente(){
-        return cliente.getNome();
-                
-    }
+ 
 
     @Override
     public String toString() {

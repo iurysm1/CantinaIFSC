@@ -5,6 +5,8 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 public class FuncionarioSenha extends javax.swing.JFrame {
@@ -19,6 +21,30 @@ public class FuncionarioSenha extends javax.swing.JFrame {
 
     public JButton getSalvar() {
         return salvar;
+    }
+
+    public JTextField getLogin() {
+        return login;
+    }
+
+    public void setLogin(JTextField login) {
+        this.login = login;
+    }
+
+    public JPasswordField getSenha() {
+        return senha;
+    }
+
+    public void setSenha(JPasswordField senha) {
+        this.senha = senha;
+    }
+
+    public JPasswordField getSenhaRepetir() {
+        return senhaRepetir;
+    }
+
+    public void setSenhaRepetir(JPasswordField senhaRepetir) {
+        this.senhaRepetir = senhaRepetir;
     }
     
     

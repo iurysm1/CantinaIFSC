@@ -11,6 +11,7 @@ import model.bo.Bairro;
 import utilities.Utilities;
 import view.BairroPesquisa;
 import view.BairroRegistro;
+import view.Feedback;
 
 public class BairroRegistroController implements ActionListener {
 
@@ -66,13 +67,22 @@ public class BairroRegistroController implements ActionListener {
 
             bairro.setId(DAO.Persiste.bairros.size() + 1);
             bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
+            Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
             if (this.bairroRegistro.getId().getText().equalsIgnoreCase("")) {
                 DAO.Persiste.bairros.add(bairro);
+                feedbackController.codigoFB=1;
+                feedbackController.cadastroClasse();
             } else {
                 int index = Integer.parseInt(this.bairroRegistro.getId().getText()) - 1;
                 DAO.Persiste.bairros.get(index).setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
-
+                feedbackController.codigoFB=1;
+                feedbackController.atualizacaoClasse();
             }
+            
+            
+            feedback.setVisible(true);
+            
             Utilities.active(true, this.bairroRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
 

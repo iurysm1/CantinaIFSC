@@ -31,8 +31,11 @@ public class CarteirinhaPesquisaController implements ActionListener{
             
             DefaultTableModel tabela = (DefaultTableModel) this.carteirinhaPesquisa.getTabelaDados().getModel();
             for (Carteirinha carteirinha : carteirinhas) {
-                tabela.addRow(new Object[]{carteirinha.getId(), carteirinha.getIdCliente(), carteirinha.getNomeCliente()});
+                tabela.addRow(new Object[]{carteirinha.getId(), carteirinha.getCliente().getId(), carteirinha.getCliente().getNome()});
             }
+        }else if (e.getSource()==this.carteirinhaPesquisa.getCarregar()){
+            CarteirinhaRegistroController.codigo=(int) this.carteirinhaPesquisa.getTabelaDados().getValueAt(this.carteirinhaPesquisa.getTabelaDados().getSelectedRow(), 0);
+            this.carteirinhaPesquisa.dispose();
         }
     }
     

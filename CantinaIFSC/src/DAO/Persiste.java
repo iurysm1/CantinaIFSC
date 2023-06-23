@@ -27,6 +27,7 @@ public class Persiste {
         Caixa caixa = new Caixa();
         Venda venda = new Venda();
         
+        
         Bairro bairro = new Bairro(1, "Divineia");
         Bairro bairro2= new Bairro(2, "Aguada");
         Bairro bairro3 = new Bairro(3, "Centro");
@@ -40,13 +41,16 @@ public class Persiste {
         Endereco endereco = new Endereco(1, "88780000", "Rua João de Oliveira", 's', bairro, cidade);
         enderecos.add(endereco);
         
+        
+        
         Cliente cliente = new Cliente("08821150909", "6567895", "1", "22022002", 1, "Iury Silveira Marques", "999999", "299999", "iury@gmail.com", 's', "Presidio imbituba", endereco);
         clientes.add(cliente);
-    
-        Carteirinha carteirinha = new Carteirinha(1, "123", "01/01/2023", "10/10/2025", cliente);
+        
+    Carteirinha carteirinha = new Carteirinha(1, "123", "01/01/2023", "10/10/2025", cliente);
         carteirinhas.add(carteirinha);
+        
       
-        Funcionario funcionario = new Funcionario("09921150909", "111", "iury.marques", "2202", movimentacaoEstoque, venda, caixa, 1, "IuryFuncionario", "999999", "299999999", "funcionario@gmail.com", 's', "FuncionarioComplemento", endereco);
+        Funcionario funcionario = new Funcionario("09921150909", "111", "iury.marques", "2202", movimentacaoEstoque, venda, caixa, 1, "IuryFuncionario", "999999", "299999999", "funcionario@gmail.com", 's', "FuncionarioComplemento", endereco, "22022002");
         funcionarios.add(funcionario);
         
         Fornecedor fornecedor = new Fornecedor("13347016000017", "1234567", 1, "IuryFornecedor", "9999", "9992", "fornecedor@gmail.com", 's', "FornecedorEnd", endereco);

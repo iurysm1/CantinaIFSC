@@ -25,13 +25,27 @@ class FuncionarioPesquisaController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.funcionarioPesquisa.getSair()){
             this.funcionarioPesquisa.dispose();
+            
+            
+            
         }else if(e.getSource()==this.funcionarioPesquisa.getPesquisar()){
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
+            int contador = tabela.getRowCount();
+            for (int i = contador; i > 0; i--) {
+                tabela.removeRow(i);
+            }
             for (Funcionario funcionarioAtual : funcionarios) {
                 tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getCpf(),funcionarioAtual.getNome()});
             }
+            
+            
+            
+        }else if(e.getSource()==this.funcionarioPesquisa.getCarregar()){
+            FuncionarioRegistroController.codigo=(int) this.funcionarioPesquisa.getTabelaDados().getValueAt(this.funcionarioPesquisa.getTabelaDados().getSelectedRow(), 0);
+            this.funcionarioPesquisa.dispose();
+            
         }
     }
     

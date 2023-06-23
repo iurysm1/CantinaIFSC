@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import model.bo.Produto;
 import utilities.Utilities;
+import view.Feedback;
 import view.ProdutoAdicionarFoto;
 import view.ProdutoPesquisa;
 import view.ProdutoRegistro;
@@ -66,17 +67,23 @@ public class ProdutoRegistroController implements ActionListener{
             produto.setId(DAO.Persiste.produtos.size()+1);
             produto.setDescricao(this.produtoRegistro.getNome().getText());
             produto.setCodigobarra(this.produtoRegistro.getCodigoBarra().getText());
-
+            Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.produtoRegistro.getId().getText().equalsIgnoreCase("")){
                 DAO.Persiste.produtos.add(produto);
+                feedbackController.codigoFB=4;
+                feedbackController.cadastroClasse();
             }else{
                 int index= Integer.parseInt(this.produtoRegistro.getId().getText())-1;
                 DAO.Persiste.produtos.get(index).setCodigobarra(this.produtoRegistro.getCodigoBarra().getText()+"");
                 DAO.Persiste.produtos.get(index).setDescricao(this.produtoRegistro.getNome().getText());
                 DAO.Persiste.produtos.get(index).setPreco(Float.valueOf(this.produtoRegistro.getPreco().getText()));
+                feedbackController.codigoFB=4;
+                feedbackController.atualizacaoClasse();
             }
             
+            feedback.setVisible(true);
             Utilities.active(true, this.produtoRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.produtoRegistro.getPainelDados());
             

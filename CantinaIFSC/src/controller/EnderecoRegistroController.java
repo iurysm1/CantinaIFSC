@@ -16,6 +16,7 @@ import view.CidadePesquisa;
 import view.CidadeRegistro;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
+import view.Feedback;
 
 public class EnderecoRegistroController implements ActionListener {
 
@@ -107,14 +108,23 @@ public class EnderecoRegistroController implements ActionListener {
             endereco.setCep(this.enderecoRegistro.getCep().getText());
             endereco.setBairro(DAO.Persiste.bairros.get(idBairro));
             endereco.setCidade(DAO.Persiste.cidades.get(idCidade));
+            
+            Feedback feedback=new Feedback();
+            FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
                 DAO.Persiste.enderecos.add(endereco);
+                feedbackController.codigoFB=3;
+                feedbackController.cadastroClasse();
+                
+                
             }else{
                 int index = Integer.parseInt(this.enderecoRegistro.getId().getText())-1;
                 DAO.Persiste.enderecos.get(index).setLogradouro(this.enderecoRegistro.getLogradouro().getText());
                 DAO.Persiste.enderecos.get(index).setCep(this.enderecoRegistro.getCep().getText());
                 DAO.Persiste.enderecos.get(index).setBairro(DAO.Persiste.bairros.get(idBairro));
                 DAO.Persiste.enderecos.get(index).setCidade(DAO.Persiste.cidades.get(idCidade));
+                feedbackController.codigoFB=3;
+                feedbackController.atualizacaoClasse();
                 
                 //OUTRO JEITO DE FAZER
                 /*for (Bairro bairroAtual : Persiste.bairros) {
@@ -129,6 +139,9 @@ public class EnderecoRegistroController implements ActionListener {
                 }*/
                 
             }
+            
+            
+            feedback.setVisible(true);
             
             Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());

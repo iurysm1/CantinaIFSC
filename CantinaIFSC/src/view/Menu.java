@@ -61,11 +61,10 @@ public class Menu extends javax.swing.JFrame {
         ajuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1099, 708));
 
         fotoMenu.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/INSTITUTO FEDERAL DE SANTA CATARINA (3).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/Menu/INSTITUTO FEDERAL DE SANTA CATARINA.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
         javax.swing.GroupLayout fotoMenuLayout = new javax.swing.GroupLayout(fotoMenu);
