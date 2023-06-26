@@ -1,5 +1,6 @@
 package controller;
 
+import static controller.FuncionarioRegistroController.idEndereco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -11,6 +12,7 @@ import utilities.Utilities;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
 import view.Feedback;
+import view.FeedbackENDERECO;
 import view.FornecedorPesquisa;
 import view.FornecedorRegistro;
 
@@ -163,10 +165,33 @@ public class FornecedorRegistroController implements ActionListener {
             
             
         } else if (e.getSource() == this.fornecedorRegistro.getPesquisarCep()) {
+            boolean validacao=true;
+            if(this.fornecedorRegistro.getCep().getText().equalsIgnoreCase("")){
             EnderecoPesquisa enderecoPesquisa = new EnderecoPesquisa();
             EnderecoPesquisaController enderecoPesquisaController = new EnderecoPesquisaController(enderecoPesquisa);
             enderecoPesquisa.addWindowListener(disposeListenerEndereco);
             enderecoPesquisa.setVisible(true);
+            
+        }else{
+             validacao=true;
+                for (Endereco enderecoAtual : DAO.Persiste.enderecos) {
+                    if(enderecoAtual.getCep().equalsIgnoreCase(this.fornecedorRegistro.getCep().getText())){
+                        idEndereco=enderecoAtual.getId()-1;
+                        this.fornecedorRegistro.getCep().setText(enderecoAtual.getCep());
+                        this.fornecedorRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
+                        this.fornecedorRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
+                        this.fornecedorRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
+                        this.fornecedorRegistro.getUf().setText(enderecoAtual.getCidade().getDescricao());
+                        validacao=false;
+                    }
+                }
+                if(validacao==true){
+                    FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                    FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                    feedbackEnderecoController.atualizacaoLabel();
+                    feedbackENDERECO.setVisible(true);
+                    }   
+            }
         }
     }
 

@@ -41,15 +41,11 @@ public class CidadePesquisaController implements ActionListener{
             
             DefaultTableModel tabela = (DefaultTableModel) this.cidadePesquisa.getTabelaDados().getModel();
 
-            int contador=tabela.getRowCount();
-            
-            for (int i = contador; i > 0; i--) {
-                tabela.removeRow(i);
-            }
+            if(tabela.getRowCount()==0){
             for (Cidade cidadeAtual : cidades) {
                 tabela.addRow(new Object[]{cidadeAtual.getId(), cidadeAtual.getUf(), cidadeAtual.getDescricao()});
             }
-           
+            }
             
         }else if(e.getSource()==this.cidadePesquisa.getCarregar()){
             controller.EnderecoRegistroController.codigoCidade=(int) this.cidadePesquisa.getTabelaDados().getValueAt(this.cidadePesquisa.getTabelaDados().getSelectedRow(), 0);

@@ -40,6 +40,7 @@ public class FuncionarioSenhaController implements ActionListener{
             }else{
                 FeedbackSENHA feedbackSENHA = new FeedbackSENHA();
                 FeedbackSenhaController fbc = new FeedbackSenhaController(feedbackSENHA);
+      
                 feedbackSENHA.setVisible(true);
             }
             

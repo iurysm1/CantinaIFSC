@@ -35,14 +35,11 @@ public class EnderecoPesquisaController implements ActionListener{
            
            DefaultTableModel tabela = (DefaultTableModel) this.enderecoPesquisa.getTabelaDados().getModel();
            
-           int contador=tabela.getRowCount();
-           for(int i =contador; i>0;i--){
-               tabela.removeRow(i);
-           }
+           if(tabela.getRowCount()==0){
            for (Endereco enderecoAtual : enderecos) {
                tabela.addRow(new Object[]{enderecoAtual.getId(),enderecoAtual.getLogradouro(),enderecoAtual.getCidade().getDescricao(),enderecoAtual.getBairro().getDescricao()});
            }
-           
+           }
            
        }else if(e.getSource()==this.enderecoPesquisa.getCarregar()){
            ClienteRegistroController.codigoEndereco=(int) this.enderecoPesquisa.getTabelaDados().getValueAt(this.enderecoPesquisa.getTabelaDados().getSelectedRow(), 0);

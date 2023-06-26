@@ -203,9 +203,9 @@
                               <Component id="dataCancelamento" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="dataCriacao" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="status" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="pesquisarCliente" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Component id="idCliente" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="pesquisarCliente" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="PainelBotoes" min="-2" max="-2" attributes="0"/>

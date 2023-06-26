@@ -32,14 +32,12 @@ class FuncionarioPesquisaController implements ActionListener{
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
-            int contador = tabela.getRowCount();
-            for (int i = contador; i > 0; i--) {
-                tabela.removeRow(i);
-            }
+
+            if(tabela.getRowCount()==0){
             for (Funcionario funcionarioAtual : funcionarios) {
                 tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getCpf(),funcionarioAtual.getNome()});
             }
-            
+            }
             
             
         }else if(e.getSource()==this.funcionarioPesquisa.getCarregar()){

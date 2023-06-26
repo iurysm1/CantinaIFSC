@@ -40,10 +40,12 @@ public class ClientePesquisaController implements ActionListener{
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.clientePesquisa.getTabelaDados().getModel();
+            
+            if(tabela.getRowCount()==0){
             for (Cliente cliente : clientes) {
                 tabela.addRow(new Object[]{cliente.getId(),cliente.getCpf(),cliente.getNome()});
             }
-            
+            }
             
         }
     }

@@ -33,9 +33,11 @@ public class FornecedorPesquisaController implements ActionListener{
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.fornecedorPesquisa.getTabelaDados().getModel();
+            if(tabela.getRowCount()==0){
             for (Fornecedor fornecedorAtual : fornecedores) {
                 
                 tabela.addRow(new Object[]{fornecedorAtual.getId(),fornecedorAtual.getCnpj(),fornecedorAtual.getNome()});
+            }
             }
         }else if (e.getSource()==this.fornecedorPesquisa.getCarregar()){
             FornecedorRegistroController.codigo=(int) this.fornecedorPesquisa.getTabelaDados().getValueAt(this.fornecedorPesquisa.getTabelaDados().getSelectedRow(), 0);

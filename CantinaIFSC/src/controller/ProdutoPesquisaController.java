@@ -29,10 +29,8 @@ public class ProdutoPesquisaController implements ActionListener{
             
         }else if(e.getSource()==this.produtoPesquisa.getPesquisar()){
             DefaultTableModel tabela = (DefaultTableModel) this.produtoPesquisa.getTabelaDados().getModel();
-            int contador=tabela.getRowCount();
-            for (int i = contador; i > 0; i--) {
-                tabela.removeRow(i);
-            }
+            
+            if(tabela.getRowCount()==0)
             for (Produto produtoAtual : Persiste.produtos) {
                 tabela.addRow(new Object[]{produtoAtual.getId(),produtoAtual.getDescricao(),produtoAtual.getCodigobarra(), produtoAtual.getPreco()});
             }
