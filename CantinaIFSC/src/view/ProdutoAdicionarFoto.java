@@ -60,6 +60,10 @@ public class ProdutoAdicionarFoto extends javax.swing.JFrame {
     public JFileChooser getjFileChooser1() {
         return jFileChooser1;
     }
+    public int fechar(){
+        return JFileChooser.CANCEL_OPTION;
+    }
+    
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:

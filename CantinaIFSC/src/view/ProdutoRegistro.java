@@ -4,8 +4,11 @@
  */
 package view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import utilities.Utilities;
@@ -102,6 +105,20 @@ public class ProdutoRegistro extends javax.swing.JFrame {
     public void setStatus(JComboBox<String> status) {
         this.status = status;
     }
+
+    public JLabel getFoto() {
+        return foto;
+    }
+
+    public void setFoto(JLabel foto) {
+        this.foto = foto;
+    }
+    public void setIcon(ImageIcon icon){
+        this.foto.setIcon(icon);
+    }
+    public void setSelecionarArquivo(){
+
+        }
     
 
     /**
@@ -223,23 +240,27 @@ public class ProdutoRegistro extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("STATUS");
 
-        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/galeria-de-imagens 64.png"))); // NOI18N
+        PainelFoto.setForeground(new java.awt.Color(242, 242, 242));
+
+        foto.setBackground(java.awt.Color.lightGray);
+        foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png"))); // NOI18N
 
         javax.swing.GroupLayout PainelFotoLayout = new javax.swing.GroupLayout(PainelFoto);
         PainelFoto.setLayout(PainelFotoLayout);
         PainelFotoLayout.setHorizontalGroup(
             PainelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelFotoLayout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(foto)
-                .addContainerGap(187, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelFotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addContainerGap())
         );
         PainelFotoLayout.setVerticalGroup(
             PainelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelFotoLayout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(foto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         novaFoto.setBackground(new java.awt.Color(0, 145, 173));
@@ -271,21 +292,17 @@ public class ProdutoRegistro extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
-                            .addGroup(PainelDadosLayout.createSequentialGroup()
-                                .addComponent(preco, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                                .addGap(100, 100, 100))))
-                    .addGroup(PainelDadosLayout.createSequentialGroup()
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel29)
-                            .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(codigoBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                                .addComponent(nome)))
-                        .addGap(100, 100, 100)))
+                            .addComponent(preco, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel29)
+                    .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(codigoBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                        .addComponent(nome)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(PainelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(novaFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)

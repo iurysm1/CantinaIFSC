@@ -4,7 +4,10 @@
  */
 package view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -40,6 +43,34 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     public JButton getCarregar() {
         return carregar;
     }
+
+    public JPanel getPianelFoto() {
+        return PainelFoto;
+    }
+
+    public void setPianelFoto(JPanel PianelFoto) {
+        this.PainelFoto = PianelFoto;
+    }
+
+    public JLabel getFoto() {
+        return foto;
+    }
+
+    public void setFoto(JLabel foto) {
+        this.foto = foto;
+    }
+    
+    public void setIcon (ImageIcon icon){
+        this.foto.setIcon(icon);
+    }
+
+    public JPanel getPainelFoto() {
+        return PainelFoto;
+    }
+
+    public void setPainelFoto(JPanel PainelFoto) {
+        this.PainelFoto = PainelFoto;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +95,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
-        PianelFoto = new javax.swing.JPanel();
+        PainelFoto = new javax.swing.JPanel();
         foto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -134,8 +165,9 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelBotoesLayout.setHorizontalGroup(
             PainelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelBotoesLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(carregar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1031, Short.MAX_VALUE)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelBotoesLayout.setVerticalGroup(
@@ -169,10 +201,9 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pesquisar)
-                .addGap(19, 19, 19))
+                .addComponent(pesquisa)
+                .addGap(19, 19, 19)
+                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelPesquisaLayout.setVerticalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,30 +243,32 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelDadosLayout.setHorizontalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
         PainelDadosLayout.setVerticalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         );
 
-        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/galeria-de-imagens 32.png"))); // NOI18N
+        foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png"))); // NOI18N
 
-        javax.swing.GroupLayout PianelFotoLayout = new javax.swing.GroupLayout(PianelFoto);
-        PianelFoto.setLayout(PianelFotoLayout);
-        PianelFotoLayout.setHorizontalGroup(
-            PianelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PianelFotoLayout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+        javax.swing.GroupLayout PainelFotoLayout = new javax.swing.GroupLayout(PainelFoto);
+        PainelFoto.setLayout(PainelFotoLayout);
+        PainelFotoLayout.setHorizontalGroup(
+            PainelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelFotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        PianelFotoLayout.setVerticalGroup(
-            PianelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PianelFotoLayout.createSequentialGroup()
-                .addGap(234, 234, 234)
-                .addComponent(foto)
+        PainelFotoLayout.setVerticalGroup(
+            PainelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelFotoLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -245,16 +278,17 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
             PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PainelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelGeralLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PainelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PainelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(PainelGeralLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(PianelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelGeralLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PainelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(PainelGeralLayout.createSequentialGroup()
+                                .addComponent(PainelDados, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PainelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(27, 27, 27))
         );
         PainelGeralLayout.setVerticalGroup(
@@ -265,8 +299,8 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
                 .addComponent(PainelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(PainelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PianelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PainelDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PainelDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PainelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -329,10 +363,10 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PainelBotoes;
     private javax.swing.JPanel PainelDados;
+    private javax.swing.JPanel PainelFoto;
     private javax.swing.JPanel PainelGeral;
     private javax.swing.JPanel PainelPesquisa;
     private javax.swing.JPanel PainelTitulo;
-    private javax.swing.JPanel PianelFoto;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton carregar;
     private javax.swing.JLabel foto;

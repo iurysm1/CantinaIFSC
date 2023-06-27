@@ -9,18 +9,20 @@ public class Produto {
     private String codigobarra;
     private char status;
     private float preco;
+    private String CaminhoFotoProduto;
     
 
 
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String codigobarra, char status, float preco) {
+    public Produto(int id, String descricao, String codigobarra, char status, float preco, String CaminhoFotoProduto) {
         this.id = id;
         this.descricao = descricao;
         this.codigobarra = codigobarra;
         this.status = status;
         this.preco=preco;
+        this.CaminhoFotoProduto=CaminhoFotoProduto;
     }
 
     public int getId() {
@@ -63,6 +65,15 @@ public class Produto {
         return preco;
     }
 
+    public String getCaminhoFotoProduto() {
+        return CaminhoFotoProduto;
+    }
+
+    public void setCaminhoFotoProduto(String CaminhoFotoProduto) {
+        this.CaminhoFotoProduto = CaminhoFotoProduto;
+    }
+    
+    
 
 
     @Override

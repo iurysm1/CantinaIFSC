@@ -13,6 +13,7 @@ import controller.EnderecoRegistroController;
 import controller.FornecedorRegistroController;
 import controller.FuncionarioRegistroController;
 import controller.ProdutoRegistroController;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import utilities.Utilities;
 
@@ -240,6 +241,7 @@ public class Menu extends javax.swing.JFrame {
     private void produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtoActionPerformed
         ProdutoRegistro produto = new ProdutoRegistro();
         ProdutoRegistroController produtoRegistroController=new ProdutoRegistroController(produto);
+        
         produto.setVisible(true);
     }//GEN-LAST:event_produtoActionPerformed
 

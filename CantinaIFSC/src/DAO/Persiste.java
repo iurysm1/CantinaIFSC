@@ -57,7 +57,7 @@ public class Persiste {
         fornecedores.add(fornecedor);
         
         
-        Produto produto = new Produto(1, "Salsicha", "111", 's', 2);
+        Produto produto = new Produto(1, "Salsicha", "111", 's', 2, "D:/Documents/fotosProduto/salsicha360px.png");
         produtos.add(produto);
     }
     
