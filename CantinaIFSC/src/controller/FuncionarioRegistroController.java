@@ -14,6 +14,7 @@ import view.EnderecoRegistro;
 import view.Feedback;
 import view.FeedbackENDERECO;
 import view.FuncionarioPesquisa;
+import view.FuncionarioRedefinirSenha;
 import view.FuncionarioRegistro;
 import view.FuncionarioSenha;
 
@@ -33,6 +34,7 @@ public class FuncionarioRegistroController implements ActionListener {
         this.funcionarioRegistro.getSair().addActionListener(this);
         this.funcionarioRegistro.getNovoCep().addActionListener(this);
         this.funcionarioRegistro.getPesquisaCep().addActionListener(this);
+        this.funcionarioRegistro.getRedefinirSenha().addActionListener(this);
 
         Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
@@ -154,6 +156,7 @@ public class FuncionarioRegistroController implements ActionListener {
                 DAO.Persiste.funcionarios.add(funcionario);
                 condicao = 1;
                 idSenha = funcionario.getId() - 1;
+                
             } else {
                 int index = Integer.parseInt(this.funcionarioRegistro.getId().getText()) - 1;
 
@@ -206,7 +209,7 @@ public class FuncionarioRegistroController implements ActionListener {
                         funcionarioRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
                         funcionarioRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
                         funcionarioRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
-                        funcionarioRegistro.getUf().setText(enderecoAtual.getCidade().getDescricao());
+                        funcionarioRegistro.getUf().setText(enderecoAtual.getCidade().getUf());
                         validacao=false;
                     }
                 }
@@ -217,6 +220,11 @@ public class FuncionarioRegistroController implements ActionListener {
                     feedbackENDERECO.setVisible(true);
                     }
             }
+        }else if(e.getSource()==this.funcionarioRegistro.getRedefinirSenha()){
+            FuncionarioRedefinirSenha funcionarioRedefSenha = new FuncionarioRedefinirSenha();
+            FuncionarioRedefinirSenhaController funcionarioRedefinirSenhaController = new FuncionarioRedefinirSenhaController(funcionarioRedefSenha);
+            
+            funcionarioRedefSenha.setVisible(true);
         }
 
     }

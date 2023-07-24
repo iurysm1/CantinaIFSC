@@ -39,14 +39,14 @@ public class BairroPesquisaController implements ActionListener {
 
             DefaultTableModel tabela = (DefaultTableModel) this.bairroPesquisa.getTabelaDados().getModel();
 
-            if (tabela.getRowCount()==0) {
-                
+            if (tabela.getRowCount() == 0) {
+
                 for (Bairro bairroAtual : Persiste.bairros) {
 
                     tabela.addRow(new Object[]{bairroAtual.getId(), bairroAtual.getDescricao()});
                 }
             }
-            
+
         }
     }
 

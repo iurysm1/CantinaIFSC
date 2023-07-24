@@ -181,7 +181,7 @@ public class FornecedorRegistroController implements ActionListener {
                         this.fornecedorRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
                         this.fornecedorRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
                         this.fornecedorRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
-                        this.fornecedorRegistro.getUf().setText(enderecoAtual.getCidade().getDescricao());
+                        this.fornecedorRegistro.getUf().setText(enderecoAtual.getCidade().getUf());
                         validacao=false;
                     }
                 }

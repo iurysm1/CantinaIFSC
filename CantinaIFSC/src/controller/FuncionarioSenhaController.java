@@ -17,6 +17,7 @@ public class FuncionarioSenhaController implements ActionListener{
         
         this.funcionarioSenha.getSalvar().addActionListener(this);
         this.funcionarioSenha.getCancelar().addActionListener(this);
+     
     }
     
     
@@ -49,5 +50,6 @@ public class FuncionarioSenhaController implements ActionListener{
             
         }
     }
-    
 }
+    
+    

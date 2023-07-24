@@ -42,7 +42,9 @@ public class EnderecoRegistroController implements ActionListener {
         this.enderecoRegistro.getPesquisaCidade().addActionListener(this);
         this.enderecoRegistro.getNovoBairro().addActionListener(this);
         this.enderecoRegistro.getNovoCidade().addActionListener(this);
-
+        
+        
+        
         Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());
     }
@@ -102,6 +104,8 @@ public class EnderecoRegistroController implements ActionListener {
             Utilities.active(false, this.enderecoRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.enderecoRegistro.getPainelDados());
             this.enderecoRegistro.getId().setEnabled(false);
+            this.enderecoRegistro.getBairro().setEnabled(false);
+            this.enderecoRegistro.getCidade().setEnabled(false);
             
         } else if (e.getSource() == this.enderecoRegistro.getGravar()) {
             Endereco endereco = new Endereco();
@@ -174,7 +178,7 @@ public class EnderecoRegistroController implements ActionListener {
             
         } else if (e.getSource() == this.enderecoRegistro.getPesquisaBairro()) {
             
-            if(this.enderecoRegistro.getBairro().getText().equalsIgnoreCase("")){
+            if(this.enderecoRegistro.getIdBairro().getText().equalsIgnoreCase("")){
             codigoBairro=0;
             BairroPesquisa bairroPesquisa = new BairroPesquisa();
             BairroPesquisaController bairroPesquisaController = new BairroPesquisaController(bairroPesquisa);
@@ -183,7 +187,7 @@ public class EnderecoRegistroController implements ActionListener {
             }else{
                 boolean validacao=true;
                 for (Bairro bairroAtual : Persiste.bairros) {
-                    if(bairroAtual.getDescricao().equalsIgnoreCase(this.enderecoRegistro.getBairro().getText())){
+                    if(bairroAtual.getId()==Integer.parseInt(this.enderecoRegistro.getIdBairro().getText())){
                         idBairro=bairroAtual.getId()-1;
                         this.enderecoRegistro.getBairro().setText(bairroAtual.getDescricao());
                         validacao=false;
@@ -205,7 +209,7 @@ public class EnderecoRegistroController implements ActionListener {
 
             
         } else if (e.getSource() == this.enderecoRegistro.getPesquisaCidade()) {
-            if(this.enderecoRegistro.getCidade().getText().equalsIgnoreCase("")){
+            if(this.enderecoRegistro.getIdCidade().getText().equalsIgnoreCase("")){
             codigoCidade=0;
             CidadePesquisa cidadePesquisa = new CidadePesquisa();
             CidadePesquisaController cidadePesquisaController = new CidadePesquisaController(cidadePesquisa);
@@ -214,7 +218,7 @@ public class EnderecoRegistroController implements ActionListener {
             }else{
                 boolean validacao=true;
                 for (Cidade cidadeAtual : Persiste.cidades) {
-                    if(cidadeAtual.getDescricao().equalsIgnoreCase(this.enderecoRegistro.getCidade().getText())){
+                    if(cidadeAtual.getId()== Integer.parseInt(this.enderecoRegistro.getIdCidade().getText())){
                         idCidade=cidadeAtual.getId()-1;
                         this.enderecoRegistro.getCidade().setText(cidadeAtual.getDescricao());
                         validacao=false;

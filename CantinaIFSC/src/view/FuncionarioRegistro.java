@@ -14,6 +14,11 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
 
     }
 
+    public JButton getRedefinirSenha() {
+        return redefinirSenha;
+    }
+    
+
     public JPanel getPainelBotoes() {
         return PainelBotoes;
     }
@@ -220,6 +225,7 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
         gravar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
+        redefinirSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -659,6 +665,25 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
             }
         });
 
+        redefinirSenha.setBackground(new java.awt.Color(0, 145, 173));
+        redefinirSenha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        redefinirSenha.setForeground(new java.awt.Color(255, 255, 255));
+        redefinirSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/editar.png"))); // NOI18N
+        redefinirSenha.setText("Redefinir\n Senha"); // NOI18N
+        redefinirSenha.setToolTipText("");
+        redefinirSenha.setActionCommand("1");
+        redefinirSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 145, 173), 1, true));
+        redefinirSenha.setBorderPainted(false);
+        redefinirSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        redefinirSenha.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        redefinirSenha.setIconTextGap(9);
+        redefinirSenha.setInheritsPopupMenu(true);
+        redefinirSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redefinirSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelBotoesLayout = new javax.swing.GroupLayout(PainelBotoes);
         PainelBotoes.setLayout(PainelBotoesLayout);
         PainelBotoesLayout.setHorizontalGroup(
@@ -671,6 +696,8 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(redefinirSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -685,7 +712,8 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
                     .addComponent(gravar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redefinirSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -754,6 +782,10 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
 
     }//GEN-LAST:event_sairActionPerformed
+
+    private void redefinirSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redefinirSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_redefinirSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -836,6 +868,7 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
     private javax.swing.JButton novoCep;
     private javax.swing.JButton pesquisaCep;
     private javax.swing.JButton pesquisar;
+    private javax.swing.JButton redefinirSenha;
     private javax.swing.JTextField rg;
     private javax.swing.JButton sair;
     private javax.swing.JComboBox<String> status;

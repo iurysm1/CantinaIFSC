@@ -187,7 +187,7 @@ public class ClienteRegistroController implements ActionListener {
                         this.clienteRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
                         this.clienteRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
                         this.clienteRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
-                        this.clienteRegistro.getUf().setText(enderecoAtual.getCidade().getDescricao());
+                        this.clienteRegistro.getUf().setText(enderecoAtual.getCidade().getUf());
                         validacao=false;
                     }
                 }
