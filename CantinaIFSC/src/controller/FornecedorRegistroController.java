@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import model.DAO.Persiste;
 import model.bo.Endereco;
 import model.bo.Fornecedor;
 import utilities.Utilities;
@@ -43,7 +44,7 @@ public class FornecedorRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Fornecedor fornecedor = new Fornecedor();
-                fornecedor = DAO.Persiste.fornecedores.get(codigo - 1);
+                fornecedor = Persiste.fornecedores.get(codigo - 1);
                 Utilities.active(false, fornecedorRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, fornecedorRegistro.getPainelDados());
 
@@ -76,7 +77,7 @@ public class FornecedorRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e){
             if(codigoEndereco!=0){
                 Endereco endereco = new Endereco();
-                endereco=DAO.Persiste.enderecos.get(codigoEndereco-1);
+                endereco=Persiste.enderecos.get(codigoEndereco-1);
                 idEndereco=endereco.getId()-1;
                 
                 fornecedorRegistro.getCep().setText(endereco.getCep());
@@ -105,7 +106,7 @@ public class FornecedorRegistroController implements ActionListener {
         } else if (e.getSource() == this.fornecedorRegistro.getGravar()) {
             Fornecedor fornecedor = new Fornecedor();
             
-            fornecedor.setId(DAO.Persiste.fornecedores.size()+1);
+            fornecedor.setId(Persiste.fornecedores.size()+1);
             fornecedor.setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
             fornecedor.setNome(this.fornecedorRegistro.getNome().getText());
             fornecedor.setEmail(this.fornecedorRegistro.getEmail().getText());
@@ -114,24 +115,24 @@ public class FornecedorRegistroController implements ActionListener {
             fornecedor.setFone2(this.fornecedorRegistro.getFone2().getText());
             fornecedor.setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
             
-            fornecedor.setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+            fornecedor.setEndereco(Persiste.enderecos.get(idEndereco));
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
-                DAO.Persiste.fornecedores.add(fornecedor);
+                Persiste.fornecedores.add(fornecedor);
                 feedbackController.codigoFB=8;
                 feedbackController.cadastroClasse();
             }else{
                 int index=Integer.parseInt(this.fornecedorRegistro.getId().getText())-1;
                 
-                DAO.Persiste.fornecedores.get(index).setNome(this.fornecedorRegistro.getNome().getText());
-                DAO.Persiste.fornecedores.get(index).setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
-                DAO.Persiste.fornecedores.get(index).setEmail(this.fornecedorRegistro.getEmail().getText());
-                DAO.Persiste.fornecedores.get(index).setCnpj(this.fornecedorRegistro.getCnpj().getText());
-                DAO.Persiste.fornecedores.get(index).setFone1(this.fornecedorRegistro.getFone1().getText());
-                DAO.Persiste.fornecedores.get(index).setFone2(this.fornecedorRegistro.getFone2().getText());
-                DAO.Persiste.fornecedores.get(index).setEndereco(DAO.Persiste.enderecos.get(idEndereco));
-                DAO.Persiste.fornecedores.get(index).setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
+                Persiste.fornecedores.get(index).setNome(this.fornecedorRegistro.getNome().getText());
+                Persiste.fornecedores.get(index).setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
+                Persiste.fornecedores.get(index).setEmail(this.fornecedorRegistro.getEmail().getText());
+                Persiste.fornecedores.get(index).setCnpj(this.fornecedorRegistro.getCnpj().getText());
+                Persiste.fornecedores.get(index).setFone1(this.fornecedorRegistro.getFone1().getText());
+                Persiste.fornecedores.get(index).setFone2(this.fornecedorRegistro.getFone2().getText());
+                Persiste.fornecedores.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
+                Persiste.fornecedores.get(index).setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
                 
                 feedbackController.codigoFB=8;
                 feedbackController.atualizacaoClasse();
@@ -174,7 +175,7 @@ public class FornecedorRegistroController implements ActionListener {
             
         }else{
              validacao=true;
-                for (Endereco enderecoAtual : DAO.Persiste.enderecos) {
+                for (Endereco enderecoAtual : Persiste.enderecos) {
                     if(enderecoAtual.getCep().equalsIgnoreCase(this.fornecedorRegistro.getCep().getText())){
                         idEndereco=enderecoAtual.getId()-1;
                         this.fornecedorRegistro.getCep().setText(enderecoAtual.getCep());

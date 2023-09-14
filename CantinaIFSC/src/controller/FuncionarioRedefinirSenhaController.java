@@ -8,6 +8,7 @@ import view.Feedback;
 import view.FeedbackSENHA;
 import view.FuncionarioRedefinirSenha;
 import view.FuncionarioSenha;
+import model.DAO.Persiste;
 
 public class FuncionarioRedefinirSenhaController implements ActionListener {
 
@@ -29,9 +30,9 @@ public class FuncionarioRedefinirSenhaController implements ActionListener {
             this.funcionarioSenha.dispose();
         } else if (e.getSource() == this.funcionarioSenha.getSalvar()) {
             Funcionario funcionarioSenha = new Funcionario();
-            for (Funcionario funcionarioAtual : DAO.Persiste.funcionarios) {
+            for (Funcionario funcionarioAtual : model.DAO.Persiste.funcionarios) {
                 if (this.funcionarioSenha.getLogin().getText().equals(funcionarioAtual.getUsuario())) {
-                    funcionarioSenha = DAO.Persiste.funcionarios.get(funcionarioAtual.getId()-1);
+                    funcionarioSenha = model.DAO.Persiste.funcionarios.get(funcionarioAtual.getId()-1);
                     break;
                 }
             }System.out.println(funcionarioSenha.getNome());

@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
+import model.DAO.Persiste;
 import model.bo.Endereco;
 import model.bo.Funcionario;
 import utilities.Utilities;
@@ -47,7 +48,7 @@ public class FuncionarioRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Funcionario funcionario = new Funcionario();
-                funcionario = DAO.Persiste.funcionarios.get(codigo - 1);
+                funcionario = Persiste.funcionarios.get(codigo - 1);
 
                 Utilities.active(false, funcionarioRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, funcionarioRegistro.getPainelDados());
@@ -83,7 +84,7 @@ public class FuncionarioRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigoEndereco != 0) {
                 Endereco endereco = new Endereco();
-                endereco = DAO.Persiste.enderecos.get(codigoEndereco - 1);
+                endereco = Persiste.enderecos.get(codigoEndereco - 1);
                 idEndereco = endereco.getId() - 1;
 
                 funcionarioRegistro.getCep().setText(endereco.getCep());
@@ -101,8 +102,8 @@ public class FuncionarioRegistroController implements ActionListener {
         @Override
         public void windowClosed(WindowEvent e) {
             if (condicaoCadastro != 0) {
-                DAO.Persiste.funcionarios.get(idSenha).setSenha(senha);
-                DAO.Persiste.funcionarios.get(idSenha).setUsuario(usuario);
+                Persiste.funcionarios.get(idSenha).setSenha(senha);
+                Persiste.funcionarios.get(idSenha).setUsuario(usuario);
 
                 Feedback feedback = new Feedback();
                 FeedbackController feedbackController = new FeedbackController(feedback);
@@ -142,7 +143,7 @@ public class FuncionarioRegistroController implements ActionListener {
 
             Funcionario funcionario = new Funcionario();
 
-            funcionario.setId(DAO.Persiste.funcionarios.size() + 1);
+            funcionario.setId(Persiste.funcionarios.size() + 1);
             funcionario.setNome(this.funcionarioRegistro.getNome().getText());
             funcionario.setCpf(this.funcionarioRegistro.getCpf1().getText());
             funcionario.setRg(this.funcionarioRegistro.getRg().getText());
@@ -150,30 +151,40 @@ public class FuncionarioRegistroController implements ActionListener {
             funcionario.setFone1(this.funcionarioRegistro.getFone1().getText());
             funcionario.setFone2(this.funcionarioRegistro.getFone2().getText());
             funcionario.setEmail(this.funcionarioRegistro.getEmail().getText());
-            funcionario.setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+            funcionario.setEndereco(Persiste.enderecos.get(idEndereco));
 
             if (this.funcionarioRegistro.getId().getText().equalsIgnoreCase("")) {
-                DAO.Persiste.funcionarios.add(funcionario);
+                Persiste.funcionarios.add(funcionario);
                 condicao = 1;
                 idSenha = funcionario.getId() - 1;
+                funcionarioSenha.addWindowListener(disposeListenerSenha);
+                funcionarioSenha.setVisible(true);
                 
             } else {
+                Feedback feedback=new Feedback();
+                FeedbackController feedbackController= new FeedbackController(feedback);
+                
                 int index = Integer.parseInt(this.funcionarioRegistro.getId().getText()) - 1;
 
-                DAO.Persiste.funcionarios.get(index).setNome(this.funcionarioRegistro.getNome().getText());
-                DAO.Persiste.funcionarios.get(index).setDataNascimento(this.funcionarioRegistro.getData().getText());
-                DAO.Persiste.funcionarios.get(index).setCpf(this.funcionarioRegistro.getCpf1().getText());
-                DAO.Persiste.funcionarios.get(index).setRg(this.funcionarioRegistro.getRg().getText());
-                DAO.Persiste.funcionarios.get(index).setFone1(this.funcionarioRegistro.getFone1().getText());
-                DAO.Persiste.funcionarios.get(index).setFone2(this.funcionarioRegistro.getFone2().getText());
-                DAO.Persiste.funcionarios.get(index).setEmail(this.funcionarioRegistro.getEmail().getText());
-                DAO.Persiste.funcionarios.get(index).setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+                Persiste.funcionarios.get(index).setNome(this.funcionarioRegistro.getNome().getText());
+                Persiste.funcionarios.get(index).setDataNascimento(this.funcionarioRegistro.getData().getText());
+                Persiste.funcionarios.get(index).setCpf(this.funcionarioRegistro.getCpf1().getText());
+                Persiste.funcionarios.get(index).setRg(this.funcionarioRegistro.getRg().getText());
+                Persiste.funcionarios.get(index).setFone1(this.funcionarioRegistro.getFone1().getText());
+                Persiste.funcionarios.get(index).setFone2(this.funcionarioRegistro.getFone2().getText());
+                Persiste.funcionarios.get(index).setEmail(this.funcionarioRegistro.getEmail().getText());
+                Persiste.funcionarios.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
                 condicao = 2;
-                idSenha = DAO.Persiste.funcionarios.get(index).getId() - 1;
+                idSenha = Persiste.funcionarios.get(index).getId() - 1;
+                feedbackController.codigoFB=7;
+                feedbackController.atualizacaoClasse();
+                feedback.setVisible(true);
+                 Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
             }
-
-            funcionarioSenha.addWindowListener(disposeListenerSenha);
-            funcionarioSenha.setVisible(true);
+            
+            System.out.println("senha: "+Persiste.funcionarios.get(idSenha).getSenha());
+            
 
         } else if (e.getSource() == this.funcionarioRegistro.getCancelar()) {
             Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
@@ -202,7 +213,7 @@ public class FuncionarioRegistroController implements ActionListener {
                 enderecoPesquisa.setVisible(true);
             }else{
                 boolean validacao=true;
-                for (Endereco enderecoAtual : DAO.Persiste.enderecos) {
+                for (Endereco enderecoAtual : Persiste.enderecos) {
                     if(enderecoAtual.getCep().equalsIgnoreCase(this.funcionarioRegistro.getCep().getText())){
                         idEndereco=enderecoAtual.getId()-1;
                         funcionarioRegistro.getCep().setText(enderecoAtual.getCep());

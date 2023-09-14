@@ -1,9 +1,9 @@
 
 package controller;
 
-import DAO.Persiste;
+import model.DAO.Persiste;
 
-import static DAO.Persiste.cidades;
+import static model.DAO.Persiste.cidades;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;

@@ -1,8 +1,8 @@
 
 package controller;
 
-import DAO.Persiste;
-import static DAO.Persiste.fornecedores;
+import model.DAO.Persiste;
+import static model.DAO.Persiste.fornecedores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;

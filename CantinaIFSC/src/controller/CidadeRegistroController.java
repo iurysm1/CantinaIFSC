@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import model.DAO.Persiste;
 import model.bo.Bairro;
 import model.bo.Cidade;
 import utilities.Utilities;
@@ -37,7 +38,7 @@ public class CidadeRegistroController implements ActionListener{
             public void windowClosed(WindowEvent e){
                 if (codigo!=0){
                     Cidade cidade = new Cidade();
-                    cidade=DAO.Persiste.cidades.get(codigo-1);
+                    cidade=Persiste.cidades.get(codigo-1);
                     Utilities.active(false, cidadeRegistro.getPainelBotoes());
                     Utilities.limpaComponentes(true, cidadeRegistro.getPainelDados());
                     
@@ -66,20 +67,20 @@ public class CidadeRegistroController implements ActionListener{
         }else if (e.getSource()==this.cidadeRegistro.getGravar()){
             Cidade cidade=new Cidade();
             
-            cidade.setId(DAO.Persiste.cidades.size()+1);
+            cidade.setId(Persiste.cidades.size()+1);
             cidade.setUf(this.cidadeRegistro.getUf().getText());
             cidade.setDescricao(this.cidadeRegistro.getNomeCidade().getText());
            Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.cidadeRegistro.getId().getText().equalsIgnoreCase("")){
-                DAO.Persiste.cidades.add(cidade);
+                Persiste.cidades.add(cidade);
                 feedbackController.codigoFB=2;
                 feedbackController.cadastroClasse();
             }else{
                 int index=Integer.parseInt(this.cidadeRegistro.getId().getText())-1;
-                DAO.Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
-                DAO.Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
+                Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
+                Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
                 feedbackController.codigoFB=2;
                 feedbackController.atualizacaoClasse();
             }

@@ -24,8 +24,9 @@ public class Contas {
     
     private Venda venda;
     private Compra compra;
+    private Movimentocaixa movimentacaocaixa;
 
-    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, char status, Venda venda, Compra compra) {
+    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, char status, Venda venda, Compra compra, Movimentocaixa movimentacaocaixa) {
         this.id = id;
         this.datahoraemissao = datahoraemissao;
         this.datavencimento = datavencimento;
@@ -37,7 +38,7 @@ public class Contas {
         this.observacao = observacao;
         this.flagtipoconta = flagtipoconta;
         this.status = status;
-        
+        this.movimentacaocaixa = movimentacaocaixa;
         this.venda = venda;
         this.compra=compra;
         
@@ -149,6 +150,14 @@ public class Contas {
 
     public void setCompra(Compra compra) {
         this.compra = compra;
+    }
+
+    public Movimentocaixa getMovimentacaocaixa() {
+        return movimentacaocaixa;
+    }
+
+    public void setMovimentacaocaixa(Movimentocaixa movimentacaocaixa) {
+        this.movimentacaocaixa = movimentacaocaixa;
     }
     
 

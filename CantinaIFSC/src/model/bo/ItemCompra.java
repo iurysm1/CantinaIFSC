@@ -5,7 +5,6 @@ public class ItemCompra {
     
     private int id;
     private float qtdproduto;
-    private float valorunitario;
     private char status;
     
     private Produto produto;
@@ -14,10 +13,9 @@ public class ItemCompra {
     public ItemCompra() {
     }
 
-    public ItemCompra(int id, float qtdproduto, float valorunitario, char status, Produto produto, Compra compra) {
+    public ItemCompra(int id, float qtdproduto, char status, Produto produto, Compra compra) {
         this.id = id;
         this.qtdproduto = qtdproduto;
-        this.valorunitario = valorunitario;
         this.status = status;
         this.produto=produto;
         this.compra=compra;
@@ -40,13 +38,7 @@ public class ItemCompra {
         this.qtdproduto = qtdproduto;
     }
 
-    public float getValorunitario() {
-        return valorunitario;
-    }
 
-    public void setValorunitario(float valorunitario) {
-        this.valorunitario = valorunitario;
-    }
 
     public char getStatus() {
         return status;
@@ -75,7 +67,7 @@ public class ItemCompra {
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", compra="+this.getCompra()+", produto="+this.getProduto();
+        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto()+ ", status=" + this.getStatus() + ", compra="+this.getCompra()+", produto="+this.getProduto();
     }
     
     

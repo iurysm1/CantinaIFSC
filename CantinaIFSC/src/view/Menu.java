@@ -4,7 +4,7 @@
  */
 package view;
 
-import DAO.Persiste;
+import model.DAO.Persiste;
 import controller.BairroRegistroController;
 import controller.CarteirinhaRegistroController;
 import controller.CidadeRegistroController;

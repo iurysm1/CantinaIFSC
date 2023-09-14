@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import model.DAO.Persiste;
 import model.bo.Carteirinha;
 import model.bo.Cliente;
 import utilities.Utilities;
@@ -41,7 +42,7 @@ public class CarteirinhaRegistroController implements ActionListener{
             
             if(codigo!=0){
                 Carteirinha carteirinha = new Carteirinha();
-                carteirinha=DAO.Persiste.carteirinhas.get(codigo-1);
+                carteirinha=Persiste.carteirinhas.get(codigo-1);
                 Utilities.active(false, carteirinhaRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, carteirinhaRegistro.getPainelDados());
                 
@@ -67,7 +68,7 @@ public class CarteirinhaRegistroController implements ActionListener{
         public void windowClosed(WindowEvent e){
             if(codigoCliente!=0){
             Cliente cliente = new Cliente();
-            cliente=DAO.Persiste.clientes.get(codigoCliente-1);
+            cliente=Persiste.clientes.get(codigoCliente-1);
             idCliente=cliente.getId()-1;
             
             carteirinhaRegistro.getIdCliente().setText(cliente.getId()+"");
@@ -90,26 +91,26 @@ public class CarteirinhaRegistroController implements ActionListener{
         }else if(e.getSource()==this.carteirinhaRegistro.getGravar()){
             Carteirinha carteirinha = new Carteirinha();
             
-            carteirinha.setId(DAO.Persiste.carteirinhas.size()+1);
+            carteirinha.setId(Persiste.carteirinhas.size()+1);
             carteirinha.setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
             carteirinha.setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
             carteirinha.setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
-            carteirinha.setCliente(DAO.Persiste.clientes.get(idCliente));
+            carteirinha.setCliente(Persiste.clientes.get(idCliente));
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.carteirinhaRegistro.getId().getText().equalsIgnoreCase("")){
-                DAO.Persiste.carteirinhas.add(carteirinha);
+                Persiste.carteirinhas.add(carteirinha);
                 feedbackController.codigoFB=5;
                 feedbackController.cadastroClasse();            
             }else{
                  int index = Integer.parseInt(this.carteirinhaRegistro.getId().getText())-1;
                  
-                 DAO.Persiste.carteirinhas.get(index).setCliente(DAO.Persiste.clientes.get(idCliente));
+                 Persiste.carteirinhas.get(index).setCliente(Persiste.clientes.get(idCliente));
                  
-                 DAO.Persiste.carteirinhas.get(index).setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
-                 DAO.Persiste.carteirinhas.get(index).setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
-                 DAO.Persiste.carteirinhas.get(index).setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
+                 Persiste.carteirinhas.get(index).setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
+                 Persiste.carteirinhas.get(index).setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
+                 Persiste.carteirinhas.get(index).setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
                  feedbackController.codigoFB=5;
                 feedbackController.atualizacaoClasse();
             }

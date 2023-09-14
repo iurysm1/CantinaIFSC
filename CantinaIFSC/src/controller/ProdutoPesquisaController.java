@@ -1,7 +1,7 @@
 
 package controller;
 
-import DAO.Persiste;
+import model.DAO.Persiste;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +35,7 @@ public class ProdutoPesquisaController implements ActionListener{
                 int selectedRow = produtoPesquisa.getTabelaDados().getSelectedRow();
                 if(selectedRow!=-1){
                     int selectedItem= (int) produtoPesquisa.getTabelaDados().getValueAt(selectedRow, 0)-1;
-                    ImageIcon icon = new ImageIcon(DAO.Persiste.produtos.get(selectedItem).getCaminhoFotoProduto());
+                    ImageIcon icon = new ImageIcon(model.DAO.Persiste.produtos.get(selectedItem).getCaminhoFotoProduto());
                     
                     produtoPesquisa.setIcon(icon);
                     produtoPesquisa.getPainelFoto().setBackground(Color.white);

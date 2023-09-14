@@ -183,6 +183,11 @@ public class BairroPesquisa extends javax.swing.JFrame {
         pesquisa.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pesquisa.setForeground(new java.awt.Color(153, 153, 153));
         pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
@@ -267,6 +272,10 @@ public class BairroPesquisa extends javax.swing.JFrame {
     private void carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_carregarActionPerformed
+
+    private void pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisaActionPerformed
 
     /**
      * @param args the command line arguments

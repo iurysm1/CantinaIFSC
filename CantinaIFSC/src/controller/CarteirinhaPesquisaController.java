@@ -1,10 +1,11 @@
 package controller;
 
-import DAO.Persiste;
-import static DAO.Persiste.carteirinhas;
+
+import static model.DAO.Persiste.carteirinhas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
+import model.DAO.Persiste;
 import model.bo.Carteirinha;
 import view.CarteirinhaPesquisa;
 

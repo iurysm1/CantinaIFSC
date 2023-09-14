@@ -12,7 +12,7 @@ package model.bo;
 public class ItemVenda {
     private int id;
     private float qtdproduto;
-    private float valorunitario;
+ 
     private char status;
     
     private Produto produto;
@@ -24,7 +24,7 @@ public class ItemVenda {
     public ItemVenda(int id, float qtdproduto, float valorunitario, char status, Produto produto, Venda venda) {
         this.id = id;
         this.qtdproduto = qtdproduto;
-        this.valorunitario = valorunitario;
+   
         this.status = status;
        this.produto = produto;
        this.venda=venda;
@@ -46,13 +46,7 @@ public class ItemVenda {
         this.qtdproduto = qtdproduto;
     }
 
-    public float getValorunitario() {
-        return valorunitario;
-    }
 
-    public void setValorunitario(float valorunitario) {
-        this.valorunitario = valorunitario;
-    }
 
     public char getStatus() {
         return status;
@@ -79,7 +73,7 @@ public class ItemVenda {
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() + ", valorunitario=" + this.getValorunitario() + ", status=" + this.getStatus() + ", Produto=" + this.getProduto()+", venda="+this.getVenda();
+        return "id=" + this.getId() + ", qtdproduto=" + this.getQtdproduto() +", status=" + this.getStatus() + ", Produto=" + this.getProduto()+", venda="+this.getVenda();
     }
     
     

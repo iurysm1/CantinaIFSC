@@ -1,12 +1,13 @@
 package controller;
 
-import DAO.Persiste;
+
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import model.DAO.Persiste;
 import model.bo.Bairro;
 import utilities.Utilities;
 import view.BairroPesquisa;
@@ -39,7 +40,7 @@ public class BairroRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Bairro bairro = new Bairro();
-                bairro = DAO.Persiste.bairros.get(codigo - 1);
+                bairro = Persiste.bairros.get(codigo - 1);
                 Utilities.active(false, bairroRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, bairroRegistro.getPainelDados());
 
@@ -65,17 +66,17 @@ public class BairroRegistroController implements ActionListener {
         } else if (e.getSource() == this.bairroRegistro.getGravar()) {
             Bairro bairro = new Bairro();
 
-            bairro.setId(DAO.Persiste.bairros.size() + 1);
+            bairro.setId(Persiste.bairros.size() + 1);
             bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             if (this.bairroRegistro.getId().getText().equalsIgnoreCase("")) {
-                DAO.Persiste.bairros.add(bairro);
+                Persiste.bairros.add(bairro);
                 feedbackController.codigoFB=1;
                 feedbackController.cadastroClasse();
             } else {
                 int index = Integer.parseInt(this.bairroRegistro.getId().getText()) - 1;
-                DAO.Persiste.bairros.get(index).setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
+                Persiste.bairros.get(index).setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
                 feedbackController.codigoFB=1;
                 feedbackController.atualizacaoClasse();
             }

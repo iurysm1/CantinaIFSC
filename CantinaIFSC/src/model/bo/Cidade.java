@@ -6,6 +6,7 @@ public class Cidade {
     private int id;
     private String descricao;
     private String uf;
+    
 
     public Cidade(int id, String descricao, String uf) {
         this.id = id;

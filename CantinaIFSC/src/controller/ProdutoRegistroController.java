@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import model.DAO.Persiste;
 import model.bo.Produto;
 import utilities.Utilities;
 import view.Feedback;
@@ -42,7 +43,7 @@ public class ProdutoRegistroController implements ActionListener {
             if (codigo != 0) {
 
                 Produto produto = new Produto();
-                produto = DAO.Persiste.produtos.get(codigo - 1);
+                produto = Persiste.produtos.get(codigo - 1);
                 Utilities.active(false, produtoRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, produtoRegistro.getPainelDados());
                 
@@ -91,7 +92,7 @@ public class ProdutoRegistroController implements ActionListener {
             Produto produto = new Produto();
 
             produto.setCodigobarra(this.produtoRegistro.getPreco().getText());
-            produto.setId(DAO.Persiste.produtos.size() + 1);
+            produto.setId(Persiste.produtos.size() + 1);
             produto.setDescricao(this.produtoRegistro.getNome().getText());
             produto.setCodigobarra(this.produtoRegistro.getCodigoBarra().getText());
             produto.setCaminhoFotoProduto(caminhoArquivo);
@@ -99,15 +100,15 @@ public class ProdutoRegistroController implements ActionListener {
             FeedbackController feedbackController = new FeedbackController(feedback);
 
             if (this.produtoRegistro.getId().getText().equalsIgnoreCase("")) {
-                DAO.Persiste.produtos.add(produto);
+                Persiste.produtos.add(produto);
                 feedbackController.codigoFB = 4;
                 feedbackController.cadastroClasse();
             } else {
                 int index = Integer.parseInt(this.produtoRegistro.getId().getText()) - 1;
-                DAO.Persiste.produtos.get(index).setCodigobarra(this.produtoRegistro.getCodigoBarra().getText() + "");
-                DAO.Persiste.produtos.get(index).setDescricao(this.produtoRegistro.getNome().getText());
-                DAO.Persiste.produtos.get(index).setPreco(Float.valueOf(this.produtoRegistro.getPreco().getText()));
-                DAO.Persiste.produtos.get(index).setCaminhoFotoProduto(caminhoArquivo);
+                Persiste.produtos.get(index).setCodigobarra(this.produtoRegistro.getCodigoBarra().getText() + "");
+                Persiste.produtos.get(index).setDescricao(this.produtoRegistro.getNome().getText());
+                Persiste.produtos.get(index).setPreco(Float.valueOf(this.produtoRegistro.getPreco().getText()));
+                Persiste.produtos.get(index).setCaminhoFotoProduto(caminhoArquivo);
                 feedbackController.codigoFB = 4;
                 feedbackController.atualizacaoClasse();
             }

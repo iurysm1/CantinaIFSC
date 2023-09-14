@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.Persiste;
+import model.DAO.Persiste;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -54,7 +54,7 @@ public class EnderecoRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e){
             if(codigo!=0){
                 Endereco endereco = new Endereco();
-                endereco=DAO.Persiste.enderecos.get(codigo-1);
+                endereco=model.DAO.Persiste.enderecos.get(codigo-1);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, enderecoRegistro.getPainelDados());
                 
@@ -74,7 +74,7 @@ public class EnderecoRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if(codigoBairro!=0){
                 Bairro bairro;
-                bairro=DAO.Persiste.bairros.get(codigoBairro-1);
+                bairro=model.DAO.Persiste.bairros.get(codigoBairro-1);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
                 idBairro=bairro.getId()-1;
                 
@@ -88,7 +88,7 @@ public class EnderecoRegistroController implements ActionListener {
          public void windowClosed(WindowEvent e){
             if(codigoCidade!=0){
                 Cidade cidade;
-                cidade=DAO.Persiste.cidades.get(codigoCidade-1);
+                cidade=model.DAO.Persiste.cidades.get(codigoCidade-1);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
                 idCidade=cidade.getId()-1;
                 
@@ -110,26 +110,26 @@ public class EnderecoRegistroController implements ActionListener {
         } else if (e.getSource() == this.enderecoRegistro.getGravar()) {
             Endereco endereco = new Endereco();
             
-            endereco.setId(DAO.Persiste.enderecos.size() + 1);
+            endereco.setId(model.DAO.Persiste.enderecos.size() + 1);
             endereco.setLogradouro(this.enderecoRegistro.getLogradouro().getText());
             endereco.setCep(this.enderecoRegistro.getCep().getText());
-            endereco.setBairro(DAO.Persiste.bairros.get(idBairro));
-            endereco.setCidade(DAO.Persiste.cidades.get(idCidade));
+            endereco.setBairro(model.DAO.Persiste.bairros.get(idBairro));
+            endereco.setCidade(model.DAO.Persiste.cidades.get(idCidade));
             
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
-                DAO.Persiste.enderecos.add(endereco);
+                model.DAO.Persiste.enderecos.add(endereco);
                 feedbackController.codigoFB=3;
                 feedbackController.cadastroClasse();
                 
                 
             }else{
                 int index = Integer.parseInt(this.enderecoRegistro.getId().getText())-1;
-                DAO.Persiste.enderecos.get(index).setLogradouro(this.enderecoRegistro.getLogradouro().getText());
-                DAO.Persiste.enderecos.get(index).setCep(this.enderecoRegistro.getCep().getText());
-                DAO.Persiste.enderecos.get(index).setBairro(DAO.Persiste.bairros.get(idBairro));
-                DAO.Persiste.enderecos.get(index).setCidade(DAO.Persiste.cidades.get(idCidade));
+                model.DAO.Persiste.enderecos.get(index).setLogradouro(this.enderecoRegistro.getLogradouro().getText());
+                model.DAO.Persiste.enderecos.get(index).setCep(this.enderecoRegistro.getCep().getText());
+                model.DAO.Persiste.enderecos.get(index).setBairro(model.DAO.Persiste.bairros.get(idBairro));
+                model.DAO.Persiste.enderecos.get(index).setCidade(model.DAO.Persiste.cidades.get(idCidade));
                 feedbackController.codigoFB=3;
                 feedbackController.atualizacaoClasse();
                 

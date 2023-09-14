@@ -15,6 +15,7 @@ import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
 import view.Feedback;
 import view.FeedbackENDERECO;
+import model.DAO.Persiste;
 
 public class ClienteRegistroController implements ActionListener {
 
@@ -43,7 +44,7 @@ public class ClienteRegistroController implements ActionListener {
 
             if (codigo != 0) {
                 Cliente cliente = new Cliente();
-                cliente = DAO.Persiste.clientes.get(codigo - 1);
+                cliente = Persiste.clientes.get(codigo - 1);
                 Utilities.active(false, clienteRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, clienteRegistro.getPainelDados());
 
@@ -79,7 +80,7 @@ public class ClienteRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigoEndereco != 0) {
                 Endereco endereco = new Endereco();
-                endereco = DAO.Persiste.enderecos.get(codigoEndereco - 1);
+                endereco = Persiste.enderecos.get(codigoEndereco - 1);
                 idEndereco=endereco.getId()-1;
                 Utilities.active(false, clienteRegistro.getPainelBotoes());
 
@@ -124,7 +125,7 @@ public class ClienteRegistroController implements ActionListener {
         } else if (e.getSource() == this.clienteRegistro.getGravar()) {
             Cliente cliente = new Cliente();
             
-            cliente.setId(DAO.Persiste.clientes.size()+1);
+            cliente.setId(Persiste.clientes.size()+1);
             cliente.setNome(this.clienteRegistro.getNome().getText());
             cliente.setCpf(this.clienteRegistro.getCpf1().getText());
             cliente.setRg(this.clienteRegistro.getRg().getText());
@@ -133,27 +134,27 @@ public class ClienteRegistroController implements ActionListener {
             cliente.setFone2(this.clienteRegistro.getFone1().getText());
             cliente.setEmail(this.clienteRegistro.getEmail().getText());
             cliente.setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
-            cliente.setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+            cliente.setEndereco(Persiste.enderecos.get(idEndereco));
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
 
             
             if(this.clienteRegistro.getId().getText().equalsIgnoreCase("")){
-                DAO.Persiste.clientes.add(cliente);
+                Persiste.clientes.add(cliente);
                 feedbackController.codigoFB=6;
                 feedbackController.cadastroClasse();
             }else{
                 int index = Integer.parseInt(this.clienteRegistro.getId().getText())-1;
                 
-                DAO.Persiste.clientes.get(index).setNome(this.clienteRegistro.getNome().getText());
-                DAO.Persiste.clientes.get(index).setCpf(this.clienteRegistro.getCpf1().getText());
-                DAO.Persiste.clientes.get(index).setRg(this.clienteRegistro.getRg().getText());
-                DAO.Persiste.clientes.get(index).setMatricula(this.clienteRegistro.getMatricula().getText());
-                DAO.Persiste.clientes.get(index).setFone1(this.clienteRegistro.getFone1().getText());
-                DAO.Persiste.clientes.get(index).setFone2(this.clienteRegistro.getFone2().getText());
-                DAO.Persiste.clientes.get(index).setEmail(this.clienteRegistro.getEmail().getText());
-                DAO.Persiste.clientes.get(index).setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
-                DAO.Persiste.clientes.get(index).setEndereco(DAO.Persiste.enderecos.get(idEndereco));
+                Persiste.clientes.get(index).setNome(this.clienteRegistro.getNome().getText());
+                Persiste.clientes.get(index).setCpf(this.clienteRegistro.getCpf1().getText());
+                Persiste.clientes.get(index).setRg(this.clienteRegistro.getRg().getText());
+                Persiste.clientes.get(index).setMatricula(this.clienteRegistro.getMatricula().getText());
+                Persiste.clientes.get(index).setFone1(this.clienteRegistro.getFone1().getText());
+               Persiste.clientes.get(index).setFone2(this.clienteRegistro.getFone2().getText());
+                Persiste.clientes.get(index).setEmail(this.clienteRegistro.getEmail().getText());
+               Persiste.clientes.get(index).setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
+                Persiste.clientes.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
                 feedbackController.codigoFB=6;
                 feedbackController.atualizacaoClasse();
             }
@@ -180,7 +181,7 @@ public class ClienteRegistroController implements ActionListener {
             enderecoPesquisa.setVisible(true);
             }else{
                 boolean validacao=true;
-                for (Endereco enderecoAtual : DAO.Persiste.enderecos) {
+                for (Endereco enderecoAtual : Persiste.enderecos) {
                     if(enderecoAtual.getCep().equalsIgnoreCase(this.clienteRegistro.getCep().getText())){
                         idEndereco=enderecoAtual.getId()-1;
                         this.clienteRegistro.getCep().setText(enderecoAtual.getCep());
