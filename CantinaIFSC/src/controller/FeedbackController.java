@@ -17,7 +17,6 @@ public class FeedbackController implements ActionListener{
     
     Feedback feedBack;
     
-    public static int codigoFB;
 
     public FeedbackController(Feedback feedBack) {
         this.feedBack = feedBack;
@@ -27,9 +26,9 @@ public class FeedbackController implements ActionListener{
         
     }
     
-    public void cadastroClasse(){
+    public void cadastroClasse(int codigoFB){
         
-        switch (this.codigoFB) {
+        switch (codigoFB) {
             case 1:
                 this.feedBack.setFeedBack("SEU BAIRRO FOI CADASTRADO COM SUCESSO!");           
                 break;
@@ -56,8 +55,8 @@ public class FeedbackController implements ActionListener{
         }
     }
 
-    public void atualizacaoClasse(){
-        switch (this.codigoFB) {
+    public void atualizacaoClasse(int codigoFB){
+        switch (codigoFB) {
             case 1:
                 this.feedBack.setFeedBack("SEU BAIRRO FOI ATUALIZADO COM SUCESSO!");           
                 break;
@@ -91,7 +90,7 @@ public class FeedbackController implements ActionListener{
         
         if(e.getSource()==this.feedBack.getConcluir()){
            
-            codigoFB=0;
+            
             
             this.feedBack.dispose();
         }

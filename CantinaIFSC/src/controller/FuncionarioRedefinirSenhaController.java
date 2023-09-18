@@ -48,8 +48,7 @@ public class FuncionarioRedefinirSenhaController implements ActionListener {
                     Feedback feedback = new Feedback();
                     FeedbackController feedbackController = new FeedbackController(feedback);
                     this.funcionarioSenha.dispose();
-                    feedbackController.codigoFB = 7;
-                    feedbackController.atualizacaoClasse();
+                    feedbackController.atualizacaoClasse(7);
                     feedback.setVisible(true);
                 } else {
                     FeedbackSENHA feedbackSENHA = new FeedbackSENHA();

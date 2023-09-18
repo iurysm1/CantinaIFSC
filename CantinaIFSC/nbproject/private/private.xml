@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/model/DAO/BairroDAO.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/model/DAO/ConnectionFactory.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/model/DAO/InterfaceDAO.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/BairroPesquisaController.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/view/BairroPesquisa.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/model/bo/Carteirinha.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/FornecedorRegistroController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/FuncionarioRegistroController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/FeedbackController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/ProdutoRegistroController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/FuncionarioRedefinirSenhaController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/EnderecoRegistroController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/ClienteRegistroController.java</file>
             <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/service/BairroService.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/model/bo/Endereco.java</file>
-            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/CarteirinhaPesquisaController.java</file>
+            <file>file:/D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/controller/BairroRegistroController.java</file>
         </group>
     </open-files>
 </project-private>

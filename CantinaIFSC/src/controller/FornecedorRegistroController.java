@@ -120,8 +120,7 @@ public class FornecedorRegistroController implements ActionListener {
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
                 Persiste.fornecedores.add(fornecedor);
-                feedbackController.codigoFB=8;
-                feedbackController.cadastroClasse();
+                feedbackController.cadastroClasse(8);
             }else{
                 int index=Integer.parseInt(this.fornecedorRegistro.getId().getText())-1;
                 
@@ -134,8 +133,7 @@ public class FornecedorRegistroController implements ActionListener {
                 Persiste.fornecedores.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
                 Persiste.fornecedores.get(index).setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
                 
-                feedbackController.codigoFB=8;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(8);
             }
             
             feedback.setVisible(true);

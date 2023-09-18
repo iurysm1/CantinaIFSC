@@ -9,13 +9,16 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import model.DAO.Persiste;
 import model.bo.Bairro;
+import service.BairroService;
 import utilities.Utilities;
 import view.BairroPesquisa;
 import view.BairroRegistro;
 import view.Feedback;
 
+
 public class BairroRegistroController implements ActionListener {
 
+        
     BairroRegistro bairroRegistro;
     public static int codigo;
 
@@ -40,7 +43,7 @@ public class BairroRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Bairro bairro = new Bairro();
-                bairro = Persiste.bairros.get(codigo - 1);
+                bairro = service.BairroService.carregar(codigo);
                 Utilities.active(false, bairroRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, bairroRegistro.getPainelDados());
 
@@ -65,20 +68,19 @@ public class BairroRegistroController implements ActionListener {
 
         } else if (e.getSource() == this.bairroRegistro.getGravar()) {
             Bairro bairro = new Bairro();
-
-            bairro.setId(Persiste.bairros.size() + 1);
             bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
+            
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
+            
             if (this.bairroRegistro.getId().getText().equalsIgnoreCase("")) {
-                Persiste.bairros.add(bairro);
-                feedbackController.codigoFB=1;
-                feedbackController.cadastroClasse();
+                
+                service.BairroService.adicionar(bairro);
+                feedbackController.cadastroClasse(1);
             } else {
-                int index = Integer.parseInt(this.bairroRegistro.getId().getText()) - 1;
-                Persiste.bairros.get(index).setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
-                feedbackController.codigoFB=1;
-                feedbackController.atualizacaoClasse();
+                bairro.setId(Integer.parseInt(this.bairroRegistro.getId().getText()));
+                service.BairroService.atualizar(bairro);
+                feedbackController.atualizacaoClasse(1);
             }
             
             

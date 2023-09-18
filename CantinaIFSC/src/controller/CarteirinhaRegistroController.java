@@ -101,8 +101,7 @@ public class CarteirinhaRegistroController implements ActionListener{
             
             if(this.carteirinhaRegistro.getId().getText().equalsIgnoreCase("")){
                 Persiste.carteirinhas.add(carteirinha);
-                feedbackController.codigoFB=5;
-                feedbackController.cadastroClasse();            
+                feedbackController.cadastroClasse(5);            
             }else{
                  int index = Integer.parseInt(this.carteirinhaRegistro.getId().getText())-1;
                  
@@ -111,8 +110,7 @@ public class CarteirinhaRegistroController implements ActionListener{
                  Persiste.carteirinhas.get(index).setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
                  Persiste.carteirinhas.get(index).setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
                  Persiste.carteirinhas.get(index).setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
-                 feedbackController.codigoFB=5;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(5);
             }
             
             feedback.setVisible(true);

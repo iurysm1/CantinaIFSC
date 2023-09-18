@@ -101,16 +101,14 @@ public class ProdutoRegistroController implements ActionListener {
 
             if (this.produtoRegistro.getId().getText().equalsIgnoreCase("")) {
                 Persiste.produtos.add(produto);
-                feedbackController.codigoFB = 4;
-                feedbackController.cadastroClasse();
+                feedbackController.cadastroClasse(4);
             } else {
                 int index = Integer.parseInt(this.produtoRegistro.getId().getText()) - 1;
                 Persiste.produtos.get(index).setCodigobarra(this.produtoRegistro.getCodigoBarra().getText() + "");
                 Persiste.produtos.get(index).setDescricao(this.produtoRegistro.getNome().getText());
                 Persiste.produtos.get(index).setPreco(Float.valueOf(this.produtoRegistro.getPreco().getText()));
                 Persiste.produtos.get(index).setCaminhoFotoProduto(caminhoArquivo);
-                feedbackController.codigoFB = 4;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(4);
             }
 
             this.produtoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png")));

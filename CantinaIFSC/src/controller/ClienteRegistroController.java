@@ -141,8 +141,7 @@ public class ClienteRegistroController implements ActionListener {
             
             if(this.clienteRegistro.getId().getText().equalsIgnoreCase("")){
                 Persiste.clientes.add(cliente);
-                feedbackController.codigoFB=6;
-                feedbackController.cadastroClasse();
+                feedbackController.cadastroClasse(6);
             }else{
                 int index = Integer.parseInt(this.clienteRegistro.getId().getText())-1;
                 
@@ -155,8 +154,7 @@ public class ClienteRegistroController implements ActionListener {
                 Persiste.clientes.get(index).setEmail(this.clienteRegistro.getEmail().getText());
                Persiste.clientes.get(index).setComplementoEndereco(this.clienteRegistro.getComplemento().getText());
                 Persiste.clientes.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
-                feedbackController.codigoFB=6;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(6);
             }
             
             feedback.setVisible(true);

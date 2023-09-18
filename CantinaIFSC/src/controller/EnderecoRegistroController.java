@@ -120,8 +120,7 @@ public class EnderecoRegistroController implements ActionListener {
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
                 model.DAO.Persiste.enderecos.add(endereco);
-                feedbackController.codigoFB=3;
-                feedbackController.cadastroClasse();
+                feedbackController.cadastroClasse(3);
                 
                 
             }else{
@@ -130,8 +129,7 @@ public class EnderecoRegistroController implements ActionListener {
                 model.DAO.Persiste.enderecos.get(index).setCep(this.enderecoRegistro.getCep().getText());
                 model.DAO.Persiste.enderecos.get(index).setBairro(model.DAO.Persiste.bairros.get(idBairro));
                 model.DAO.Persiste.enderecos.get(index).setCidade(model.DAO.Persiste.cidades.get(idCidade));
-                feedbackController.codigoFB=3;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(3);
                 
                 //OUTRO JEITO DE FAZER
                 /*for (Bairro bairroAtual : Persiste.bairros) {

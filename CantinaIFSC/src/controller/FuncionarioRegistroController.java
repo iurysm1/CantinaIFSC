@@ -109,11 +109,9 @@ public class FuncionarioRegistroController implements ActionListener {
                 FeedbackController feedbackController = new FeedbackController(feedback);
 
                 if (condicao == 1) {
-                    feedbackController.codigoFB = 7;
-                    feedbackController.cadastroClasse();
+                    feedbackController.cadastroClasse(7);
                 } else if (condicao == 2) {
-                    feedbackController.codigoFB = 7;
-                    feedbackController.atualizacaoClasse();
+                    feedbackController.atualizacaoClasse(7);
                 }
                 feedback.setVisible(true);
                 Utilities.active(true, funcionarioRegistro.getPainelBotoes());
@@ -176,8 +174,7 @@ public class FuncionarioRegistroController implements ActionListener {
                 Persiste.funcionarios.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
                 condicao = 2;
                 idSenha = Persiste.funcionarios.get(index).getId() - 1;
-                feedbackController.codigoFB=7;
-                feedbackController.atualizacaoClasse();
+                feedbackController.atualizacaoClasse(7);
                 feedback.setVisible(true);
                  Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());

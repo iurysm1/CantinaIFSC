@@ -24,8 +24,11 @@ public class BairroDAO implements InterfaceDAO<Bairro>{
         try {
             pstm = conexao.prepareStatement(sqlExecutar);
             pstm.setString(1, objeto.getDescricao());
+            pstm.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
+        }finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
         }
             
         
@@ -107,6 +110,23 @@ public class BairroDAO implements InterfaceDAO<Bairro>{
 
     @Override
     public void update(Bairro objeto) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = " UPDATE bairro "
+                           + " SET bairro.descricao =? "
+                           + " WHERE bairro.id=?";
+        
+        PreparedStatement pstm=null;
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getDescricao());
+            pstm.setInt(2, objeto.getId());
+            pstm.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
         
     }
 

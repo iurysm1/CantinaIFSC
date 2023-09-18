@@ -75,14 +75,13 @@ public class CidadeRegistroController implements ActionListener{
             
             if(this.cidadeRegistro.getId().getText().equalsIgnoreCase("")){
                 Persiste.cidades.add(cidade);
-                feedbackController.codigoFB=2;
-                feedbackController.cadastroClasse();
+                feedbackController.cadastroClasse(2);
             }else{
                 int index=Integer.parseInt(this.cidadeRegistro.getId().getText())-1;
                 Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
                 Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
-                feedbackController.codigoFB=2;
-                feedbackController.atualizacaoClasse();
+                
+                feedbackController.atualizacaoClasse(2);
             }
             
             
