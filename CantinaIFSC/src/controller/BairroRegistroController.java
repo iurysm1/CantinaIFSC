@@ -32,6 +32,7 @@ public class BairroRegistroController implements ActionListener {
         this.bairroRegistro.getPesquisar().addActionListener(this);
         this.bairroRegistro.getSair().addActionListener(this);
         this.bairroRegistro.getId().addActionListener(this);
+        this.bairroRegistro.getStatus().addActionListener(this);
 
         Utilities.active(true, this.bairroRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
@@ -50,6 +51,12 @@ public class BairroRegistroController implements ActionListener {
                 bairroRegistro.getId().setText(bairro.getId() + "");
                 bairroRegistro.getNomeDoBairro().setText(bairro.getDescricao());
                 bairroRegistro.getId().setEnabled(false);
+                
+                if(bairro.getStatus().equalsIgnoreCase("A")){
+                    bairroRegistro.getStatus().setSelectedIndex(0);
+                }else{
+                    bairroRegistro.getStatus().setSelectedIndex(1);
+                }
             }
         }
     };
@@ -69,7 +76,11 @@ public class BairroRegistroController implements ActionListener {
         } else if (e.getSource() == this.bairroRegistro.getGravar()) {
             Bairro bairro = new Bairro();
             bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
-            
+            if(this.bairroRegistro.getStatus().getSelectedIndex()==0){
+                bairro.setStatus("A");
+            }else{
+                bairro.setStatus("D");
+            }
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             
@@ -83,6 +94,7 @@ public class BairroRegistroController implements ActionListener {
                 feedbackController.atualizacaoClasse(1);
             }
             
+            System.out.println(this.bairroRegistro.getStatus());
             
             feedback.setVisible(true);
             
@@ -98,7 +110,8 @@ public class BairroRegistroController implements ActionListener {
 
         } else if (e.getSource() == this.bairroRegistro.getSair()) {
             this.bairroRegistro.dispose();
-        }
+        
 
     }
+}
 }

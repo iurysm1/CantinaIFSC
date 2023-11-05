@@ -15,7 +15,7 @@ public class Venda {
     private String obeservacao;
     private float valordesconto;
     private char flagtipodesconto;
-    private char status;
+    private String status;
     
     private Funcionario funcionario;
     private Carteirinha carteirinha;
@@ -23,7 +23,7 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(int id, String datahoravenda, String obeservacao, float valordesconto, char flagtipodesconto, char status, Funcionario funcionario, Carteirinha carteirinha) {
+    public Venda(int id, String datahoravenda, String obeservacao, float valordesconto, char flagtipodesconto, String status, Funcionario funcionario, Carteirinha carteirinha) {
         this.id = id;
         this.datahoravenda = datahoravenda;
         this.obeservacao = obeservacao;
@@ -76,11 +76,11 @@ public class Venda {
         this.flagtipodesconto = flagtipodesconto;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

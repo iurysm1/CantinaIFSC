@@ -5,7 +5,7 @@ public class ItemCompra {
     
     private int id;
     private float qtdproduto;
-    private char status;
+    private String status;
     
     private Produto produto;
     private Compra compra;
@@ -13,7 +13,7 @@ public class ItemCompra {
     public ItemCompra() {
     }
 
-    public ItemCompra(int id, float qtdproduto, char status, Produto produto, Compra compra) {
+    public ItemCompra(int id, float qtdproduto, String status, Produto produto, Compra compra) {
         this.id = id;
         this.qtdproduto = qtdproduto;
         this.status = status;
@@ -40,11 +40,11 @@ public class ItemCompra {
 
 
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

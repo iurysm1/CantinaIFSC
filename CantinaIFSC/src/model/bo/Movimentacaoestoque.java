@@ -9,7 +9,7 @@ public class Movimentacaoestoque {
     private String observacaomovimento;
     private char flagtipomovimento;
     private float qtdmovimentada;
-    private char status;
+    private String status;
     
     private ItemVenda itemVenda;
     private Produto produto;
@@ -19,7 +19,7 @@ public class Movimentacaoestoque {
     public Movimentacaoestoque() {
     }
 
-    public Movimentacaoestoque(int id, String datahoramovimento, String observacaomovimento, char flagtipomovimento, float qtdmovimentada, char status, ItemVenda itemVenda, Produto produto, ItemCompra compra, Funcionario funcionario) {
+    public Movimentacaoestoque(int id, String datahoramovimento, String observacaomovimento, char flagtipomovimento, float qtdmovimentada, String status, ItemVenda itemVenda, Produto produto, ItemCompra compra, Funcionario funcionario) {
         this.id = id;
         this.datahoramovimento = datahoramovimento;
         this.observacaomovimento = observacaomovimento;
@@ -75,11 +75,11 @@ public class Movimentacaoestoque {
         this.qtdmovimentada = qtdmovimentada;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

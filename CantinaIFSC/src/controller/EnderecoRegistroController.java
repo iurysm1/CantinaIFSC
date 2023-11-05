@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import model.bo.Bairro;
 import model.bo.Cidade;
 import model.bo.Endereco;
+import service.BairroService;
+import service.CidadeService;
+import service.EnderecoService;
 import utilities.Utilities;
 import view.BairroPesquisa;
 import view.BairroRegistro;
@@ -27,7 +30,8 @@ public class EnderecoRegistroController implements ActionListener {
     
     
     public static int codigoCidade, codigoBairro, codigo;
-    public static int idCidade, idBairro;
+    public int idCidadeBusca;
+    public int idBairroBusca;
     
     public EnderecoRegistroController(EnderecoRegistro enderecoRegistro) {
 
@@ -54,17 +58,31 @@ public class EnderecoRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e){
             if(codigo!=0){
                 Endereco endereco = new Endereco();
-                endereco=model.DAO.Persiste.enderecos.get(codigo-1);
+                endereco=EnderecoService.carregar(codigo);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, enderecoRegistro.getPainelDados());
                 
                 enderecoRegistro.getId().setText(endereco.getId()+"");
                 enderecoRegistro.getCep().setText(endereco.getCep());
                 enderecoRegistro.getLogradouro().setText(endereco.getLogradouro());
+                
                 enderecoRegistro.getBairro().setText(endereco.getBairro().getDescricao());
                 enderecoRegistro.getCidade().setText(endereco.getCidade().getDescricao());
+                enderecoRegistro.getIdCidade().setText(endereco.getCidade().getId()+"");
+                enderecoRegistro.getIdBairro().setText(endereco.getBairro().getId()+"");
                 
+                idBairroBusca=endereco.getBairro().getId();
+                idCidadeBusca=endereco.getCidade().getId();
+                
+                if(endereco.getStatus().equalsIgnoreCase("A")){
+                    enderecoRegistro.getStatus().setSelectedIndex(0);
+                }else{
+                    enderecoRegistro.getStatus().setSelectedIndex(1);
+                }
                 enderecoRegistro.getId().setEnabled(false);
+                enderecoRegistro.getCidade().setEnabled(false);
+                enderecoRegistro.getBairro().setEnabled(false);
+
            }
         }
     };
@@ -74,11 +92,13 @@ public class EnderecoRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if(codigoBairro!=0){
                 Bairro bairro;
-                bairro=model.DAO.Persiste.bairros.get(codigoBairro-1);
+                bairro=BairroService.carregar(codigoBairro);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
-                idBairro=bairro.getId()-1;
+                enderecoRegistro.getBairro().setEnabled(false);
                 
                 enderecoRegistro.getBairro().setText(bairro.getDescricao());
+                enderecoRegistro.getIdBairro().setText(bairro.getId()+"");
+                idBairroBusca=bairro.getId();
                 
             }
         }
@@ -88,11 +108,14 @@ public class EnderecoRegistroController implements ActionListener {
          public void windowClosed(WindowEvent e){
             if(codigoCidade!=0){
                 Cidade cidade;
-                cidade=model.DAO.Persiste.cidades.get(codigoCidade-1);
+                cidade=CidadeService.carregar(codigoCidade);
                 Utilities.active(false, enderecoRegistro.getPainelBotoes());
-                idCidade=cidade.getId()-1;
+                
                 
                 enderecoRegistro.getCidade().setText(cidade.getDescricao());
+                enderecoRegistro.getIdCidade().setText(cidade.getId()+"");
+                enderecoRegistro.getCidade().setEnabled(false);
+                idCidadeBusca=cidade.getId();
             }
             }
     };
@@ -110,26 +133,30 @@ public class EnderecoRegistroController implements ActionListener {
         } else if (e.getSource() == this.enderecoRegistro.getGravar()) {
             Endereco endereco = new Endereco();
             
-            endereco.setId(model.DAO.Persiste.enderecos.size() + 1);
+            
             endereco.setLogradouro(this.enderecoRegistro.getLogradouro().getText());
             endereco.setCep(this.enderecoRegistro.getCep().getText());
-            endereco.setBairro(model.DAO.Persiste.bairros.get(idBairro));
-            endereco.setCidade(model.DAO.Persiste.cidades.get(idCidade));
+            endereco.setBairro(BairroService.carregar(idBairroBusca));
+            endereco.setCidade(CidadeService.carregar(idCidadeBusca));
             
+            if(this.enderecoRegistro.getStatus().getSelectedIndex()==0){
+                endereco.setStatus("A");
+            }else{
+                endereco.setStatus("D");
+            }
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
-                model.DAO.Persiste.enderecos.add(endereco);
+                EnderecoService.adicionar(endereco);
                 feedbackController.cadastroClasse(3);
                 
                 
-            }else{
-                int index = Integer.parseInt(this.enderecoRegistro.getId().getText())-1;
-                model.DAO.Persiste.enderecos.get(index).setLogradouro(this.enderecoRegistro.getLogradouro().getText());
-                model.DAO.Persiste.enderecos.get(index).setCep(this.enderecoRegistro.getCep().getText());
-                model.DAO.Persiste.enderecos.get(index).setBairro(model.DAO.Persiste.bairros.get(idBairro));
-                model.DAO.Persiste.enderecos.get(index).setCidade(model.DAO.Persiste.cidades.get(idCidade));
+            }else{;
+                endereco.setId(codigo);
+                EnderecoService.atualizar(endereco);
                 feedbackController.atualizacaoClasse(3);
+                
+
                 
                 //OUTRO JEITO DE FAZER
                 /*for (Bairro bairroAtual : Persiste.bairros) {
@@ -183,11 +210,15 @@ public class EnderecoRegistroController implements ActionListener {
             bairroPesquisa.addWindowListener(disposeListenerBairro);
             bairroPesquisa.setVisible(true);
             }else{
+                Bairro bairroPesquisa = BairroService.carregar(Integer.parseInt(this.enderecoRegistro.getIdBairro().getText()));
+                
+                idBairroBusca = bairroPesquisa.getId();
+                
+                this.enderecoRegistro.getBairro().setText(bairroPesquisa.getDescricao());
+                
                 boolean validacao=true;
-                for (Bairro bairroAtual : Persiste.bairros) {
+                for (Bairro bairroAtual : BairroService.carregar()) {
                     if(bairroAtual.getId()==Integer.parseInt(this.enderecoRegistro.getIdBairro().getText())){
-                        idBairro=bairroAtual.getId()-1;
-                        this.enderecoRegistro.getBairro().setText(bairroAtual.getDescricao());
                         validacao=false;
                     }                  
                 }
@@ -214,11 +245,14 @@ public class EnderecoRegistroController implements ActionListener {
             cidadePesquisa.addWindowListener(disposeListenerCidade);
             cidadePesquisa.setVisible(true);
             }else{
+                Cidade cidadePesquisa= CidadeService.carregar(Integer.parseInt(this.enderecoRegistro.getIdCidade().getText()));
+                
+                this.enderecoRegistro.getCidade().setText(cidadePesquisa.getDescricao());
+                idCidadeBusca=cidadePesquisa.getId();
+                
                 boolean validacao=true;
-                for (Cidade cidadeAtual : Persiste.cidades) {
+                for (Cidade cidadeAtual : CidadeService.carregar()) {
                     if(cidadeAtual.getId()== Integer.parseInt(this.enderecoRegistro.getIdCidade().getText())){
-                        idCidade=cidadeAtual.getId()-1;
-                        this.enderecoRegistro.getCidade().setText(cidadeAtual.getDescricao());
                         validacao=false;
                     }
                 }
@@ -229,6 +263,7 @@ public class EnderecoRegistroController implements ActionListener {
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
                     }
+                
             }
         }
     }

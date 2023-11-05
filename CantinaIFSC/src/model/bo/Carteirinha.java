@@ -7,16 +7,18 @@ public class Carteirinha {
     private String datageracao;
     private String datacancelamento;
     private Cliente  cliente;
+    private String status;
    
 
     public Carteirinha() {
     }
 
-    public Carteirinha(int id, String codigobarra, String datageracao, String datacancelamento, Cliente cliente) {
+    public Carteirinha(int id, String codigobarra, String datageracao, String datacancelamento, Cliente cliente, String status) {
         this.id = id;
         this.codigobarra = codigobarra;
         this.datageracao = datageracao;
         this.datacancelamento = datacancelamento;
+        this.status=status;
         this.cliente=cliente;
     }
     
@@ -61,6 +63,14 @@ public class Carteirinha {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
  

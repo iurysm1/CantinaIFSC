@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Bairro;
 import service.BairroService;
+import utilities.Utilities;
 import view.BairroPesquisa;
 
 public class BairroPesquisaController implements ActionListener {
@@ -24,10 +26,13 @@ public class BairroPesquisaController implements ActionListener {
         this.bairroPesquisa.getSair().addActionListener(this);
         this.bairroPesquisa.getPesquisar().addActionListener(this);
         this.bairroPesquisa.getPesquisa().addActionListener(this);
+        this.bairroPesquisa.getFiltro().addActionListener(this);
+        
         //Carga inicial de dados sendo que é provisória...
         //Posteriormente levar para o botao pesquisar
         DefaultTableModel tabelaDados = (DefaultTableModel) bairroPesquisa.getTabelaDados().getModel();
-        
+        Utilities.limpaComponentes(true, this.bairroPesquisa.getPainelPesquisa());
+
         BairroService bairroService = new BairroService();
         List<Bairro> listaBairros = new ArrayList<>();
         listaBairros = bairroService.carregar();
@@ -54,18 +59,39 @@ public class BairroPesquisaController implements ActionListener {
 
             DefaultTableModel tabela = (DefaultTableModel) this.bairroPesquisa.getTabelaDados().getModel();
 
-                while (tabela.getRowCount()!=0) {                
-                    int i=tabela.getRowCount();
-                    tabela.removeRow(i-1);
-                    i--;
-                    }
-                 BairroService bairroService = new BairroService();
-                 Bairro bairro = bairroService.carregar(Integer.parseInt(this.bairroPesquisa.getPesquisa().getText()));
-                 tabela.addRow(new Object[]{bairro.getId(),bairro.getDescricao()});
+               tabela.setRowCount(0);
+                
                  
-
-               
-            
+                if(this.bairroPesquisa.getPesquisa().getText().equalsIgnoreCase("")){
+                    List<Bairro> listaObjetos = new ArrayList<>();
+                    listaObjetos = BairroService.carregar();
+                    for (Bairro listaObjetoAtual : listaObjetos) {
+                        tabela.addRow(new Object[]{listaObjetoAtual.getId(),listaObjetoAtual.getDescricao()});
+                        }
+                }else{
+                        String filtro = this.bairroPesquisa.getPesquisa().getText();
+                        List<Bairro> listaObjetos = new ArrayList<>();
+                        
+                        switch (this.bairroPesquisa.getFiltro().getSelectedIndex()) {
+                        case 0:
+                            Bairro objeto = BairroService.carregar(Integer.parseInt(filtro));
+                            tabela.addRow(new Object[]{objeto.getId(),objeto.getDescricao()});
+                            break;
+                        case 1:
+                            listaObjetos = BairroService.carregar(filtro);
+                            for (Bairro ObjetoAtual : listaObjetos) {
+                               tabela.addRow(new Object[]{ObjetoAtual.getId(), ObjetoAtual.getDescricao()});    
+                            }
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(bairroPesquisa, "Erro");
+                    }
+                        
+                        
+                        
+                }
+         
+            Utilities.limpaComponentes(true, this.bairroPesquisa.getPainelPesquisa());
 
         }
     }

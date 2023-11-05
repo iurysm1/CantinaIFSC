@@ -5,8 +5,10 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -40,6 +42,23 @@ public class CarteirinhaPesquisa extends javax.swing.JFrame {
     public JTable getTabelaDados() {
         return tabelaDados;
     }
+
+    public JTextField getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(JTextField pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
+    public JComboBox<String> getFiltro1() {
+        return filtro1;
+    }
+
+    public void setFiltro1(JComboBox<String> filtro1) {
+        this.filtro1 = filtro1;
+    }
+    
     
 
     /**
@@ -62,6 +81,7 @@ public class CarteirinhaPesquisa extends javax.swing.JFrame {
         PainelPesquisa = new javax.swing.JPanel();
         pesquisar = new javax.swing.JButton();
         pesquisa = new javax.swing.JTextField();
+        filtro1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
 
@@ -160,23 +180,42 @@ public class CarteirinhaPesquisa extends javax.swing.JFrame {
         pesquisa.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pesquisa.setForeground(new java.awt.Color(153, 153, 153));
         pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaActionPerformed(evt);
+            }
+        });
+
+        filtro1.setBackground(new java.awt.Color(231, 231, 231));
+        filtro1.setEditable(true);
+        filtro1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        filtro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "ID Cliente", "Nome Cliente" }));
+        filtro1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        filtro1.setLightWeightPopupEnabled(false);
+        filtro1.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
         PainelPesquisaLayout.setHorizontalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
-                .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-                .addGap(60, 60, 60)
+                .addComponent(filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelPesquisaLayout.setVerticalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelPesquisaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelPesquisaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(filtro1)))
         );
 
         tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
@@ -242,6 +281,10 @@ public class CarteirinhaPesquisa extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_sairActionPerformed
 
+    private void pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,6 +327,7 @@ public class CarteirinhaPesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton carregar;
+    private javax.swing.JComboBox<String> filtro1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

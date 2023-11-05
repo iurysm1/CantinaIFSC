@@ -9,7 +9,7 @@ public class Compra {
     private String datahoracompra;
     private float valordesconto;
     private char flagtipodesconto;
-    private char status;
+    private String status;
     private String observacao;
     
     private Fornecedor fornecedor;
@@ -17,7 +17,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(int id, int numeronf, String datahoracompra, float valordesconto, char flagtipodesconto, char status, String observacao, Fornecedor fornecedor) {
+    public Compra(int id, int numeronf, String datahoracompra, float valordesconto, char flagtipodesconto, String status, String observacao, Fornecedor fornecedor) {
         this.id = id;
         this.numeronf = numeronf;
         this.datahoracompra = datahoracompra;
@@ -69,11 +69,11 @@ public class Compra {
         this.flagtipodesconto = flagtipodesconto;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

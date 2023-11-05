@@ -55,7 +55,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         return cep;
     }
 
-    public void setCep(JTextField cep) {
+    public void setCep(JFormattedTextField cep) {
         this.cep = cep;
     }
 
@@ -96,7 +96,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         return fone1;
     }
 
-    public void setFone1(JTextField fone1) {
+    public void setFone1(JFormattedTextField fone1) {
         this.fone1 = fone1;
     }
 
@@ -104,7 +104,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         return fone2;
     }
 
-    public void setFone2(JTextField fone2) {
+    public void setFone2(JFormattedTextField fone2) {
         this.fone2 = fone2;
     }
 
@@ -185,12 +185,9 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         nome = new javax.swing.JTextField();
         cidade = new javax.swing.JTextField();
         bairro = new javax.swing.JTextField();
-        fone1 = new javax.swing.JTextField();
-        fone2 = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         logradouro = new javax.swing.JTextField();
         complemento = new javax.swing.JTextField();
-        cep = new javax.swing.JTextField();
         uf = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
@@ -214,6 +211,9 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         inscricaoEstadual = new javax.swing.JTextField();
+        cep = new javax.swing.JFormattedTextField();
+        fone1 = new javax.swing.JFormattedTextField();
+        fone2 = new javax.swing.JFormattedTextField();
         PainelBotoes = new javax.swing.JPanel();
         pesquisar = new javax.swing.JButton();
         novo = new javax.swing.JButton();
@@ -287,16 +287,6 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         bairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         bairro.setSelectionColor(new java.awt.Color(42, 96, 65));
 
-        fone1.setBackground(new java.awt.Color(231, 231, 231));
-        fone1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        fone1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        fone1.setSelectionColor(new java.awt.Color(42, 96, 65));
-
-        fone2.setBackground(new java.awt.Color(231, 231, 231));
-        fone2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        fone2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        fone2.setSelectionColor(new java.awt.Color(42, 96, 65));
-
         email.setBackground(new java.awt.Color(231, 231, 231));
         email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         email.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
@@ -311,11 +301,6 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         complemento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         complemento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         complemento.setSelectionColor(new java.awt.Color(42, 96, 65));
-
-        cep.setBackground(new java.awt.Color(231, 231, 231));
-        cep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        cep.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         uf.setBackground(new java.awt.Color(231, 231, 231));
         uf.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -376,7 +361,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         jLabel31.setText("ID");
 
         cnpj.setBackground(new java.awt.Color(231, 231, 231));
-        cnpj.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        cnpj.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         try {
             cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
@@ -400,8 +385,32 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         jLabel1.setText("Endereço");
 
         inscricaoEstadual.setBackground(new java.awt.Color(231, 231, 231));
-        inscricaoEstadual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
+        inscricaoEstadual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         inscricaoEstadual.setSelectionColor(new java.awt.Color(42, 96, 65));
+
+        cep.setBackground(new java.awt.Color(231, 231, 231));
+        cep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        try {
+            cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        fone1.setBackground(new java.awt.Color(231, 231, 231));
+        fone1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        try {
+            fone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        fone2.setBackground(new java.awt.Color(231, 231, 231));
+        fone2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        try {
+            fone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
         PainelDados.setLayout(PainelDadosLayout);
@@ -418,10 +427,10 @@ public class FornecedorRegistro extends javax.swing.JFrame {
                                     .addComponent(jLabel31))
                                 .addGap(18, 18, 18)
                                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inscricaoEstadual)
                                     .addGroup(PainelDadosLayout.createSequentialGroup()
                                         .addComponent(jLabel30)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(inscricaoEstadual)))
                             .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24)
@@ -443,18 +452,17 @@ public class FornecedorRegistro extends javax.swing.JFrame {
                                     .addComponent(jLabel28)
                                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel22)
-                                .addComponent(logradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel21)
-                                .addComponent(fone1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19))
+                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel22)
+                            .addComponent(logradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel19)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel9)
                                 .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fone2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fone1)
+                            .addComponent(fone2)))
                     .addGroup(PainelDadosLayout.createSequentialGroup()
                         .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -477,51 +485,52 @@ public class FornecedorRegistro extends javax.swing.JFrame {
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PainelDadosLayout.createSequentialGroup()
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel31))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cnpj)
-                                .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                            .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fone1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cnpj)
+                        .addComponent(status))
+                    .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fone2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cep)
-                    .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisarCep, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adicionarCep, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisarCep, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(adicionarCep, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
@@ -766,13 +775,13 @@ public class FornecedorRegistro extends javax.swing.JFrame {
     private javax.swing.JButton adicionarCep;
     private javax.swing.JTextField bairro;
     private javax.swing.JButton cancelar;
-    private javax.swing.JTextField cep;
+    private javax.swing.JFormattedTextField cep;
     private javax.swing.JTextField cidade;
     private javax.swing.JFormattedTextField cnpj;
     private javax.swing.JTextField complemento;
     private javax.swing.JTextField email;
-    private javax.swing.JTextField fone1;
-    private javax.swing.JTextField fone2;
+    private javax.swing.JFormattedTextField fone1;
+    private javax.swing.JFormattedTextField fone2;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;
     private javax.swing.JTextField inscricaoEstadual;

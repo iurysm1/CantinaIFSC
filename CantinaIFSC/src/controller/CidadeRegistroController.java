@@ -8,6 +8,8 @@ import java.awt.event.WindowListener;
 import model.DAO.Persiste;
 import model.bo.Bairro;
 import model.bo.Cidade;
+import service.BairroService;
+import service.CidadeService;
 import utilities.Utilities;
 import view.CidadePesquisa;
 import view.CidadeRegistro;
@@ -38,7 +40,7 @@ public class CidadeRegistroController implements ActionListener{
             public void windowClosed(WindowEvent e){
                 if (codigo!=0){
                     Cidade cidade = new Cidade();
-                    cidade=Persiste.cidades.get(codigo-1);
+                    cidade=CidadeService.carregar(codigo);
                     Utilities.active(false, cidadeRegistro.getPainelBotoes());
                     Utilities.limpaComponentes(true, cidadeRegistro.getPainelDados());
                     
@@ -46,6 +48,12 @@ public class CidadeRegistroController implements ActionListener{
                     cidadeRegistro.getNomeCidade().setText(cidade.getDescricao());
                     cidadeRegistro.getUf().setText(cidade.getUf());
                     cidadeRegistro.getId().setEnabled(false);
+                    
+                    if(cidade.getStatus().equalsIgnoreCase("A")){
+                        cidadeRegistro.getStatus().setSelectedIndex(0);
+                    }else{
+                        cidadeRegistro.getStatus().setSelectedIndex(1);
+                    }
                 }
             }
     };
@@ -61,38 +69,60 @@ public class CidadeRegistroController implements ActionListener{
             Utilities.active(false, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.cidadeRegistro.getPainelDados());
             this.cidadeRegistro.getId().setEnabled(false);
+            
+            
+            
+            
         }else if(e.getSource()==this.cidadeRegistro.getCancelar()){
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
+            
+            
+            
+            
+            
         }else if (e.getSource()==this.cidadeRegistro.getGravar()){
             Cidade cidade=new Cidade();
             
-            cidade.setId(Persiste.cidades.size()+1);
             cidade.setUf(this.cidadeRegistro.getUf().getText());
             cidade.setDescricao(this.cidadeRegistro.getNomeCidade().getText());
-           Feedback feedback=new Feedback();
+            
+            if(this.cidadeRegistro.getStatus().getSelectedIndex()==0){
+                cidade.setStatus("A");
+            }else{
+                cidade.setStatus("D");
+            }
+            
+            Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.cidadeRegistro.getId().getText().equalsIgnoreCase("")){
-                Persiste.cidades.add(cidade);
+                CidadeService.adicionar(cidade);
                 feedbackController.cadastroClasse(2);
             }else{
-                int index=Integer.parseInt(this.cidadeRegistro.getId().getText())-1;
-                Persiste.cidades.get(index).setDescricao(this.cidadeRegistro.getNomeCidade().getText());
-                Persiste.cidades.get(index).setUf(this.cidadeRegistro.getUf().getText());
-                
+                cidade.setId(codigo);
+                CidadeService.atualizar(cidade);
                 feedbackController.atualizacaoClasse(2);
             }
-            
-            
-            
+                        
             feedback.setVisible(true);
             
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
+            
+            
+            
+            
+            
         }else if (e.getSource()==this.cidadeRegistro.getSair()){
             this.cidadeRegistro.dispose();
         }else if (e.getSource()==this.cidadeRegistro.getPesquisar()){
+            
+            
+            
+            
+            
+            
             CidadePesquisa cidadePesquisa=new CidadePesquisa();
             CidadePesquisaController cidadePesquisaController = new CidadePesquisaController(cidadePesquisa);
             cidadePesquisa.addWindowListener(disposeListener);

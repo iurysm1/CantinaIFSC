@@ -6,14 +6,24 @@ public class Cidade {
     private int id;
     private String descricao;
     private String uf;
+    private String status;
     
 
-    public Cidade(int id, String descricao, String uf) {
+    public Cidade(int id, String descricao, String uf, String status) {
         this.id = id;
         this.descricao = descricao;
         this.uf = uf;
+        this.status=status;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public int getId() {
         return id;
     }

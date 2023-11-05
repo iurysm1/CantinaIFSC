@@ -7,7 +7,7 @@ public class Produto {
     private int id;
     private String descricao;
     private String codigobarra;
-    private char status;
+    private String status;
     private float preco;
     private String CaminhoFotoProduto;
     
@@ -16,7 +16,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String codigobarra, char status, float preco, String CaminhoFotoProduto) {
+    public Produto(int id, String descricao, String codigobarra, String status, float preco, String CaminhoFotoProduto) {
         this.id = id;
         this.descricao = descricao;
         this.codigobarra = codigobarra;
@@ -49,11 +49,11 @@ public class Produto {
         this.codigobarra = codigobarra;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -2,6 +2,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -56,6 +57,14 @@ public class BairroRegistro extends javax.swing.JFrame {
 
     public JPanel getPainelDados() {
         return PainelDados;
+    }
+
+    public JComboBox<String> getStatus() {
+        return status;
+    }
+
+    public void setStatus(JComboBox<String> status) {
+        this.status = status;
     }
     
 

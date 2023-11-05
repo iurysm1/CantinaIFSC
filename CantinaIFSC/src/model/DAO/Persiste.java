@@ -28,52 +28,7 @@ public class Persiste {
         Venda venda = new Venda();
         
         
-        Bairro bairro = new Bairro(1, "Divineia");
-        Bairro bairro2= new Bairro(2, "Aguada");
-        Bairro bairro3 = new Bairro(3, "Centro");
-        bairros.add(bairro);
-        bairros.add(bairro2);
-        bairros.add(bairro3);
         
-        Cidade cidade= new Cidade(1, "Imbituba", "SC");
-        Cidade cidade2= new Cidade(2, "Garopaba", "SC");
-        Cidade cidade3= new Cidade(3, "Porto Alegre", "RS");
-        cidades.add(cidade);
-        cidades.add(cidade2);
-        cidades.add(cidade3);
-        
-        Endereco endereco = new Endereco(1, "88780000", "Rua João de Oliveira", 's', bairro, cidade);
-        Endereco endereco2 = new Endereco(2, "88780002", "Rua da Palhocinha", 's', bairro2, cidade2);
-        Endereco endereco3 = new Endereco(3, "88780003", "Avenida Presidente Vargas", 's', bairro3, cidade3);
-        enderecos.add(endereco);
-        enderecos.add(endereco2);
-        enderecos.add(endereco3);
-        
-        
-        Cliente cliente = new Cliente("08821150909", "6567895", "1", "22022002", 1, "Iury Silveira Marques", "999999", "299999", "iury@gmail.com", 's', "Presidio imbituba", endereco);
-        clientes.add(cliente);
-        Cliente cliente2 = new Cliente("19921150909", "646546", "2", "22022002", 2, "Joao Gomes", "999999", "299999", "joao@gmail.com", 's', "Presidio imbituba", endereco3);
-        clientes.add(cliente2);
-        
-    Carteirinha carteirinha = new Carteirinha(1, "123", "01/01/2023", "10/10/2025", cliente);
-        carteirinhas.add(carteirinha);
-        
-      
-        Funcionario funcionario = new Funcionario("09921150909", "111", "iury.marques", "2202", movimentacaoEstoque, venda, caixa, 1, "IuryFuncionario", "999999", "299999999", "funcionario@gmail.com", 's', "FuncionarioComplemento", endereco, "22022002");
-        funcionarios.add(funcionario);
-         Funcionario funcionario2 = new Funcionario("08831150909", "222", "joao.gomes", "123", movimentacaoEstoque, venda, caixa, 2, "Joao Gomes", "8888888", "888888888", "funcionario2@gmail.com", 's', "FuncionarioComplemento2", endereco3, "15062000");
-        funcionarios.add(funcionario2);
-        
-        Fornecedor fornecedor = new Fornecedor("13347016000017", "1234567", 1, "IuryFornecedor", "9999", "9992", "fornecedor@gmail.com", 's', "FornecedorEnd", endereco);
-        Fornecedor fornecedor2 = new Fornecedor("12237016000017", "123321", 2, "Jhonnie Walker", "999999", "9992", "fornecedor2@gmail.com", 's', "FornecedorEnd2", endereco2);
-        fornecedores.add(fornecedor);
-        fornecedores.add(fornecedor2);
-        
-        
-        Produto produto = new Produto(1, "Salsicha", "111", 's', 2, "D:/Documents/fotosProduto/salsicha360px.png");
-         Produto produto2 = new Produto(2, "Pastel", "222", 's', 3, "D:/Documents/fotosProduto/pastel360.png");
-        produtos.add(produto);
-        produtos.add(produto2);
     }
     
     public static synchronized Persiste getInstance() {

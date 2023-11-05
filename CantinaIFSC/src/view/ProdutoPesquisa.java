@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -71,6 +72,14 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     public void setPainelFoto(JPanel PainelFoto) {
         this.PainelFoto = PainelFoto;
     }
+
+    public JComboBox<String> getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(JComboBox<String> filtro) {
+        this.filtro = filtro;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,6 +101,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         PainelPesquisa = new javax.swing.JPanel();
         pesquisa = new javax.swing.JTextField();
         pesquisar = new javax.swing.JButton();
+        filtro = new javax.swing.JComboBox<>();
         PainelDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
@@ -195,23 +205,40 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         pesquisar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         pesquisar.setIconTextGap(10);
 
+        filtro.setBackground(new java.awt.Color(231, 231, 231));
+        filtro.setEditable(true);
+        filtro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "CPF", "Código debarras", "Preço" }));
+        filtro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        filtro.setLightWeightPopupEnabled(false);
+        filtro.setVerifyInputWhenFocusTarget(false);
+        filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
         PainelPesquisaLayout.setHorizontalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pesquisa)
-                .addGap(19, 19, 19)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelPesquisaLayout.setVerticalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelPesquisaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         PainelDados.setBackground(new java.awt.Color(255, 255, 255));
@@ -249,7 +276,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         );
         PainelDadosLayout.setVerticalGroup(
             PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -269,7 +296,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
             .addGroup(PainelFotoLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PainelGeralLayout = new javax.swing.GroupLayout(PainelGeral);
@@ -325,6 +352,10 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_sairActionPerformed
 
+    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filtroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -369,6 +400,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton carregar;
+    private javax.swing.JComboBox<String> filtro;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;

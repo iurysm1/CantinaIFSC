@@ -20,13 +20,13 @@ public class Contas {
     private float valorquitado;
     private String observacao;
     private char flagtipoconta;
-    private char status;
+    private String status;
     
     private Venda venda;
     private Compra compra;
     private Movimentocaixa movimentacaocaixa;
 
-    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, char status, Venda venda, Compra compra, Movimentocaixa movimentacaocaixa) {
+    public Contas(int id, String datahoraemissao, String datavencimento, String dataquitacao, float valoremitido, float valordesconto, float valoracrescimo, float valorquitado, String observacao, char flagtipoconta, String status, Venda venda, Compra compra, Movimentocaixa movimentacaocaixa) {
         this.id = id;
         this.datahoraemissao = datahoraemissao;
         this.datavencimento = datavencimento;
@@ -128,11 +128,11 @@ public class Contas {
         this.flagtipoconta = flagtipoconta;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -9,7 +9,7 @@ public class Movimentocaixa {
     private float valormovimento;
     private String observacao;
     private char flagtipomovimento;
-    private char status;
+    private String status;
     
     private Caixa caixa;
 
@@ -17,7 +17,7 @@ public class Movimentocaixa {
     public Movimentocaixa() {
     }
 
-    public Movimentocaixa(int id, String datahoramovimento, float valormovimento, String observacao, char flagtipomovimento, char status, Caixa caixa) {
+    public Movimentocaixa(int id, String datahoramovimento, float valormovimento, String observacao, char flagtipomovimento, String status, Caixa caixa) {
         this.id = id;
         this.datahoramovimento = datahoramovimento;
         this.valormovimento = valormovimento;
@@ -68,11 +68,11 @@ public class Movimentocaixa {
         this.flagtipomovimento = flagtipomovimento;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -6,11 +6,11 @@ public class Endereco {
     private int id;
     private String cep;
     private String logradouro;
-    private char status;
+    private String status;
     private Bairro bairro;
     private Cidade cidade;
 
-    public Endereco(int id, String cep, String logradouro, char status, Bairro bairro, Cidade cidade) {
+    public Endereco(int id, String cep, String logradouro, String status, Bairro bairro, Cidade cidade) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -46,11 +46,11 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

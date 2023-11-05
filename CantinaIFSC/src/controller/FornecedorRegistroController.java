@@ -9,6 +9,8 @@ import java.awt.event.WindowListener;
 import model.DAO.Persiste;
 import model.bo.Endereco;
 import model.bo.Fornecedor;
+import service.EnderecoService;
+import service.FornecedorService;
 import utilities.Utilities;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
@@ -44,7 +46,7 @@ public class FornecedorRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Fornecedor fornecedor = new Fornecedor();
-                fornecedor = Persiste.fornecedores.get(codigo - 1);
+                fornecedor = FornecedorService.carregar(codigo);
                 Utilities.active(false, fornecedorRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, fornecedorRegistro.getPainelDados());
 
@@ -68,6 +70,14 @@ public class FornecedorRegistroController implements ActionListener {
                 fornecedorRegistro.getCidade().setEnabled(false);
                 fornecedorRegistro.getBairro().setEnabled(false);
                 fornecedorRegistro.getLogradouro().setEnabled(false);
+                
+                if(fornecedor.getStatus().equalsIgnoreCase("A")){
+                    fornecedorRegistro.getStatus().setSelectedIndex(0);
+                }else{
+                    fornecedorRegistro.getStatus().setSelectedIndex(1);
+                }
+                
+                idEndereco=fornecedor.getEndereco().getId();
             }
         }
     };
@@ -77,14 +87,20 @@ public class FornecedorRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e){
             if(codigoEndereco!=0){
                 Endereco endereco = new Endereco();
-                endereco=Persiste.enderecos.get(codigoEndereco-1);
-                idEndereco=endereco.getId()-1;
+                endereco=EnderecoService.carregar(codigoEndereco);
+                idEndereco=endereco.getId();
                 
                 fornecedorRegistro.getCep().setText(endereco.getCep());
                 fornecedorRegistro.getCidade().setText(endereco.getCidade().getDescricao());
                 fornecedorRegistro.getBairro().setText(endereco.getBairro().getDescricao());
                 fornecedorRegistro.getUf().setText(endereco.getCidade().getUf());
                 fornecedorRegistro.getLogradouro().setText(endereco.getLogradouro());
+                
+                fornecedorRegistro.getLogradouro().setEnabled(false);
+                fornecedorRegistro.getUf().setEnabled(false);
+                fornecedorRegistro.getCidade().setEnabled(false);
+                fornecedorRegistro.getBairro().setEnabled(false);
+
             }
             
         }
@@ -106,7 +122,6 @@ public class FornecedorRegistroController implements ActionListener {
         } else if (e.getSource() == this.fornecedorRegistro.getGravar()) {
             Fornecedor fornecedor = new Fornecedor();
             
-            fornecedor.setId(Persiste.fornecedores.size()+1);
             fornecedor.setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
             fornecedor.setNome(this.fornecedorRegistro.getNome().getText());
             fornecedor.setEmail(this.fornecedorRegistro.getEmail().getText());
@@ -115,23 +130,22 @@ public class FornecedorRegistroController implements ActionListener {
             fornecedor.setFone2(this.fornecedorRegistro.getFone2().getText());
             fornecedor.setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
             
-            fornecedor.setEndereco(Persiste.enderecos.get(idEndereco));
+            fornecedor.setEndereco(EnderecoService.carregar(idEndereco));
+            
+            if(this.fornecedorRegistro.getStatus().getSelectedIndex()==0){
+                fornecedor.setStatus("A");
+            }else{
+                fornecedor.setStatus("D");
+            }
+            
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
-                Persiste.fornecedores.add(fornecedor);
+                FornecedorService.adicionar(fornecedor);
                 feedbackController.cadastroClasse(8);
             }else{
-                int index=Integer.parseInt(this.fornecedorRegistro.getId().getText())-1;
-                
-                Persiste.fornecedores.get(index).setNome(this.fornecedorRegistro.getNome().getText());
-                Persiste.fornecedores.get(index).setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
-                Persiste.fornecedores.get(index).setEmail(this.fornecedorRegistro.getEmail().getText());
-                Persiste.fornecedores.get(index).setCnpj(this.fornecedorRegistro.getCnpj().getText());
-                Persiste.fornecedores.get(index).setFone1(this.fornecedorRegistro.getFone1().getText());
-                Persiste.fornecedores.get(index).setFone2(this.fornecedorRegistro.getFone2().getText());
-                Persiste.fornecedores.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
-                Persiste.fornecedores.get(index).setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
+                fornecedor.setId(codigo);
+                FornecedorService.atualizar(fornecedor);
                 
                 feedbackController.atualizacaoClasse(8);
             }
@@ -173,14 +187,8 @@ public class FornecedorRegistroController implements ActionListener {
             
         }else{
              validacao=true;
-                for (Endereco enderecoAtual : Persiste.enderecos) {
+                for (Endereco enderecoAtual : EnderecoService.carregar()) {
                     if(enderecoAtual.getCep().equalsIgnoreCase(this.fornecedorRegistro.getCep().getText())){
-                        idEndereco=enderecoAtual.getId()-1;
-                        this.fornecedorRegistro.getCep().setText(enderecoAtual.getCep());
-                        this.fornecedorRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
-                        this.fornecedorRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
-                        this.fornecedorRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
-                        this.fornecedorRegistro.getUf().setText(enderecoAtual.getCidade().getUf());
                         validacao=false;
                     }
                 }
@@ -189,7 +197,15 @@ public class FornecedorRegistroController implements ActionListener {
                     FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
-                    }   
+                    }else{
+                        Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.fornecedorRegistro.getCep().getText());
+                        idEndereco=enderecoPesquisa.getId();
+                        this.fornecedorRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
+                        this.fornecedorRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());
+                        this.fornecedorRegistro.getUf().setText(enderecoPesquisa.getCidade().getUf());
+                        this.fornecedorRegistro.getLogradouro().setText(enderecoPesquisa.getLogradouro());
+                        this.fornecedorRegistro.getCep().setText(enderecoPesquisa.getCep());
+                }
             }
         }
     }

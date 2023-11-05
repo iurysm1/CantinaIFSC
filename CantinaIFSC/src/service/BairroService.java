@@ -21,9 +21,10 @@ public class BairroService{
         return bairroDAO.retrieve(parPK);
     }
 
-    public static Bairro carregar(String parString) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public static List<Bairro> carregar(String parString) {
+        BairroDAO bairroDAO = new BairroDAO();
+        return bairroDAO.retrieve(parString);
+        }
 
     public static void atualizar(Bairro objeto) {
        BairroDAO bairroDAO = new BairroDAO();
@@ -31,7 +32,8 @@ public class BairroService{
     }
 
     public static void remover(Bairro objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        BairroDAO bairroDAO = new BairroDAO();
+        bairroDAO.delete(objeto);
     }
     
         

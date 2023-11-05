@@ -9,7 +9,7 @@ public class Caixa {
     private float valorabertura;
     private float valorfechamento;
     private String observacao;
-    private char status;
+    private String status;
     
     
     private Funcionario funcionario;
@@ -17,7 +17,7 @@ public class Caixa {
     public Caixa() {
     }
 
-    public Caixa(int id, String datahoraabertura, String datahorafechamento, float valorabertura, float valorfechamento, String observacao, char status, Funcionario funcionario) {
+    public Caixa(int id, String datahoraabertura, String datahorafechamento, float valorabertura, float valorfechamento, String observacao, String status, Funcionario funcionario) {
         this.id = id;
         this.datahoraabertura = datahoraabertura;
         this.datahorafechamento = datahorafechamento;
@@ -76,11 +76,11 @@ public class Caixa {
         this.observacao = observacao;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

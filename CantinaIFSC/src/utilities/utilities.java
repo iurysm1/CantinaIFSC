@@ -2,13 +2,19 @@
 package utilities;
 
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import view.TemplateRegistro;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utilities {
     
@@ -26,6 +32,7 @@ public class Utilities {
                 
             }
             
+            
         }
         
     }
@@ -40,7 +47,7 @@ public class Utilities {
             }else if(componente instanceof JFormattedTextField){
                 ((JFormattedTextField) componente).setText("");
             }else if (componente instanceof JComboBox){
-                ((JComboBox) componente).setSelectedIndex(-1);
+                ((JComboBox) componente).setSelectedIndex(0);
             }else if (componente instanceof JRadioButton){
                 ((JRadioButton) componente).setSelected(false);
             }
@@ -49,6 +56,34 @@ public class Utilities {
             
         }
         
+    }
+    
+    public static java.sql.Date stringToDate(String data){
+        
+        java.sql.Date dataSQL = null;
+
+        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date utilDate = sdf.parse(data);
+            
+            dataSQL = new java.sql.Date(utilDate.getTime());
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return dataSQL;
+        
+    }
+    
+   
+    
+    public static boolean isNumeric(String str){
+        try{
+            Integer.parseInt(str);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
     
     

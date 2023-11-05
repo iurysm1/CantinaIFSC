@@ -6,14 +6,15 @@ package model.bo;
 public class Bairro {
     private String descricao;
     private int id;
-    private char status;
+    private String status;
 
     public Bairro() {
     }
 
-    public Bairro(int id, String descricao) {
+    public Bairro(int id, String descricao, String status) {
         this.descricao = descricao;
         this.id = id;
+        this.status=status;
     }
 
     public String getDescricao() {
@@ -32,11 +33,11 @@ public class Bairro {
         this.id = id;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
     

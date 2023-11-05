@@ -4,9 +4,14 @@
  */
 package view;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -40,6 +45,78 @@ public class CidadePesquisa extends javax.swing.JFrame {
     public JTable getTabelaDados() {
         return tabelaDados;
     }
+
+    public JScrollPane getClienteTabela() {
+        return ClienteTabela;
+    }
+
+    public void setClienteTabela(JScrollPane ClienteTabela) {
+        this.ClienteTabela = ClienteTabela;
+    }
+
+    public JPanel getPainelGeral() {
+        return PainelGeral;
+    }
+
+    public void setPainelGeral(JPanel PainelGeral) {
+        this.PainelGeral = PainelGeral;
+    }
+
+    public JPanel getPainelPesquisa() {
+        return PainelPesquisa;
+    }
+
+    public void setPainelPesquisa(JPanel PainelPesquisa) {
+        this.PainelPesquisa = PainelPesquisa;
+    }
+
+    public JPanel getPainelTitulo() {
+        return PainelTitulo;
+    }
+
+    public void setPainelTitulo(JPanel PainelTitulo) {
+        this.PainelTitulo = PainelTitulo;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public void setButtonGroup1(ButtonGroup buttonGroup1) {
+        this.buttonGroup1 = buttonGroup1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JTextField getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(JTextField pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
+    public JComboBox<String> getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(JComboBox<String> filtro) {
+        this.filtro = filtro;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +138,7 @@ public class CidadePesquisa extends javax.swing.JFrame {
         PainelPesquisa = new javax.swing.JPanel();
         pesquisar = new javax.swing.JButton();
         pesquisa = new javax.swing.JTextField();
+        filtro = new javax.swing.JComboBox<>();
         ClienteTabela = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
 
@@ -159,24 +237,38 @@ public class CidadePesquisa extends javax.swing.JFrame {
         pesquisa.setForeground(new java.awt.Color(153, 153, 153));
         pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
 
+        filtro.setBackground(new java.awt.Color(231, 231, 231));
+        filtro.setEditable(true);
+        filtro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "UF", "NOME" }));
+        filtro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        filtro.setLightWeightPopupEnabled(false);
+        filtro.setVerifyInputWhenFocusTarget(false);
+
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
         PainelPesquisaLayout.setHorizontalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPesquisaLayout.createSequentialGroup()
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(pesquisa)
-                .addGap(54, 54, 54)
-                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PainelPesquisaLayout.setVerticalGroup(
             PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelPesquisaLayout.createSequentialGroup()
+                        .addComponent(pesquisa)
+                        .addContainerGap())
+                    .addGroup(PainelPesquisaLayout.createSequentialGroup()
+                        .addGroup(PainelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 5, Short.MAX_VALUE))))
         );
 
         tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
@@ -216,11 +308,11 @@ public class CidadePesquisa extends javax.swing.JFrame {
                 .addComponent(PainelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PainelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ClienteTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PainelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,6 +377,7 @@ public class CidadePesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton carregar;
+    private javax.swing.JComboBox<String> filtro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField pesquisa;

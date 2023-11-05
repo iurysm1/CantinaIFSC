@@ -2,11 +2,13 @@
 package controller;
 
 import model.DAO.Persiste;
-import static model.DAO.Persiste.clientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Cliente;
+import service.ClienteService;
 import view.ClientePesquisa;
 
 
@@ -20,6 +22,16 @@ public class ClientePesquisaController implements ActionListener{
         this.clientePesquisa.getSair().addActionListener(this);
         this.clientePesquisa.getCarregar().addActionListener(this);
         this.clientePesquisa.getPesquisar().addActionListener(this);
+        
+        
+        DefaultTableModel tabela = (DefaultTableModel) this.clientePesquisa.getTabelaDados().getModel();
+        
+        List<Cliente> listaObjetos = new ArrayList<>();
+        listaObjetos = ClienteService.carregar();
+        
+        for (Cliente listaObjetoAtual : listaObjetos) {
+            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+        }
     }
 
     
@@ -37,15 +49,47 @@ public class ClientePesquisaController implements ActionListener{
             
             
         }else if (e.getSource()==this.clientePesquisa.getPesquisar()){
-            Persiste.getInstance();
-            
             DefaultTableModel tabela = (DefaultTableModel) this.clientePesquisa.getTabelaDados().getModel();
             
-            if(tabela.getRowCount()==0){
-            for (Cliente cliente : clientes) {
-                tabela.addRow(new Object[]{cliente.getId(),cliente.getCpf(),cliente.getNome()});
+            tabela.setRowCount(0);
+            List<Cliente> listaObjetos = new ArrayList<>();
+            if(this.clientePesquisa.getPesquisa().getText().equalsIgnoreCase("")){
+               listaObjetos = ClienteService.carregar();
+
+            for (Cliente listaObjetoAtual : listaObjetos) {
+                tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+            } 
+            }else{
+                String filtro= this.clientePesquisa.getPesquisa().getText();
+                
+                switch (this.clientePesquisa.getFiltro().getSelectedIndex()) {
+                    case 0:
+                        Cliente objeto = ClienteService.carregar(Integer.parseInt(filtro));
+                        tabela.addRow(new Object[]{objeto.getId(), objeto.getCpf(), objeto.getNome()});
+                        break;
+                    
+                    case 1:
+                        listaObjetos = ClienteService.carregarCPF(filtro);
+
+                        for (Cliente listaObjetoAtual : listaObjetos) {
+                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+                        } 
+                        break;
+                        
+                    case 2:
+                        listaObjetos = ClienteService.carregar(filtro);
+
+                        for (Cliente listaObjetoAtual : listaObjetos) {
+                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+                        } 
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
-            }
+            
+            
+            
             
         }
     }

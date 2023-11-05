@@ -5,6 +5,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -135,6 +136,14 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
 
     public void setRg(JTextField rg) {
         this.idCliente = rg;
+    }
+
+    public JComboBox<String> getStatus() {
+        return status;
+    }
+
+    public void setStatus(JComboBox<String> status) {
+        this.status = status;
     }
 
     

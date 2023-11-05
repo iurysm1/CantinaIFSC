@@ -19,6 +19,7 @@ public class ConnectionFactory {
             return DriverManager.getConnection(banco + "?verifyServerCertificate=false"
                     + "&useSSL=false"
                     + "&requireSSL=false"
+                    
                     + "&USER=" + usuario + "&password=" + senha + "&serverTimezone=UTC"
             );      
         } 

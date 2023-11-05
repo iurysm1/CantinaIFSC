@@ -13,7 +13,7 @@ public class ItemVenda {
     private int id;
     private float qtdproduto;
  
-    private char status;
+    private String status;
     
     private Produto produto;
     private Venda venda;
@@ -21,7 +21,7 @@ public class ItemVenda {
     public ItemVenda() {
     }
 
-    public ItemVenda(int id, float qtdproduto, float valorunitario, char status, Produto produto, Venda venda) {
+    public ItemVenda(int id, float qtdproduto, float valorunitario, String status, Produto produto, Venda venda) {
         this.id = id;
         this.qtdproduto = qtdproduto;
    
@@ -48,11 +48,11 @@ public class ItemVenda {
 
 
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
