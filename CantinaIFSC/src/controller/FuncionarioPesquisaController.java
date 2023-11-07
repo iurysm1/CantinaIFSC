@@ -5,8 +5,11 @@ import model.DAO.Persiste;
 import static model.DAO.Persiste.funcionarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Funcionario;
+import service.FuncionarioService;
 import view.FuncionarioPesquisa;
 
 class FuncionarioPesquisaController implements ActionListener{
@@ -19,6 +22,16 @@ class FuncionarioPesquisaController implements ActionListener{
         this.funcionarioPesquisa.getSair().addActionListener(this);
         this.funcionarioPesquisa.getCarregar().addActionListener(this);
         this.funcionarioPesquisa.getPesquisar().addActionListener(this);
+        
+        this.funcionarioPesquisa.getFiltro().addActionListener(this);
+        
+        DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
+            
+        
+        for (Funcionario objetoAtual : FuncionarioService.carregar()) {
+                
+                tabela.addRow(new Object[]{objetoAtual.getId(),objetoAtual.getCpf(),objetoAtual.getNome()});
+            }
     }
     
     @Override
@@ -32,11 +45,43 @@ class FuncionarioPesquisaController implements ActionListener{
             Persiste.getInstance();
             
             DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
-
-            if(tabela.getRowCount()==0){
-            for (Funcionario funcionarioAtual : funcionarios) {
-                tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getCpf(),funcionarioAtual.getNome()});
+            tabela.setRowCount(0);
+            List<Funcionario> listaObjetos = new ArrayList<>();
+        
+            
+            if(this.funcionarioPesquisa.getPesquisa().getText().equalsIgnoreCase(""))
+            {
+                for (Funcionario objetoAtual : FuncionarioService.carregar()) {
+                
+                tabela.addRow(new Object[]{objetoAtual.getId(),objetoAtual.getCpf(),objetoAtual.getNome()});
             }
+            }else{
+                String filtro= this.funcionarioPesquisa.getPesquisa().getText();
+                
+                switch (this.funcionarioPesquisa.getFiltro().getSelectedIndex()) {
+                    case 0:
+                        Funcionario objeto = FuncionarioService.carregar(Integer.parseInt(filtro));
+                        tabela.addRow(new Object[]{objeto.getId(), objeto.getCpf(), objeto.getNome()});
+                        break;
+                    
+                    case 1:
+                        listaObjetos = FuncionarioService.carregarCPF(filtro);
+
+                        for (Funcionario listaObjetoAtual : listaObjetos) {
+                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+                        } 
+                        break;
+                        
+                    case 2:
+                        listaObjetos = FuncionarioService.carregar(filtro);
+
+                        for (Funcionario listaObjetoAtual : listaObjetos) {
+                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+                        } 
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
             
             

@@ -9,6 +9,7 @@ import view.FeedbackSENHA;
 import view.FuncionarioRedefinirSenha;
 import view.FuncionarioSenha;
 import model.DAO.Persiste;
+import service.FuncionarioService;
 
 public class FuncionarioRedefinirSenhaController implements ActionListener {
 
@@ -30,12 +31,13 @@ public class FuncionarioRedefinirSenhaController implements ActionListener {
             this.funcionarioSenha.dispose();
         } else if (e.getSource() == this.funcionarioSenha.getSalvar()) {
             Funcionario funcionarioSenha = new Funcionario();
-            for (Funcionario funcionarioAtual : model.DAO.Persiste.funcionarios) {
+            for (Funcionario funcionarioAtual : FuncionarioService.carregar()) {
                 if (this.funcionarioSenha.getLogin().getText().equals(funcionarioAtual.getUsuario())) {
-                    funcionarioSenha = model.DAO.Persiste.funcionarios.get(funcionarioAtual.getId()-1);
+                    funcionarioSenha = FuncionarioService.carregar(funcionarioAtual.getId());
                     break;
                 }
-            }System.out.println(funcionarioSenha.getNome());
+            }
+            System.out.println(funcionarioSenha.getNome());
             System.out.println("antiga: "+funcionarioSenha.getSenha());
             
             String senhaAntiga = String.valueOf(this.funcionarioSenha.getSenhaAntiga().getPassword());
@@ -44,7 +46,7 @@ public class FuncionarioRedefinirSenhaController implements ActionListener {
 
             if (senhaAntiga.equals(funcionarioSenha.getSenha())) {
                 if (senha.equals(senhaTeste)) {
-                    funcionarioSenha.setSenha(senha);
+                    FuncionarioService.atualizarSenha(senha, funcionarioSenha.getUsuario(), funcionarioSenha.getId());
                     Feedback feedback = new Feedback();
                     FeedbackController feedbackController = new FeedbackController(feedback);
                     this.funcionarioSenha.dispose();

@@ -6,7 +6,7 @@ public class Carteirinha {
     private String codigobarra;
     private String datageracao;
     private String datacancelamento;
-    private Cliente  cliente;
+    private Cliente cliente;
     private String status;
    
 

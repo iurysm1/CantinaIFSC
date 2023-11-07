@@ -47,7 +47,7 @@ public class FornecedorPesquisaController implements ActionListener{
             tabela.setRowCount(0);
             List<Fornecedor> listaObjetos = new ArrayList<>();
             if(this.fornecedorPesquisa.getPesquisa().getText().equalsIgnoreCase("")){
-               listaObjetos = FornecedorService.carregar();
+            listaObjetos = FornecedorService.carregar();
 
             for (Fornecedor listaObjetoAtual : listaObjetos) {
                 tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCnpj(), listaObjetoAtual.getNome()});

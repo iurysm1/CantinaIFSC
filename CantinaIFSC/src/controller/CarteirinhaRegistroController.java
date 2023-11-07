@@ -85,9 +85,11 @@ public class CarteirinhaRegistroController implements ActionListener{
         
         if(e.getSource()==this.carteirinhaRegistro.getNovo()){
             Utilities.active(false, this.carteirinhaRegistro.getPainelBotoes());
+            
             Utilities.limpaComponentes(true, this.carteirinhaRegistro.getPainelDados());
+            
             this.carteirinhaRegistro.getId().setEnabled(false);
-            this.carteirinhaRegistro.getIdCliente().setEnabled(false);
+            this.carteirinhaRegistro.getNomeCliente().setEnabled(false);
         }else if(e.getSource()==this.carteirinhaRegistro.getGravar()){
             Carteirinha carteirinha = new Carteirinha();
             

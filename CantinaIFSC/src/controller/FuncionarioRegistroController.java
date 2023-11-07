@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import model.DAO.Persiste;
 import model.bo.Endereco;
 import model.bo.Funcionario;
+import service.EnderecoService;
+import service.FuncionarioService;
 import utilities.Utilities;
 import view.EnderecoPesquisa;
 import view.EnderecoRegistro;
@@ -48,7 +50,7 @@ public class FuncionarioRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigo != 0) {
                 Funcionario funcionario = new Funcionario();
-                funcionario = Persiste.funcionarios.get(codigo - 1);
+                funcionario = FuncionarioService.carregar(codigo);
 
                 Utilities.active(false, funcionarioRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, funcionarioRegistro.getPainelDados());
@@ -74,6 +76,14 @@ public class FuncionarioRegistroController implements ActionListener {
                 funcionarioRegistro.getBairro().setEnabled(false);
                 funcionarioRegistro.getCidade().setEnabled(false);
                 funcionarioRegistro.getLogradouro().setEnabled(false);
+                
+                if(funcionario.getStatus().equalsIgnoreCase("A")){
+                    funcionarioRegistro.getStatus().setSelectedIndex(0);
+                }else{
+                    funcionarioRegistro.getStatus().setSelectedIndex(1);
+                }
+                
+                idEndereco=funcionario.getEndereco().getId();
             }
         }
     };
@@ -84,8 +94,8 @@ public class FuncionarioRegistroController implements ActionListener {
         public void windowClosed(WindowEvent e) {
             if (codigoEndereco != 0) {
                 Endereco endereco = new Endereco();
-                endereco = Persiste.enderecos.get(codigoEndereco - 1);
-                idEndereco = endereco.getId() - 1;
+                endereco = EnderecoService.carregar(codigoEndereco);
+                idEndereco = endereco.getId();
 
                 funcionarioRegistro.getCep().setText(endereco.getCep());
                 funcionarioRegistro.getBairro().setText(endereco.getBairro().getDescricao());
@@ -102,9 +112,9 @@ public class FuncionarioRegistroController implements ActionListener {
         @Override
         public void windowClosed(WindowEvent e) {
             if (condicaoCadastro != 0) {
-                Persiste.funcionarios.get(idSenha).setSenha(senha);
-                Persiste.funcionarios.get(idSenha).setUsuario(usuario);
-
+                
+                FuncionarioService.atualizarSenha(senha, usuario, codigo);
+                
                 Feedback feedback = new Feedback();
                 FeedbackController feedbackController = new FeedbackController(feedback);
 
@@ -134,6 +144,9 @@ public class FuncionarioRegistroController implements ActionListener {
             this.funcionarioRegistro.getBairro().setEnabled(false);
             this.funcionarioRegistro.getCidade().setEnabled(false);
             this.funcionarioRegistro.getLogradouro().setEnabled(false);
+            
+            this.senha="";
+            this.usuario="";
 
         } else if (e.getSource() == this.funcionarioRegistro.getGravar()) {
             FuncionarioSenha funcionarioSenha = new FuncionarioSenha();
@@ -141,7 +154,7 @@ public class FuncionarioRegistroController implements ActionListener {
 
             Funcionario funcionario = new Funcionario();
 
-            funcionario.setId(Persiste.funcionarios.size() + 1);
+            
             funcionario.setNome(this.funcionarioRegistro.getNome().getText());
             funcionario.setCpf(this.funcionarioRegistro.getCpf1().getText());
             funcionario.setRg(this.funcionarioRegistro.getRg().getText());
@@ -149,43 +162,49 @@ public class FuncionarioRegistroController implements ActionListener {
             funcionario.setFone1(this.funcionarioRegistro.getFone1().getText());
             funcionario.setFone2(this.funcionarioRegistro.getFone2().getText());
             funcionario.setEmail(this.funcionarioRegistro.getEmail().getText());
-            funcionario.setEndereco(Persiste.enderecos.get(idEndereco));
+            funcionario.setComplementoEndereco(this.funcionarioRegistro.getComplemento().getText());
+            funcionario.setEndereco(EnderecoService.carregar(idEndereco));
+            
+            if(this.funcionarioRegistro.getStatus().getSelectedIndex()==0){
+                funcionario.setStatus("A");
+            }else{
+                funcionario.setStatus("D");
+            }
 
             if (this.funcionarioRegistro.getId().getText().equalsIgnoreCase("")) {
-                Persiste.funcionarios.add(funcionario);
+                
                 condicao = 1;
-                idSenha = funcionario.getId() - 1;
+                //idSenha = funcionario.getId();
                 funcionarioSenha.addWindowListener(disposeListenerSenha);
+                
+                funcionario.setSenha(senha);
+                funcionario.setUsuario(usuario);
                 funcionarioSenha.setVisible(true);
+                FuncionarioService.adicionar(funcionario);
                 
             } else {
                 Feedback feedback=new Feedback();
                 FeedbackController feedbackController= new FeedbackController(feedback);
                 
-                int index = Integer.parseInt(this.funcionarioRegistro.getId().getText()) - 1;
-
-                Persiste.funcionarios.get(index).setNome(this.funcionarioRegistro.getNome().getText());
-                Persiste.funcionarios.get(index).setDataNascimento(this.funcionarioRegistro.getData().getText());
-                Persiste.funcionarios.get(index).setCpf(this.funcionarioRegistro.getCpf1().getText());
-                Persiste.funcionarios.get(index).setRg(this.funcionarioRegistro.getRg().getText());
-                Persiste.funcionarios.get(index).setFone1(this.funcionarioRegistro.getFone1().getText());
-                Persiste.funcionarios.get(index).setFone2(this.funcionarioRegistro.getFone2().getText());
-                Persiste.funcionarios.get(index).setEmail(this.funcionarioRegistro.getEmail().getText());
-                Persiste.funcionarios.get(index).setEndereco(Persiste.enderecos.get(idEndereco));
+                funcionario.setId(Integer.parseInt(this.funcionarioRegistro.getId().getText()));
+                FuncionarioService.atualizar(funcionario);
+                
                 condicao = 2;
-                idSenha = Persiste.funcionarios.get(index).getId() - 1;
+                
                 feedbackController.atualizacaoClasse(7);
                 feedback.setVisible(true);
                  Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
             }
             
-            System.out.println("senha: "+Persiste.funcionarios.get(idSenha).getSenha());
+           
             
 
         } else if (e.getSource() == this.funcionarioRegistro.getCancelar()) {
             Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
+            this.senha="";
+            this.usuario="";
 
         } else if (e.getSource() == this.funcionarioRegistro.getPesquisar()) {
             FuncionarioPesquisa funcionarioPesquisa = new FuncionarioPesquisa();
@@ -210,14 +229,8 @@ public class FuncionarioRegistroController implements ActionListener {
                 enderecoPesquisa.setVisible(true);
             }else{
                 boolean validacao=true;
-                for (Endereco enderecoAtual : Persiste.enderecos) {
+                for (Endereco enderecoAtual : EnderecoService.carregar()) {
                     if(enderecoAtual.getCep().equalsIgnoreCase(this.funcionarioRegistro.getCep().getText())){
-                        idEndereco=enderecoAtual.getId()-1;
-                        funcionarioRegistro.getCep().setText(enderecoAtual.getCep());
-                        funcionarioRegistro.getBairro().setText(enderecoAtual.getBairro().getDescricao());
-                        funcionarioRegistro.getCidade().setText(enderecoAtual.getCidade().getDescricao());
-                        funcionarioRegistro.getLogradouro().setText(enderecoAtual.getLogradouro());
-                        funcionarioRegistro.getUf().setText(enderecoAtual.getCidade().getUf());
                         validacao=false;
                     }
                 }
@@ -226,7 +239,17 @@ public class FuncionarioRegistroController implements ActionListener {
                     FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
-                    }
+                    }else{
+                    Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.funcionarioRegistro.getCep().getText());
+                    idEndereco=enderecoPesquisa.getId();
+                    this.funcionarioRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
+                    this.funcionarioRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());     
+                    this.funcionarioRegistro.getUf().setText(enderecoPesquisa.getCidade().getUf());
+                    this.funcionarioRegistro.getLogradouro().setText(enderecoPesquisa.getLogradouro());
+                    this.funcionarioRegistro.getCep().setText(enderecoPesquisa.getCep());
+                            
+                    
+                }
             }
         }else if(e.getSource()==this.funcionarioRegistro.getRedefinirSenha()){
             FuncionarioRedefinirSenha funcionarioRedefSenha = new FuncionarioRedefinirSenha();

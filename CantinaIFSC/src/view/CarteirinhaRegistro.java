@@ -224,7 +224,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
 
         id.setBackground(new java.awt.Color(231, 231, 231));
         id.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        id.setActionCommand("0");
+        id.setActionCommand("1");
         id.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         id.setSelectionColor(new java.awt.Color(42, 96, 65));
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -235,13 +235,13 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
 
         nomeCliente.setBackground(new java.awt.Color(231, 231, 231));
         nomeCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nomeCliente.setActionCommand("2");
+        nomeCliente.setActionCommand("1");
         nomeCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         nomeCliente.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         idCliente.setBackground(new java.awt.Color(231, 231, 231));
         idCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        idCliente.setActionCommand("2");
+        idCliente.setActionCommand("1");
         idCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         idCliente.setSelectionColor(new java.awt.Color(42, 96, 65));
 
