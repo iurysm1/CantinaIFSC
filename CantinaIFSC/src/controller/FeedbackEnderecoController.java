@@ -28,6 +28,11 @@ public class FeedbackEnderecoController implements ActionListener{
             case 2:
                 this.feedBack.setFeedBack("   A CIDADE DIGITADA NÃO EXISTE!");
                 break;
+            case 3:
+                this.feedBack.setFeedBack("  O CLIENTE DIGITADO NÃO EXISTE!");
+                break;
+            
+                
             
         }
     }

@@ -313,7 +313,7 @@
                   <StringArray count="4">
                     <StringItem index="0" value="ID"/>
                     <StringItem index="1" value="CPF"/>
-                    <StringItem index="2" value="C&#xf3;digo debarras"/>
+                    <StringItem index="2" value="C&#xf3;digo de barras"/>
                     <StringItem index="3" value="Pre&#xe7;o"/>
                   </StringArray>
                 </Property>

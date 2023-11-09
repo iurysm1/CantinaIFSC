@@ -9,11 +9,14 @@ import java.awt.event.WindowListener;
 import model.DAO.Persiste;
 import model.bo.Carteirinha;
 import model.bo.Cliente;
+import service.CarteirinhaService;
+import service.ClienteService;
 import utilities.Utilities;
 import view.CarteirinhaPesquisa;
 import view.CarteirinhaRegistro;
 import view.ClientePesquisa;
 import view.Feedback;
+import view.FeedbackENDERECO;
 
 public class CarteirinhaRegistroController implements ActionListener{
     
@@ -42,7 +45,7 @@ public class CarteirinhaRegistroController implements ActionListener{
             
             if(codigo!=0){
                 Carteirinha carteirinha = new Carteirinha();
-                carteirinha=Persiste.carteirinhas.get(codigo-1);
+                carteirinha=CarteirinhaService.carregar(codigo);
                 Utilities.active(false, carteirinhaRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(true, carteirinhaRegistro.getPainelDados());
                 
@@ -54,8 +57,15 @@ public class CarteirinhaRegistroController implements ActionListener{
                 carteirinhaRegistro.getNomeCliente().setText(carteirinha.getCliente().getNome());
                 
                 carteirinhaRegistro.getId().setEnabled(false);
-                carteirinhaRegistro.getIdCliente().setEnabled(false);
                 carteirinhaRegistro.getNomeCliente().setEnabled(false);
+                
+                idCliente=carteirinha.getCliente().getId();
+                
+                if(carteirinha.getStatus().equalsIgnoreCase("A")){
+                    carteirinhaRegistro.getStatus().setSelectedIndex(0);
+                }else{
+                    carteirinhaRegistro.getStatus().setSelectedIndex(1);
+                }
                 
                 
             }
@@ -68,13 +78,13 @@ public class CarteirinhaRegistroController implements ActionListener{
         public void windowClosed(WindowEvent e){
             if(codigoCliente!=0){
             Cliente cliente = new Cliente();
-            cliente=Persiste.clientes.get(codigoCliente-1);
-            idCliente=cliente.getId()-1;
+            cliente=ClienteService.carregar(codigoCliente);
+            idCliente=cliente.getId();
             
             carteirinhaRegistro.getIdCliente().setText(cliente.getId()+"");
             carteirinhaRegistro.getNomeCliente().setText(cliente.getNome());
             
-            carteirinhaRegistro.getIdCliente().setEnabled(false);
+            carteirinhaRegistro.getId().setEnabled(false);
             carteirinhaRegistro.getNomeCliente().setEnabled(false);
         }
         }
@@ -93,46 +103,83 @@ public class CarteirinhaRegistroController implements ActionListener{
         }else if(e.getSource()==this.carteirinhaRegistro.getGravar()){
             Carteirinha carteirinha = new Carteirinha();
             
-            carteirinha.setId(Persiste.carteirinhas.size()+1);
             carteirinha.setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
             carteirinha.setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
             carteirinha.setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
-            carteirinha.setCliente(Persiste.clientes.get(idCliente));
+            carteirinha.setCliente(ClienteService.carregar(idCliente));
+            
+            if(carteirinhaRegistro.getStatus().getSelectedIndex()==0){
+                    carteirinha.setStatus("A");
+                }else{
+                    carteirinha.setStatus("B");
+                }
+            
             Feedback feedback=new Feedback();
             FeedbackController feedbackController= new FeedbackController(feedback);
             
             if(this.carteirinhaRegistro.getId().getText().equalsIgnoreCase("")){
-                Persiste.carteirinhas.add(carteirinha);
+                CarteirinhaService.adicionar(carteirinha);
                 feedbackController.cadastroClasse(5);            
             }else{
-                 int index = Integer.parseInt(this.carteirinhaRegistro.getId().getText())-1;
-                 
-                 Persiste.carteirinhas.get(index).setCliente(Persiste.clientes.get(idCliente));
-                 
-                 Persiste.carteirinhas.get(index).setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
-                 Persiste.carteirinhas.get(index).setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
-                 Persiste.carteirinhas.get(index).setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
+                carteirinha.setId(Integer.parseInt(this.carteirinhaRegistro.getId().getText()));
+                 CarteirinhaService.atualizar(carteirinha);
                 feedbackController.atualizacaoClasse(5);
             }
             
             feedback.setVisible(true);
             Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());
+            
+            
+            
+            
         }else if(e.getSource()==this.carteirinhaRegistro.getCancelar()){
             Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());
+            
+            
+            
+            
         }else if(e.getSource()==this.carteirinhaRegistro.getPesquisar()){
             CarteirinhaPesquisa carteirinhaPesquisa=new CarteirinhaPesquisa();
             CarteirinhaPesquisaController carteirinhaPesquisaController=new CarteirinhaPesquisaController(carteirinhaPesquisa);
             carteirinhaPesquisa.addWindowListener(disposeListener);
             carteirinhaPesquisa.setVisible(true);
+            
+            
+            
+            
         }else if(e.getSource()==this.carteirinhaRegistro.getSair()){
             this.carteirinhaRegistro.dispose();
+            
+            
+            
+            
         }else if(e.getSource()==this.carteirinhaRegistro.getPesquisarCliente()){
-            ClientePesquisa clientePesquisa=new ClientePesquisa();
-            ClientePesquisaController clientePesquisaController = new ClientePesquisaController(clientePesquisa);
-            clientePesquisa.addWindowListener(disposeListenerCliente);
-            clientePesquisa.setVisible(true);
+            
+            if(this.carteirinhaRegistro.getIdCliente().getText().equals("")){
+                ClientePesquisa clientePesquisa=new ClientePesquisa();
+                ClientePesquisaController clientePesquisaController = new ClientePesquisaController(clientePesquisa);
+                clientePesquisa.addWindowListener(disposeListenerCliente);
+                clientePesquisa.setVisible(true);
+    
+            }else{
+                 Cliente cliente = ClienteService.carregar(Integer.parseInt(this.carteirinhaRegistro.getIdCliente().getText()));
+                if(cliente.getId()==0){
+                    FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                    FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                    feedbackEnderecoController.codigoFB=3;
+                    feedbackEnderecoController.atualizacaoLabel();
+                    feedbackENDERECO.setVisible(true);
+                    this.carteirinhaRegistro.getIdCliente().setText("");
+                }else{
+                   
+                    idCliente=cliente.getId();
+                    this.carteirinhaRegistro.getNomeCliente().setText(cliente.getNome());
+                    this.carteirinhaRegistro.getIdCliente().setText(cliente.getId()+"");
+                }
+            }
+            
         }
         
     }

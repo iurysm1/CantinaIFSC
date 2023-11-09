@@ -208,7 +208,7 @@ public class ProdutoPesquisa extends javax.swing.JFrame {
         filtro.setBackground(new java.awt.Color(231, 231, 231));
         filtro.setEditable(true);
         filtro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "CPF", "Código debarras", "Preço" }));
+        filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "CPF", "Código de barras", "Preço" }));
         filtro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
         filtro.setLightWeightPopupEnabled(false);
         filtro.setVerifyInputWhenFocusTarget(false);
