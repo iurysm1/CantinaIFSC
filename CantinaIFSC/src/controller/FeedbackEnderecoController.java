@@ -31,6 +31,8 @@ public class FeedbackEnderecoController implements ActionListener{
             case 3:
                 this.feedBack.setFeedBack("  O CLIENTE DIGITADO NÃO EXISTE!");
                 break;
+            case 4:
+                this.feedBack.setFeedBack("  ATENÇÃO, ALGUNS CAMPOS VAZIOS!");
             
                 
             

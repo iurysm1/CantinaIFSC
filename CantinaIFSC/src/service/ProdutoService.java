@@ -26,7 +26,7 @@ public class ProdutoService {
         return objetoDAO.retrieve(parString);
         }
     
-    public static List<Produto> carregarCodigoBarra(String parString) {
+    public static Produto carregarCodigoBarra(String parString) {
         ProdutoDAO objetoDAO = new ProdutoDAO();
         return objetoDAO.retrieveCodigoBarras(parString);
         }

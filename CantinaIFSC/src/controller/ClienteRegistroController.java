@@ -27,17 +27,71 @@ public class ClienteRegistroController implements ActionListener {
     ClienteRegistro clienteRegistro;
     public static int codigo, codigoEndereco, idEndereco;
     
-    FocusListener focus = new FocusListener() {
+    FocusListener focusData = new FocusListener() {
         @Override
         public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(clienteRegistro.getData());
             
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            if(!clienteRegistro.getCep().getText().equalsIgnoreCase("     -   ")){
-                clienteRegistro.getCep().setText("     -   ");
-            }
+                
+            
+             Utilities.turnCepTextFieldRed(clienteRegistro.getData());
+            
+        }
+    };
+    
+    FocusListener focusCep = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCep());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+                
+            
+             Utilities.turnCepTextFieldRed(clienteRegistro.getCep());
+            
+        }
+    };
+    
+    FocusListener focusMatricula = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(clienteRegistro.getMatricula());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(clienteRegistro.getMatricula());
+        }
+    };
+    
+    FocusListener focusCpf = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCpf1());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCpfTextFieldRed(clienteRegistro.getCpf1());
+        }
+    };
+    
+    FocusListener focusNome = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(clienteRegistro.getNome());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(clienteRegistro.getNome());
         }
     };
 
@@ -52,7 +106,11 @@ public class ClienteRegistroController implements ActionListener {
         this.clienteRegistro.getPesquisar().addActionListener(this);
         this.clienteRegistro.getNovoCep().addActionListener(this);
         this.clienteRegistro.getPesquisarCep().addActionListener(this);
-        this.clienteRegistro.getCep().addFocusListener(focus);
+        this.clienteRegistro.getCep().addFocusListener(focusCep);
+        this.clienteRegistro.getMatricula().addFocusListener(focusMatricula);
+        this.clienteRegistro.getCpf1().addFocusListener(focusCpf);
+        this.clienteRegistro.getNome().addFocusListener(focusNome);
+        this.clienteRegistro.getData().addFocusListener(focusData);
 
         Utilities.active(true, this.clienteRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
@@ -145,6 +203,9 @@ public class ClienteRegistroController implements ActionListener {
             clientePesquisa.setVisible(true);
 
         } else if (e.getSource() == this.clienteRegistro.getNovo()) {
+            System.out.println(this.clienteRegistro.getData().getText());
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCep());
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCpf1());
             Utilities.active(false, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.clienteRegistro.getPainelDados());
 
@@ -157,6 +218,16 @@ public class ClienteRegistroController implements ActionListener {
             
             System.out.println(this.clienteRegistro.getCep().getText());
         } else if (e.getSource() == this.clienteRegistro.getGravar()) {
+            if(Utilities.isDataEmpty(this.clienteRegistro.getNome(), this.clienteRegistro.getMatricula())||Utilities.isFormattedDataEmpty(this.clienteRegistro.getCep(), this.clienteRegistro.getCpf1(),this.clienteRegistro.getData())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
+            }else{
+             
+            
+            
             Cliente cliente = new Cliente();
             
             cliente.setNome(this.clienteRegistro.getNome().getText());
@@ -192,11 +263,12 @@ public class ClienteRegistroController implements ActionListener {
             feedback.setVisible(true);
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
-
+            }
         } else if (e.getSource() == this.clienteRegistro.getCancelar()) {
-            
+            System.out.println(this.clienteRegistro.getData().getValue());
                             
-
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCep());
+            Utilities.turnCepTextFieldGray(clienteRegistro.getCpf1());
             Utilities.active(true, this.clienteRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.clienteRegistro.getPainelDados());
 
@@ -215,27 +287,21 @@ public class ClienteRegistroController implements ActionListener {
                 enderecoPesquisa.setVisible(true);
             }else{
                 
-                boolean validacao=true;
-                for (Endereco enderecoAtual : EnderecoService.carregar()) {
-                    if(enderecoAtual.getCep().equalsIgnoreCase(this.clienteRegistro.getCep().getText())){
-                        validacao=false;
-                    }
-                }
-                if(validacao==true){
+                Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.clienteRegistro.getCep().getText());
+                if(enderecoPesquisa.getId()==0){
                     FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
                     FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
-                    }else{
-                        Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.clienteRegistro.getCep().getText());
-                        idEndereco=enderecoPesquisa.getId();
-                        this.clienteRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
-                        this.clienteRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());
-                        this.clienteRegistro.getUf().setText(enderecoPesquisa.getCidade().getUf());
-                        this.clienteRegistro.getLogradouro().setText(enderecoPesquisa.getLogradouro());
-                        this.clienteRegistro.getCep().setText(enderecoPesquisa.getCep());
+                    this.clienteRegistro.getCep().setText("     -   ");
+                }else{
+                    idEndereco=enderecoPesquisa.getId();
+                    this.clienteRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
+                    this.clienteRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());
+                    this.clienteRegistro.getUf().setText(enderecoPesquisa.getCidade().getUf());
+                    this.clienteRegistro.getLogradouro().setText(enderecoPesquisa.getLogradouro());
+                    this.clienteRegistro.getCep().setText(enderecoPesquisa.getCep());
                 }
-                
                 
                 
                 

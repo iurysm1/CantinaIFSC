@@ -11,17 +11,18 @@ package model.bo;
  */
 public class ItemVenda {
     private int id;
-    private float qtdproduto;
+    private int qtdproduto;
  
     private String status;
     
     private Produto produto;
     private Venda venda;
+    
 
     public ItemVenda() {
     }
 
-    public ItemVenda(int id, float qtdproduto, float valorunitario, String status, Produto produto, Venda venda) {
+    public ItemVenda(int id, int qtdproduto, float valorunitario, String status, Produto produto, Venda venda) {
         this.id = id;
         this.qtdproduto = qtdproduto;
    
@@ -38,11 +39,11 @@ public class ItemVenda {
         this.id = id;
     }
 
-    public float getQtdproduto() {
+    public int getQtdproduto() {
         return qtdproduto;
     }
 
-    public void setQtdproduto(float qtdproduto) {
+    public void setQtdproduto(int qtdproduto) {
         this.qtdproduto = qtdproduto;
     }
 
@@ -67,6 +68,12 @@ public class ItemVenda {
     public void setVenda(Venda venda) {
         this.venda = venda;
     }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
+    
     
    
 

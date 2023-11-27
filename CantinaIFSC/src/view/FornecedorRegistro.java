@@ -51,7 +51,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         this.bairro = bairro;
     }
 
-    public JTextField getCep() {
+    public JFormattedTextField getCep() {
         return cep;
     }
 
@@ -367,6 +367,11 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cnpjActionPerformed(evt);
+            }
+        });
 
         adicionarCep.setBackground(new java.awt.Color(0, 145, 173));
         adicionarCep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/adicionar (1).png"))); // NOI18N
@@ -730,6 +735,10 @@ public class FornecedorRegistro extends javax.swing.JFrame {
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
 
     }//GEN-LAST:event_sairActionPerformed
+
+    private void cnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cnpjActionPerformed
 
     /**
      * @param args the command line arguments

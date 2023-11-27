@@ -56,7 +56,7 @@ public class FuncionarioRegistro extends javax.swing.JFrame {
         this.bairro = bairro;
     }
 
-    public JTextField getCep() {
+    public JFormattedTextField getCep() {
         return cep;
     }
 

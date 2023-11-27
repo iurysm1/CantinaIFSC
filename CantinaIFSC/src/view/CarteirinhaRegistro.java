@@ -288,7 +288,7 @@ public class CarteirinhaRegistro extends javax.swing.JFrame {
         dataCriacao.setBackground(new java.awt.Color(231, 231, 231));
         dataCriacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(231, 231, 231)));
         try {
-            dataCriacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            dataCriacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

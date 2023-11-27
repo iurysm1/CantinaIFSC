@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -38,11 +40,64 @@ public class FuncionarioRegistroController implements ActionListener {
         this.funcionarioRegistro.getNovoCep().addActionListener(this);
         this.funcionarioRegistro.getPesquisaCep().addActionListener(this);
         this.funcionarioRegistro.getRedefinirSenha().addActionListener(this);
+        this.funcionarioRegistro.getNome().addFocusListener(focusNome);
+        this.funcionarioRegistro.getData().addFocusListener(focusData);
+        this.funcionarioRegistro.getCep().addFocusListener(focusCep);
+        this.funcionarioRegistro.getCpf1().addFocusListener(focusCpf);
 
         Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
 
     }
+    
+    FocusListener focusCep = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(funcionarioRegistro.getCep());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCepTextFieldRed(funcionarioRegistro.getCep());
+        }
+    };
+    
+    FocusListener focusData = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(funcionarioRegistro.getData());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCepTextFieldRed(funcionarioRegistro.getData());
+        }
+    };
+    
+    FocusListener focusCpf = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(funcionarioRegistro.getCpf1());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCpfTextFieldRed(funcionarioRegistro.getCpf1());
+        }
+    };
+    
+    FocusListener focusNome = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(funcionarioRegistro.getNome());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(funcionarioRegistro.getNome());
+        }
+    };
 
     WindowListener disposeListener = new WindowAdapter() {
 
@@ -63,6 +118,10 @@ public class FuncionarioRegistroController implements ActionListener {
                 funcionarioRegistro.getFone1().setText(funcionario.getFone1());
                 funcionarioRegistro.getFone2().setText(funcionario.getFone2());
                 funcionarioRegistro.getEmail().setText(funcionario.getEmail());
+                System.out.println(funcionario.getRg());
+                System.out.println(funcionario.getDataNascimento());
+                senha=funcionario.getSenha();
+                usuario=funcionario.getUsuario();
 
                 funcionarioRegistro.getCep().setText(funcionario.getEndereco().getCep());
                 funcionarioRegistro.getUf().setText(funcionario.getEndereco().getCidade().getUf());
@@ -84,6 +143,7 @@ public class FuncionarioRegistroController implements ActionListener {
                 }
                 
                 idEndereco=funcionario.getEndereco().getId();
+                System.out.println(funcionario.getSenha()+"; usuario: "+funcionario.getUsuario());
             }
         }
     };
@@ -149,7 +209,15 @@ public class FuncionarioRegistroController implements ActionListener {
             this.usuario="";
 
         } else if (e.getSource() == this.funcionarioRegistro.getGravar()) {
-            FuncionarioSenha funcionarioSenha = new FuncionarioSenha();
+            
+            if(Utilities.isDataEmpty(this.funcionarioRegistro.getNome())||Utilities.isFormattedDataEmpty(this.funcionarioRegistro.getData(),this.funcionarioRegistro.getCep(),this.funcionarioRegistro.getCpf1())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
+            }else{
+                FuncionarioSenha funcionarioSenha = new FuncionarioSenha();
             FuncionarioSenhaController funcionarioSenhaController = new FuncionarioSenhaController(funcionarioSenha);
 
             Funcionario funcionario = new Funcionario();
@@ -177,10 +245,11 @@ public class FuncionarioRegistroController implements ActionListener {
                 //idSenha = funcionario.getId();
                 funcionarioSenha.addWindowListener(disposeListenerSenha);
                 
-                funcionario.setSenha(senha);
-                funcionario.setUsuario(usuario);
+                
                 funcionarioSenha.setVisible(true);
                 FuncionarioService.adicionar(funcionario);
+                
+                System.out.println(senha+"; usuario: "+usuario);
                 
             } else {
                 Feedback feedback=new Feedback();
@@ -196,8 +265,8 @@ public class FuncionarioRegistroController implements ActionListener {
                  Utilities.active(true, this.funcionarioRegistro.getPainelBotoes());
                 Utilities.limpaComponentes(false, this.funcionarioRegistro.getPainelDados());
             }
+        }
             
-           
             
 
         } else if (e.getSource() == this.funcionarioRegistro.getCancelar()) {

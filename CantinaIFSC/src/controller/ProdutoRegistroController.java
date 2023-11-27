@@ -3,6 +3,8 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -13,6 +15,7 @@ import model.bo.Produto;
 import service.ProdutoService;
 import utilities.Utilities;
 import view.Feedback;
+import view.FeedbackENDERECO;
 import view.ProdutoAdicionarFoto;
 import view.ProdutoPesquisa;
 import view.ProdutoRegistro;
@@ -21,7 +24,7 @@ public class ProdutoRegistroController implements ActionListener {
 
     ProdutoRegistro produtoRegistro;
     public static int codigo;
-    public static String caminhoArquivo = "D:/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/viewIMG/iconPadrao.png";
+    public static String caminhoArquivo = "C:/Users/Iurysm1/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/viewIMG/iconPadrao.png";
 
     public ProdutoRegistroController(ProdutoRegistro produtoRegistro) {
         this.produtoRegistro = produtoRegistro;
@@ -32,10 +35,49 @@ public class ProdutoRegistroController implements ActionListener {
         this.produtoRegistro.getPesquisar().addActionListener(this);
         this.produtoRegistro.getSair().addActionListener(this);
         this.produtoRegistro.getNovaFoto().addActionListener(this);
+        this.produtoRegistro.getCodigoBarra().addFocusListener(focusCodigo);
+        this.produtoRegistro.getNome().addFocusListener(focusDescricao);
+        this.produtoRegistro.getPreco().addFocusListener(focusPreco);
 
         Utilities.active(true, this.produtoRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.produtoRegistro.getPainelDados());
     }
+    
+    FocusListener focusDescricao = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(produtoRegistro.getNome());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(produtoRegistro.getNome());
+        }
+    };
+    
+    FocusListener focusCodigo = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(produtoRegistro.getCodigoBarra());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(produtoRegistro.getCodigoBarra());
+        }
+    };
+    
+    FocusListener focusPreco = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+           Utilities.turnTextFieldGray(produtoRegistro.getPreco());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(produtoRegistro.getPreco());
+        }
+    };
 
     WindowListener disposeListener = new WindowAdapter() {
 
@@ -67,7 +109,7 @@ public class ProdutoRegistroController implements ActionListener {
                         produtoRegistro.getStatus().setSelectedIndex(1);
                     }
                 
-                if(produto.getCaminhoFotoProduto().equalsIgnoreCase("/viewIMG/iconPadrao.png")){
+                if(produto.getCaminhoFotoProduto().equalsIgnoreCase("C:/Users/Iurysm1/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/viewIMG/iconPadrao.png")){
                      produtoRegistro.getPainelFoto().setBackground(new java.awt.Color(242, 242, 242));
                 }
                 
@@ -92,47 +134,56 @@ public class ProdutoRegistroController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.produtoRegistro.getNovo()) {
-            caminhoArquivo="/viewIMG/iconPadrao.png";
+            caminhoArquivo="C:/Users/Iurysm1/Códigos/GitHub/CantinaIFSC/CantinaIFSC/src/viewIMG/iconPadrao.png";
+                
             this.produtoRegistro.getPainelFoto().setBackground(new Color(242, 242, 242));
             Utilities.active(false, this.produtoRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.produtoRegistro.getPainelDados());
             this.produtoRegistro.getId().setEnabled(false);
 
         } else if (e.getSource() == this.produtoRegistro.getGravar()) {
-            Produto produto = new Produto();
-
             
-            produto.setPreco(Float.parseFloat(this.produtoRegistro.getPreco().getText()));
-            produto.setDescricao(this.produtoRegistro.getNome().getText());
-            produto.setCodigobarra(this.produtoRegistro.getCodigoBarra().getText());
-            produto.setCaminhoFotoProduto(caminhoArquivo);
-            
-            if(this.produtoRegistro.getStatus().getSelectedIndex()==0){
-                produto.setStatus("A");
+            if(Utilities.isDataEmpty(this.produtoRegistro.getCodigoBarra(),this.produtoRegistro.getNome(),this.produtoRegistro.getPreco())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
             }else{
-                produto.setStatus("B");
-            }
-            
-            Feedback feedback = new Feedback();
-            FeedbackController feedbackController = new FeedbackController(feedback);
-
-            if (this.produtoRegistro.getId().getText().equalsIgnoreCase("")) {
-                ProdutoService.adicionar(produto);
-                feedbackController.cadastroClasse(4);
-            } else {
-                produto.setId(Integer.parseInt(this.produtoRegistro.getId().getText()));
-                ProdutoService.atualizar(produto);
-                feedbackController.atualizacaoClasse(4);
-            }
-            
-            this.produtoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png")));
-            this.produtoRegistro.getPainelFoto().setBackground(new java.awt.Color(242, 242, 242));
-            feedback.setVisible(true);
-            Utilities.active(true, this.produtoRegistro.getPainelBotoes());
-            Utilities.limpaComponentes(false, this.produtoRegistro.getPainelDados());
+                Produto produto = new Produto();
 
             
-            
+                produto.setPreco(Float.parseFloat(this.produtoRegistro.getPreco().getText()));
+                produto.setDescricao(this.produtoRegistro.getNome().getText());
+                produto.setCodigobarra(this.produtoRegistro.getCodigoBarra().getText());
+                produto.setCaminhoFotoProduto(caminhoArquivo);
+
+                if(this.produtoRegistro.getStatus().getSelectedIndex()==0){
+                    produto.setStatus("A");
+                }else{
+                    produto.setStatus("B");
+                }
+
+                Feedback feedback = new Feedback();
+                FeedbackController feedbackController = new FeedbackController(feedback);
+
+                if (this.produtoRegistro.getId().getText().equalsIgnoreCase("")) {
+                    ProdutoService.adicionar(produto);
+                    feedbackController.cadastroClasse(4);
+                } else {
+                    produto.setId(Integer.parseInt(this.produtoRegistro.getId().getText()));
+                    ProdutoService.atualizar(produto);
+                    feedbackController.atualizacaoClasse(4);
+                }
+
+                this.produtoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png")));
+                this.produtoRegistro.getPainelFoto().setBackground(new java.awt.Color(242, 242, 242));
+                feedback.setVisible(true);
+                Utilities.active(true, this.produtoRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.produtoRegistro.getPainelDados());
+
+            }
+               
             
         } else if (e.getSource() == this.produtoRegistro.getCancelar()) {
             this.produtoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viewIMG/iconPadrao.png")));

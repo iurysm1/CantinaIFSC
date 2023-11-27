@@ -94,6 +94,8 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
                 objeto.setEmail(rst.getString("objeto.email"));
                 objeto.setStatus(rst.getString("objeto.status"));
                 objeto.setCpf(rst.getString("objeto.cpf"));
+                objeto.setRg(rst.getString("objeto.rg"));
+                objeto.setDataNascimento(rst.getString("objeto.dataNascimento"));
                 
                 objeto.setSenha(rst.getString("objeto.senha"));
                 objeto.setUsuario(rst.getString("objeto.usuario"));
@@ -132,7 +134,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
     @Override
     public Funcionario retrieve(int parPK) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "select objeto.*, e.*, c.*, b.* from funcionario objeto  left outer join endereco e on objeto.endereco_id = e.id left outer join cidade c on e.cidade_id = c.id left outer join bairro b on e.bairro_id = b.id where objeto.id=?";
+        String sqlExecutar = "select objeto.*, e.*, c.*, b.*, date_format(objeto.dataNascimento, '%d/%m/%Y') as data_formatada from funcionario objeto  left outer join endereco e on objeto.endereco_id = e.id left outer join cidade c on e.cidade_id = c.id left outer join bairro b on e.bairro_id = b.id where objeto.id=?";
         PreparedStatement pstm = null;
         ResultSet rst = null;
         Funcionario objeto = new Funcionario();
@@ -161,6 +163,8 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
                 objeto.setEmail(rst.getString("objeto.email"));
                 objeto.setStatus(rst.getString("objeto.status"));
                 objeto.setCpf(rst.getString("objeto.cpf"));
+                 objeto.setRg(rst.getString("objeto.rg"));
+                objeto.setDataNascimento(rst.getString("data_formatada"));
                 
                 objeto.setSenha(rst.getString("objeto.senha"));
                 objeto.setUsuario(rst.getString("objeto.usuario"));
@@ -229,6 +233,8 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
                 objeto.setEmail(rst.getString("objeto.email"));
                 objeto.setStatus(rst.getString("objeto.status"));
                 objeto.setCpf(rst.getString("objeto.cpf"));
+                 objeto.setRg(rst.getString("objeto.rg"));
+                objeto.setDataNascimento(rst.getString("objeto.dataNascimento"));
                 
                 objeto.setSenha(rst.getString("objeto.senha"));
                 objeto.setUsuario(rst.getString("objeto.usuario"));
@@ -294,6 +300,9 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
                 objeto.setStatus(rst.getString("objeto.status"));
                 objeto.setCpf(rst.getString("objeto.cpf"));
                 
+                 objeto.setRg(rst.getString("objeto.rg"));
+                objeto.setDataNascimento(rst.getString("objeto.dataNascimento"));
+                
                 objeto.setSenha(rst.getString("objeto.senha"));
                 objeto.setUsuario(rst.getString("objeto.usuario"));
                 
@@ -348,6 +357,27 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
             pstm.setString(9, objeto.getComplementoEndereco());
             pstm.setInt(10, objeto.getEndereco().getId());
             pstm.setInt(11, objeto.getId());
+            
+            pstm.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
+    }
+    
+    public void updateSenha(Funcionario objeto) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "update funcionario set senha=?, usuario=? where id=?;";
+        
+        PreparedStatement pstm =null;
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getSenha());
+            pstm.setString(2, objeto.getUsuario());
+            pstm.setInt(3, objeto.getId());
+            
             
             pstm.execute();
         } catch (Exception ex) {

@@ -3,6 +3,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -32,11 +34,79 @@ public class CarteirinhaRegistroController implements ActionListener{
         this.carteirinhaRegistro.getPesquisar().addActionListener(this);
         this.carteirinhaRegistro.getSair().addActionListener(this);
         this.carteirinhaRegistro.getPesquisarCliente().addActionListener(this); 
+        this.carteirinhaRegistro.getCodigoBarra().addFocusListener(focusCodigo);
+        this.carteirinhaRegistro.getDataCriacao().addFocusListener(focusDataCriacao);
+        this.carteirinhaRegistro.getDataCancelamento().addFocusListener(focusDataCancelamento);
+        this.carteirinhaRegistro.getIdCliente().addFocusListener(focusCliente);
+        
         
         Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());
         
     }
+    
+    FocusListener focusCodigo = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(carteirinhaRegistro.getCodigoBarra());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(carteirinhaRegistro.getCodigoBarra());
+        }
+    };
+    
+    FocusListener focusCliente = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(carteirinhaRegistro.getIdCliente());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(carteirinhaRegistro.getIdCliente());
+            if(carteirinhaRegistro.getIdCliente().getText().equalsIgnoreCase("*Campo obrigatório*")){
+                carteirinhaRegistro.getIdCliente().setText("");
+            }
+                    
+        }
+    };
+    
+    FocusListener focusDataCriacao = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(carteirinhaRegistro.getDataCriacao());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+                
+            
+             Utilities.turnCepTextFieldRed(carteirinhaRegistro.getDataCriacao());
+            
+        }
+    };
+    
+    FocusListener focusDataCancelamento = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(carteirinhaRegistro.getDataCancelamento());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+                
+            
+             Utilities.turnCepTextFieldRed(carteirinhaRegistro.getDataCancelamento());
+            
+        }
+    };
     
     WindowListener disposeListener = new WindowAdapter() {
         
@@ -66,7 +136,7 @@ public class CarteirinhaRegistroController implements ActionListener{
                 }else{
                     carteirinhaRegistro.getStatus().setSelectedIndex(1);
                 }
-                
+                carteirinhaRegistro.getDataCriacao().setEnabled(false);
                 
             }
         }
@@ -80,7 +150,7 @@ public class CarteirinhaRegistroController implements ActionListener{
             Cliente cliente = new Cliente();
             cliente=ClienteService.carregar(codigoCliente);
             idCliente=cliente.getId();
-            
+            Utilities.turnTextFieldGray(carteirinhaRegistro.getIdCliente());
             carteirinhaRegistro.getIdCliente().setText(cliente.getId()+"");
             carteirinhaRegistro.getNomeCliente().setText(cliente.getNome());
             
@@ -95,44 +165,53 @@ public class CarteirinhaRegistroController implements ActionListener{
         
         if(e.getSource()==this.carteirinhaRegistro.getNovo()){
             Utilities.active(false, this.carteirinhaRegistro.getPainelBotoes());
-            
+            this.carteirinhaRegistro.getDataCriacao().setEnabled(false);
             Utilities.limpaComponentes(true, this.carteirinhaRegistro.getPainelDados());
             
             this.carteirinhaRegistro.getId().setEnabled(false);
             this.carteirinhaRegistro.getNomeCliente().setEnabled(false);
         }else if(e.getSource()==this.carteirinhaRegistro.getGravar()){
-            Carteirinha carteirinha = new Carteirinha();
             
-            carteirinha.setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
-            carteirinha.setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
-            carteirinha.setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
-            carteirinha.setCliente(ClienteService.carregar(idCliente));
-            
-            if(carteirinhaRegistro.getStatus().getSelectedIndex()==0){
-                    carteirinha.setStatus("A");
-                }else{
-                    carteirinha.setStatus("B");
-                }
-            
-            Feedback feedback=new Feedback();
-            FeedbackController feedbackController= new FeedbackController(feedback);
-            
-            if(this.carteirinhaRegistro.getId().getText().equalsIgnoreCase("")){
-                CarteirinhaService.adicionar(carteirinha);
-                feedbackController.cadastroClasse(5);            
+            if(Utilities.isDataEmpty(this.carteirinhaRegistro.getMatricula(),this.carteirinhaRegistro.getIdCliente())||Utilities.isFormattedDataEmpty(this.carteirinhaRegistro.getDataCancelamento(),this.carteirinhaRegistro.getDataCriacao())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
             }else{
-                carteirinha.setId(Integer.parseInt(this.carteirinhaRegistro.getId().getText()));
-                 CarteirinhaService.atualizar(carteirinha);
-                feedbackController.atualizacaoClasse(5);
+               Carteirinha carteirinha = new Carteirinha();
+            
+                carteirinha.setDatageracao(this.carteirinhaRegistro.getDataCriacao().getText());
+                carteirinha.setDatacancelamento(this.carteirinhaRegistro.getDataCancelamento().getText());
+                carteirinha.setCodigobarra(this.carteirinhaRegistro.getCodigoBarra().getText());
+                carteirinha.setCliente(ClienteService.carregar(idCliente));
+
+                if(carteirinhaRegistro.getStatus().getSelectedIndex()==0){
+                        carteirinha.setStatus("A");
+                    }else{
+                        carteirinha.setStatus("B");
+                    }
+
+                Feedback feedback=new Feedback();
+                FeedbackController feedbackController= new FeedbackController(feedback);
+
+                if(this.carteirinhaRegistro.getId().getText().equalsIgnoreCase("")){
+                    CarteirinhaService.adicionar(carteirinha);
+                    feedbackController.cadastroClasse(5);            
+                }else{
+                    carteirinha.setId(Integer.parseInt(this.carteirinhaRegistro.getId().getText()));
+                     CarteirinhaService.atualizar(carteirinha);
+                    feedbackController.atualizacaoClasse(5);
+                }
+
+                feedback.setVisible(true);
+                Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados()); 
             }
             
-            feedback.setVisible(true);
-            Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
-            Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());
             
             
-            
-            
+    
         }else if(e.getSource()==this.carteirinhaRegistro.getCancelar()){
             Utilities.active(true, this.carteirinhaRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.carteirinhaRegistro.getPainelDados());

@@ -148,6 +148,8 @@ public class BairroRegistro extends javax.swing.JFrame {
 
         nomeDoBairro.setBackground(new java.awt.Color(231, 231, 231));
         nomeDoBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nomeDoBairro.setActionCommand("5");
+        nomeDoBairro.setAutoscrolls(false);
         nomeDoBairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         nomeDoBairro.setSelectionColor(new java.awt.Color(42, 96, 65));
 

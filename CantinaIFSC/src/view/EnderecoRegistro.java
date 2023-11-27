@@ -3,6 +3,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -41,11 +42,11 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         this.bairro = bairro;
     }
 
-    public JTextField getCep() {
+    public JFormattedTextField getCep() {
         return cep;
     }
 
-    public void setCep(JTextField cep) {
+    public void setCep(JFormattedTextField cep) {
         this.cep = cep;
     }
 
@@ -148,7 +149,6 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         id = new javax.swing.JTextField();
         bairro = new javax.swing.JTextField();
         cidade = new javax.swing.JTextField();
-        cep = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -171,6 +171,7 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         idCidade = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
+        cep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -234,11 +235,6 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         cidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         cidade.setEnabled(false);
         cidade.setSelectionColor(new java.awt.Color(42, 96, 65));
-
-        cep.setBackground(new java.awt.Color(231, 231, 231));
-        cep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
-        cep.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("CEP");
@@ -397,7 +393,7 @@ public class EnderecoRegistro extends javax.swing.JFrame {
         pesquisaCidade.setBorderPainted(false);
 
         logradouro.setBackground(new java.awt.Color(231, 231, 231));
-        logradouro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
+        logradouro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
         logradouro.setSelectionColor(new java.awt.Color(42, 96, 65));
 
         jLabel1.setText("LOGRADOURO");
@@ -415,6 +411,14 @@ public class EnderecoRegistro extends javax.swing.JFrame {
 
         jLabel33.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel33.setText("ID");
+
+        cep.setBackground(new java.awt.Color(231, 231, 231));
+        cep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 10, true));
+        try {
+            cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout PainelDadosLayout = new javax.swing.GroupLayout(PainelDados);
         PainelDados.setLayout(PainelDadosLayout);
@@ -466,10 +470,10 @@ public class EnderecoRegistro extends javax.swing.JFrame {
                                 .addGap(107, 107, 107)))
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
-                            .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(35, 35, 35))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelDadosLayout.createSequentialGroup()
@@ -488,12 +492,10 @@ public class EnderecoRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelDadosLayout.createSequentialGroup()
-                        .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(status)
                     .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(logradouro, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(logradouro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cep, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(PainelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelDadosLayout.createSequentialGroup()
@@ -637,7 +639,7 @@ public class EnderecoRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTitulo;
     private javax.swing.JTextField bairro;
     private javax.swing.JButton cancelar;
-    private javax.swing.JTextField cep;
+    private javax.swing.JFormattedTextField cep;
     private javax.swing.JTextField cidade;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField id;

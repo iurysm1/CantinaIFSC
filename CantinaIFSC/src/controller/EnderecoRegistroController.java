@@ -3,6 +3,8 @@ package controller;
 import model.DAO.Persiste;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -46,12 +48,79 @@ public class EnderecoRegistroController implements ActionListener {
         this.enderecoRegistro.getPesquisaCidade().addActionListener(this);
         this.enderecoRegistro.getNovoBairro().addActionListener(this);
         this.enderecoRegistro.getNovoCidade().addActionListener(this);
+        this.enderecoRegistro.getIdBairro().addFocusListener(focusBairro);
+        this.enderecoRegistro.getIdCidade().addFocusListener(focusCidade);
+        this.enderecoRegistro.getLogradouro().addFocusListener(focusLogradouro);
+        this.enderecoRegistro.getCep().addFocusListener(focusCep);
         
         
         
         Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());
     }
+    
+    FocusListener focusLogradouro = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(enderecoRegistro.getLogradouro());  
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(enderecoRegistro.getLogradouro());
+        }
+    };
+    FocusListener focusBairro = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(enderecoRegistro.getIdBairro());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(enderecoRegistro.getIdBairro());
+            if(enderecoRegistro.getIdBairro().getText().equalsIgnoreCase("*Campo obrigatório*")){
+                enderecoRegistro.getIdBairro().setText("");
+            }
+                    
+        }
+    };
+    FocusListener focusCidade = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(enderecoRegistro.getIdCidade());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(enderecoRegistro.getIdCidade());
+            if(enderecoRegistro.getIdCidade().getText().equalsIgnoreCase("*Campo obrigatório*")){
+                enderecoRegistro.getIdCidade().setText("");
+            }
+            
+        }
+    };
+    FocusListener focusCep = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnCepTextFieldGray(enderecoRegistro.getCep());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnCepTextFieldRed(enderecoRegistro.getCep());
+        }
+    };
     
     WindowListener disposeListener = new WindowAdapter() {
         
@@ -100,6 +169,7 @@ public class EnderecoRegistroController implements ActionListener {
                 enderecoRegistro.getIdBairro().setText(bairro.getId()+"");
                 idBairroBusca=bairro.getId();
                 
+                
             }
         }
     };
@@ -123,7 +193,7 @@ public class EnderecoRegistroController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.enderecoRegistro.getNovo()) {
-
+            System.out.println(this.enderecoRegistro.getCep());
             Utilities.active(false, this.enderecoRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.enderecoRegistro.getPainelDados());
             this.enderecoRegistro.getId().setEnabled(false);
@@ -131,53 +201,49 @@ public class EnderecoRegistroController implements ActionListener {
             this.enderecoRegistro.getCidade().setEnabled(false);
             
         } else if (e.getSource() == this.enderecoRegistro.getGravar()) {
-            Endereco endereco = new Endereco();
-            
-            
-            endereco.setLogradouro(this.enderecoRegistro.getLogradouro().getText());
-            endereco.setCep(this.enderecoRegistro.getCep().getText());
-            endereco.setBairro(BairroService.carregar(idBairroBusca));
-            endereco.setCidade(CidadeService.carregar(idCidadeBusca));
-            
-            if(this.enderecoRegistro.getStatus().getSelectedIndex()==0){
-                endereco.setStatus("A");
+            if(Utilities.isDataEmpty(this.enderecoRegistro.getLogradouro(), this.enderecoRegistro.getIdBairro(), this.enderecoRegistro.getIdCidade())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
             }else{
-                endereco.setStatus("D");
-            }
-            Feedback feedback=new Feedback();
-            FeedbackController feedbackController= new FeedbackController(feedback);
-            if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
-                EnderecoService.adicionar(endereco);
-                feedbackController.cadastroClasse(3);
-                
-                
-            }else{;
-                endereco.setId(codigo);
-                EnderecoService.atualizar(endereco);
-                feedbackController.atualizacaoClasse(3);
-                
+                Endereco endereco = new Endereco();
+            
+            
+                endereco.setLogradouro(this.enderecoRegistro.getLogradouro().getText());
+                endereco.setCep(this.enderecoRegistro.getCep().getText());
+                endereco.setBairro(BairroService.carregar(idBairroBusca));
+                endereco.setCidade(CidadeService.carregar(idCidadeBusca));
 
-                
-                //OUTRO JEITO DE FAZER
-                /*for (Bairro bairroAtual : Persiste.bairros) {
-                    if(bairroAtual.getDescricao().equalsIgnoreCase(this.enderecoRegistro.getBairro().getText())){
-                        DAO.Persiste.enderecos.get(index).setBairro(bairroAtual);
-                    }
+                if(this.enderecoRegistro.getStatus().getSelectedIndex()==0){
+                    endereco.setStatus("A");
+                }else{
+                    endereco.setStatus("D");
                 }
-                for (Cidade cidadeAtual : Persiste.cidades) {
-                    if(cidadeAtual.getDescricao().equalsIgnoreCase(this.enderecoRegistro.getCidade().getText())){
-                        DAO.Persiste.enderecos.get(index).setCidade(cidadeAtual);
-                    }
-                }*/
-                
-            }
-            
-            
-            feedback.setVisible(true);
-            
-            Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
-            Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());
+                Feedback feedback=new Feedback();
+                FeedbackController feedbackController= new FeedbackController(feedback);
+                if(this.enderecoRegistro.getId().getText().equalsIgnoreCase("")){
+                    EnderecoService.adicionar(endereco);
+                    feedbackController.cadastroClasse(3);
 
+
+                }else{
+                    endereco.setId(codigo);
+                    EnderecoService.atualizar(endereco);
+                    feedbackController.atualizacaoClasse(3);
+
+                }
+
+
+                feedback.setVisible(true);
+
+                Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.enderecoRegistro.getPainelDados());
+
+            }
+
+            
             
         } else if (e.getSource() == this.enderecoRegistro.getCancelar()) {
             Utilities.active(true, this.enderecoRegistro.getPainelBotoes());
@@ -202,7 +268,7 @@ public class EnderecoRegistroController implements ActionListener {
 
             
         } else if (e.getSource() == this.enderecoRegistro.getPesquisaBairro()) {
-            
+            Utilities.turnTextFieldGray(enderecoRegistro.getIdBairro());
             if(this.enderecoRegistro.getIdBairro().getText().equalsIgnoreCase("")){
             codigoBairro=0;
             BairroPesquisa bairroPesquisa = new BairroPesquisa();
@@ -238,6 +304,7 @@ public class EnderecoRegistroController implements ActionListener {
 
             
         } else if (e.getSource() == this.enderecoRegistro.getPesquisaCidade()) {
+            Utilities.turnTextFieldGray(enderecoRegistro.getIdCidade());
             if(this.enderecoRegistro.getIdCidade().getText().equalsIgnoreCase("")){
             codigoCidade=0;
             CidadePesquisa cidadePesquisa = new CidadePesquisa();

@@ -28,6 +28,7 @@ public class ProdutoPesquisaController implements ActionListener{
         this.produtoPesquisa.getPesquisar().addActionListener(this);
         this.produtoPesquisa.getCarregar().addActionListener(this);
         
+        
         DefaultTableModel tabela = (DefaultTableModel) this.produtoPesquisa.getTabelaDados().getModel();
         List<Produto> listaObjetos=new ArrayList<>();
         listaObjetos=ProdutoService.carregar();
@@ -35,6 +36,8 @@ public class ProdutoPesquisaController implements ActionListener{
         for (Produto listaObjeto : listaObjetos) {
             tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
         }
+        
+        this.produtoPesquisa.getTabelaDados().getSelectionModel().addListSelectionListener(selectionListener);
     }
     
     ListSelectionListener selectionListener = new ListSelectionListener() {
@@ -45,7 +48,7 @@ public class ProdutoPesquisaController implements ActionListener{
                 int selectedRow = produtoPesquisa.getTabelaDados().getSelectedRow();
                 if(selectedRow!=-1){
                     int selectedItem= (int) produtoPesquisa.getTabelaDados().getValueAt(selectedRow, 0);
-                    ImageIcon icon = new ImageIcon(model.DAO.Persiste.produtos.get(selectedItem).getCaminhoFotoProduto());
+                    ImageIcon icon = new ImageIcon(ProdutoService.carregar(selectedItem).getCaminhoFotoProduto());
                     
                     produtoPesquisa.setIcon(icon);
                     produtoPesquisa.getPainelFoto().setBackground(Color.white);
@@ -64,6 +67,7 @@ public class ProdutoPesquisaController implements ActionListener{
         }else if(e.getSource()==this.produtoPesquisa.getPesquisar()){
             DefaultTableModel tabela = (DefaultTableModel) this.produtoPesquisa.getTabelaDados().getModel();
             tabela.setRowCount(0);
+            
             List<Produto> listaObjetos=new ArrayList<>();
             
             if(this.produtoPesquisa.getPesquisa().getText().equals("")){
@@ -89,12 +93,8 @@ public class ProdutoPesquisaController implements ActionListener{
                         break;
                         
                     case 2:
-                       listaObjetos = ProdutoService.carregarCodigoBarra(filtro);
-
-                        for (Produto listaObjeto : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
-                            System.out.println("teste");
-                        } 
+                        objeto = ProdutoService.carregarCodigoBarra(filtro);
+                        tabela.addRow(new Object[]{objeto.getId(),objeto.getDescricao(),objeto.getCodigobarra(),objeto.getPreco()});
                         break;
                         case 3:
                        listaObjetos = ProdutoService.carregarPreco(Float.parseFloat(filtro));

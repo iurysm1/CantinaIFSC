@@ -1,7 +1,10 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -14,6 +17,7 @@ import utilities.Utilities;
 import view.CidadePesquisa;
 import view.CidadeRegistro;
 import view.Feedback;
+import view.FeedbackENDERECO;
 
 
 public class CidadeRegistroController implements ActionListener{
@@ -30,12 +34,39 @@ public class CidadeRegistroController implements ActionListener{
         this.cidadeRegistro.getGravar().addActionListener(this);
         this.cidadeRegistro.getSair().addActionListener(this);
         this.cidadeRegistro.getPesquisar().addActionListener(this);
-        
+        this.cidadeRegistro.getNomeCidade().addFocusListener(focus);
+        this.cidadeRegistro.getUf().addFocusListener(focusUF);
         
         Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
     }
     
+    FocusListener focus = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(cidadeRegistro.getNomeCidade());  
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(cidadeRegistro.getNomeCidade());
+        }
+    };
+    FocusListener focusUF = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(cidadeRegistro.getUf());  
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+            Utilities.turnTextFieldRed(cidadeRegistro.getUf());
+        }
+    };
     WindowListener disposeListener = new WindowAdapter() {
             public void windowClosed(WindowEvent e){
                 if (codigo!=0){
@@ -77,11 +108,22 @@ public class CidadeRegistroController implements ActionListener{
             Utilities.active(true, this.cidadeRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
             
-            
+            Utilities.turnTextFieldGray(cidadeRegistro.getNomeCidade());  
+            Utilities.turnTextFieldGray(cidadeRegistro.getUf());  
             
             
             
         }else if (e.getSource()==this.cidadeRegistro.getGravar()){
+            
+            if(Utilities.isDataEmpty(this.cidadeRegistro.getNomeCidade(), this.cidadeRegistro.getUf())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
+            }else{
+            
+            
             Cidade cidade=new Cidade();
             
             cidade.setUf(this.cidadeRegistro.getUf().getText());
@@ -111,7 +153,7 @@ public class CidadeRegistroController implements ActionListener{
             Utilities.limpaComponentes(false, this.cidadeRegistro.getPainelDados());
             
             
-            
+            }
             
             
         }else if (e.getSource()==this.cidadeRegistro.getSair()){

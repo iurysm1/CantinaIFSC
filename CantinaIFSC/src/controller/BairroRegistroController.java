@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import utilities.Utilities;
 import view.BairroPesquisa;
 import view.BairroRegistro;
 import view.Feedback;
+import view.FeedbackENDERECO;
 
 
 public class BairroRegistroController implements ActionListener {
@@ -21,6 +23,20 @@ public class BairroRegistroController implements ActionListener {
         
     BairroRegistro bairroRegistro;
     public static int codigo;
+    
+    
+    FocusListener focus = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+            Utilities.turnTextFieldGray(bairroRegistro.getNomeDoBairro());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(bairroRegistro.getNomeDoBairro());
+        }
+    };
 
     public BairroRegistroController(BairroRegistro bairroRegistro) {
 
@@ -33,11 +49,15 @@ public class BairroRegistroController implements ActionListener {
         this.bairroRegistro.getSair().addActionListener(this);
         this.bairroRegistro.getId().addActionListener(this);
         this.bairroRegistro.getStatus().addActionListener(this);
+        this.bairroRegistro.getNomeDoBairro().addFocusListener(focus);
 
         Utilities.active(true, this.bairroRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
 
     }
+    
+    
+    
     WindowListener disposeListener = new WindowAdapter() {
 
         @Override
@@ -70,36 +90,43 @@ public class BairroRegistroController implements ActionListener {
             this.bairroRegistro.getId().setEditable(false);
 
         } else if (e.getSource() == this.bairroRegistro.getCancelar()) {
+            Utilities.turnTextFieldGray(bairroRegistro.getNomeDoBairro());
             Utilities.active(true, this.bairroRegistro.getPainelBotoes());
             Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
 
         } else if (e.getSource() == this.bairroRegistro.getGravar()) {
-            Bairro bairro = new Bairro();
-            bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
-            if(this.bairroRegistro.getStatus().getSelectedIndex()==0){
-                bairro.setStatus("A");
+            
+            if(Utilities.isDataEmpty(this.bairroRegistro.getNomeDoBairro())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
             }else{
-                bairro.setStatus("D");
+                 Bairro bairro = new Bairro();
+                bairro.setDescricao(this.bairroRegistro.getNomeDoBairro().getText());
+                if(this.bairroRegistro.getStatus().getSelectedIndex()==0){
+                    bairro.setStatus("A");
+                }else{
+                    bairro.setStatus("D");
+                }
+                Feedback feedback=new Feedback();
+                FeedbackController feedbackController= new FeedbackController(feedback);
+
+                if (this.bairroRegistro.getId().getText().equalsIgnoreCase("")) {
+
+                    service.BairroService.adicionar(bairro);
+                    feedbackController.cadastroClasse(1);
+                } else {
+                    bairro.setId(Integer.parseInt(this.bairroRegistro.getId().getText()));
+                    service.BairroService.atualizar(bairro);
+                    feedbackController.atualizacaoClasse(1);
+                }
+                feedback.setVisible(true);
+                Utilities.active(true, this.bairroRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
             }
-            Feedback feedback=new Feedback();
-            FeedbackController feedbackController= new FeedbackController(feedback);
             
-            if (this.bairroRegistro.getId().getText().equalsIgnoreCase("")) {
-                
-                service.BairroService.adicionar(bairro);
-                feedbackController.cadastroClasse(1);
-            } else {
-                bairro.setId(Integer.parseInt(this.bairroRegistro.getId().getText()));
-                service.BairroService.atualizar(bairro);
-                feedbackController.atualizacaoClasse(1);
-            }
-            
-            System.out.println(this.bairroRegistro.getStatus());
-            
-            feedback.setVisible(true);
-            
-            Utilities.active(true, this.bairroRegistro.getPainelBotoes());
-            Utilities.limpaComponentes(false, this.bairroRegistro.getPainelDados());
 
         } else if (e.getSource() == this.bairroRegistro.getPesquisar()) {
             codigo = 0;

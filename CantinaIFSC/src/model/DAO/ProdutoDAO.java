@@ -153,12 +153,12 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
         }
     }
     
-    public List<Produto> retrieveCodigoBarras(String parString) {
+    public Produto retrieveCodigoBarras(String parString) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select * from produto where codigoBarra like ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;
-        List<Produto> listaObjeto = new ArrayList<Produto>();
+        Produto objeto = new Produto();
         
 
         
@@ -168,8 +168,8 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
             rst = pstm.executeQuery();
             
             
-            while(rst.next()){
-                Produto objeto = new Produto();
+            if(rst.next()){
+                
                 
                 
                 objeto.setId(rst.getInt("id"));
@@ -178,7 +178,7 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
                 objeto.setPreco(rst.getFloat("preco"));
                 objeto.setDescricao(rst.getString("descricao"));
                 objeto.setCaminhoFotoProduto(rst.getString("caminho_foto"));
-                listaObjeto.add(objeto);
+                
             }
             
             
@@ -187,7 +187,7 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
             ex.printStackTrace();
         }finally{
             ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return listaObjeto;
+            return objeto;
         }
     }
     

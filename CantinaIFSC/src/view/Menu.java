@@ -13,6 +13,7 @@ import controller.EnderecoRegistroController;
 import controller.FornecedorRegistroController;
 import controller.FuncionarioRegistroController;
 import controller.ProdutoRegistroController;
+import controller.VendaController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import utilities.Utilities;
@@ -58,6 +59,7 @@ public class Menu extends javax.swing.JFrame {
         produto = new javax.swing.JMenuItem();
         carteirinha = new javax.swing.JMenuItem();
         movimentacao = new javax.swing.JMenu();
+        vendas = new javax.swing.JMenuItem();
         relatorios = new javax.swing.JMenu();
         ajuda = new javax.swing.JMenu();
 
@@ -177,6 +179,15 @@ public class Menu extends javax.swing.JFrame {
         Menu.add(cadastros);
 
         movimentacao.setText("Movimentaçoes");
+
+        vendas.setText("Vendas");
+        vendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vendasActionPerformed(evt);
+            }
+        });
+        movimentacao.add(vendas);
+
         Menu.add(movimentacao);
 
         relatorios.setText("Relatórios");
@@ -250,6 +261,12 @@ public class Menu extends javax.swing.JFrame {
         CarteirinhaRegistroController carteirinhaRegistroController=new CarteirinhaRegistroController(carteirinha);
         carteirinha.setVisible(true);
     }//GEN-LAST:event_carteirinhaActionPerformed
+
+    private void vendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendasActionPerformed
+        Vendas vendas = new Vendas();
+        VendaController vendaController = new VendaController(vendas);
+        vendas.setVisible(true);
+    }//GEN-LAST:event_vendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,5 +353,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu movimentacao;
     private javax.swing.JMenuItem produto;
     private javax.swing.JMenu relatorios;
+    private javax.swing.JMenuItem vendas;
     // End of variables declaration//GEN-END:variables
 }

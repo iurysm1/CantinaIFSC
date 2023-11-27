@@ -3,6 +3,8 @@ package controller;
 import static controller.FuncionarioRegistroController.idEndereco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -34,11 +36,64 @@ public class FornecedorRegistroController implements ActionListener {
         this.fornecedorRegistro.getSair().addActionListener(this);
         this.fornecedorRegistro.getPesquisarCep().addActionListener(this);
         this.fornecedorRegistro.getAdicionarCep().addActionListener(this);
+        this.fornecedorRegistro.getNome().addFocusListener(focusNome);
+        this.fornecedorRegistro.getCnpj().addFocusListener(focusCpf);
+        this.fornecedorRegistro.getCep().addFocusListener(focusCep);
+        this.fornecedorRegistro.getInscricaoEstadual().addFocusListener(focusMatricula);
 
         Utilities.active(true, this.fornecedorRegistro.getPainelBotoes());
         Utilities.limpaComponentes(false, this.fornecedorRegistro.getPainelDados());
 
     }
+    
+    FocusListener focusCep = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(fornecedorRegistro.getCep());
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCepTextFieldRed(fornecedorRegistro.getCep());
+        }
+    };
+    
+    FocusListener focusMatricula = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(fornecedorRegistro.getInscricaoEstadual());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(fornecedorRegistro.getInscricaoEstadual());
+        }
+    };
+    
+    FocusListener focusCpf = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnCepTextFieldGray(fornecedorRegistro.getCnpj());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnCepTextFieldRed(fornecedorRegistro.getCnpj());
+        }
+    };
+    
+    FocusListener focusNome = new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            Utilities.turnTextFieldGray(fornecedorRegistro.getNome());
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Utilities.turnTextFieldRed(fornecedorRegistro.getNome());
+        }
+    };
 
     WindowListener disposeListener = new WindowAdapter() {
 
@@ -109,6 +164,9 @@ public class FornecedorRegistroController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.fornecedorRegistro.getNovo()) {
+            System.out.println(this.fornecedorRegistro.getCnpj().getValue());
+            System.out.println(this.fornecedorRegistro.getCep().getValue());
+            
             Utilities.active(false, this.fornecedorRegistro.getPainelBotoes());
             Utilities.limpaComponentes(true, this.fornecedorRegistro.getPainelDados());
 
@@ -120,39 +178,50 @@ public class FornecedorRegistroController implements ActionListener {
             
             
         } else if (e.getSource() == this.fornecedorRegistro.getGravar()) {
-            Fornecedor fornecedor = new Fornecedor();
             
-            fornecedor.setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
-            fornecedor.setNome(this.fornecedorRegistro.getNome().getText());
-            fornecedor.setEmail(this.fornecedorRegistro.getEmail().getText());
-            fornecedor.setCnpj(this.fornecedorRegistro.getCnpj().getText());
-            fornecedor.setFone1(this.fornecedorRegistro.getFone1().getText());
-            fornecedor.setFone2(this.fornecedorRegistro.getFone2().getText());
-            fornecedor.setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
-            
-            fornecedor.setEndereco(EnderecoService.carregar(idEndereco));
-            
-            if(this.fornecedorRegistro.getStatus().getSelectedIndex()==0){
-                fornecedor.setStatus("A");
+            if(Utilities.isDataEmpty(this.fornecedorRegistro.getNome(),this.fornecedorRegistro.getInscricaoEstadual())||Utilities.isFormattedDataEmpty(this.fornecedorRegistro.getCep(),this.fornecedorRegistro.getCnpj())){
+                FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=4;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
             }else{
-                fornecedor.setStatus("D");
+                Fornecedor fornecedor = new Fornecedor();
+            
+                fornecedor.setInscricaoestadual(this.fornecedorRegistro.getInscricaoEstadual().getText());
+                fornecedor.setNome(this.fornecedorRegistro.getNome().getText());
+                fornecedor.setEmail(this.fornecedorRegistro.getEmail().getText());
+                fornecedor.setCnpj(this.fornecedorRegistro.getCnpj().getText());
+                fornecedor.setFone1(this.fornecedorRegistro.getFone1().getText());
+                fornecedor.setFone2(this.fornecedorRegistro.getFone2().getText());
+                fornecedor.setComplementoEndereco(this.fornecedorRegistro.getComplemento().getText());
+
+                fornecedor.setEndereco(EnderecoService.carregar(idEndereco));
+
+                if(this.fornecedorRegistro.getStatus().getSelectedIndex()==0){
+                    fornecedor.setStatus("A");
+                }else{
+                    fornecedor.setStatus("D");
+                }
+
+                Feedback feedback=new Feedback();
+                FeedbackController feedbackController= new FeedbackController(feedback);
+                if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
+                    FornecedorService.adicionar(fornecedor);
+                    feedbackController.cadastroClasse(8);
+                }else{
+                    fornecedor.setId(codigo);
+                    FornecedorService.atualizar(fornecedor);
+
+                    feedbackController.atualizacaoClasse(8);
+                }
+
+                feedback.setVisible(true);
+                Utilities.active(true, this.fornecedorRegistro.getPainelBotoes());
+                Utilities.limpaComponentes(false, this.fornecedorRegistro.getPainelDados());
+            
             }
             
-            Feedback feedback=new Feedback();
-            FeedbackController feedbackController= new FeedbackController(feedback);
-            if(this.fornecedorRegistro.getId().getText().equalsIgnoreCase("")){
-                FornecedorService.adicionar(fornecedor);
-                feedbackController.cadastroClasse(8);
-            }else{
-                fornecedor.setId(codigo);
-                FornecedorService.atualizar(fornecedor);
-                
-                feedbackController.atualizacaoClasse(8);
-            }
-            
-            feedback.setVisible(true);
-            Utilities.active(true, this.fornecedorRegistro.getPainelBotoes());
-            Utilities.limpaComponentes(false, this.fornecedorRegistro.getPainelDados());
             
             
         } else if (e.getSource() == this.fornecedorRegistro.getCancelar()) {

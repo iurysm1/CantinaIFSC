@@ -17,7 +17,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade>{
     @Override
     public void create(Cidade objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO cantina.cidade(descricao, uf) VALUES (?,?,?)";
+        String sqlExecutar = "INSERT INTO cantina.cidade(descricao, uf, status) VALUES (?,?,?)";
         
         PreparedStatement pstm =null;
         
