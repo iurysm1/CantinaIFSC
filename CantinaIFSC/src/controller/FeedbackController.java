@@ -52,6 +52,8 @@ public class FeedbackController implements ActionListener{
                 break;
             case 8:
                 this.feedBack.setFeedBack("SEU FORNECEDOR FOI CADASTRADO COM SUCESSO!");
+            case 9:
+                this.feedBack.setFeedBack("    A SUA VENDA FOI COMPUTADA COM SUCESSO!");
         }
     }
 

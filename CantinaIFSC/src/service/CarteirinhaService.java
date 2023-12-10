@@ -32,6 +32,11 @@ public class CarteirinhaService {
        CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
         return objetoDAO.retrieveIdCliente(parPK);
     }
+    
+    public static Carteirinha carregarCodigoBarras(String parPK) {
+       CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
+        return objetoDAO.retrieveCodigoBarras(parPK);
+    }
 
     public static List<Carteirinha> carregar(String parString) {
         CarteirinhaDAO objetoDAO = new CarteirinhaDAO();

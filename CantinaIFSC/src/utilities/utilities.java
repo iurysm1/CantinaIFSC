@@ -213,6 +213,13 @@ public class Utilities {
         }
     }
     
+    public static void feedbackErros(int condicao){
+        FeedbackENDERECO feedbackENDERECO = new FeedbackENDERECO();
+                FeedbackEnderecoController feedbackEnderecoController = new FeedbackEnderecoController(feedbackENDERECO);
+                FeedbackEnderecoController.codigoFB=condicao;
+                feedbackEnderecoController.atualizacaoLabel();
+                feedbackENDERECO.setVisible(true);
+    }
     
      
 }

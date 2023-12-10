@@ -58,8 +58,16 @@ public class Vendas extends javax.swing.JFrame {
         return labelStatusCaixa;
     }
 
-    public void setLabelStatusCaixa(JLabel labelStatusCaixa) {
-        this.labelStatusCaixa = labelStatusCaixa;
+    public JTextField getValorTotalVenda() {
+        return valorTotalVenda;
+    }
+
+    public void setValorTotalVenda(JTextField valorTotalVenda) {
+        this.valorTotalVenda = valorTotalVenda;
+    }
+ 
+    public void setLabelStatusCaixa(String labelStatusCaixa) {
+        this.labelStatusCaixa.setText(labelStatusCaixa);
     }
 
     public JLabel getLabelValorTotalItem() {
@@ -108,6 +116,22 @@ public class Vendas extends javax.swing.JFrame {
 
     public void setNomeFuncionario(JTextField nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
+    }
+
+    public JTextField getTroco() {
+        return troco;
+    }
+
+    public void setTroco(JTextField troco) {
+        this.troco = troco;
+    }
+
+    public JTextField getValorRecebido() {
+        return valorRecebido;
+    }
+
+    public void setValorRecebido(JTextField valorRecebido) {
+        this.valorRecebido = valorRecebido;
     }
     
     
@@ -169,15 +193,15 @@ public class Vendas extends javax.swing.JFrame {
         nomeProduto5 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        nomeDoProduto1 = new javax.swing.JTextField();
+        valorTotalVenda = new javax.swing.JTextField();
         nomeProduto6 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
-        nomeDoProduto3 = new javax.swing.JTextField();
+        valorRecebido = new javax.swing.JTextField();
         nomeProduto7 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        nomeDoProduto2 = new javax.swing.JTextField();
+        troco = new javax.swing.JTextField();
         painelStatusVenda = new javax.swing.JPanel();
         labelStatusCaixa = new javax.swing.JLabel();
 
@@ -224,7 +248,9 @@ public class Vendas extends javax.swing.JFrame {
         painelDados.setPreferredSize(new java.awt.Dimension(934, 883));
 
         codigoBarras.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        codigoBarras.setToolTipText("");
         codigoBarras.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(42, 96, 65)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10)));
+        codigoBarras.setEnabled(false);
         codigoBarras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoBarrasActionPerformed(evt);
@@ -479,7 +505,7 @@ public class Vendas extends javax.swing.JFrame {
 
         jLabel20.setText("[F12] Encerrar faturação");
 
-        jLabel26.setText("[F2] Computar faturação");
+        jLabel26.setText("[END] Computar faturação");
 
         jLabel27.setText("[ENTER] Adicionar produto");
 
@@ -761,16 +787,16 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        nomeDoProduto1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        nomeDoProduto1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nomeDoProduto1.setText("R$ 0.00");
-        nomeDoProduto1.setBorder(null);
-        nomeDoProduto1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        nomeDoProduto1.setEnabled(false);
-        nomeDoProduto1.setFocusable(false);
-        nomeDoProduto1.addActionListener(new java.awt.event.ActionListener() {
+        valorTotalVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        valorTotalVenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        valorTotalVenda.setText("R$ 0.00");
+        valorTotalVenda.setBorder(null);
+        valorTotalVenda.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        valorTotalVenda.setEnabled(false);
+        valorTotalVenda.setFocusable(false);
+        valorTotalVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeDoProduto1ActionPerformed(evt);
+                valorTotalVendaActionPerformed(evt);
             }
         });
 
@@ -781,7 +807,7 @@ public class Vendas extends javax.swing.JFrame {
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto5Layout.createSequentialGroup()
                 .addContainerGap(214, Short.MAX_VALUE)
-                .addComponent(nomeDoProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valorTotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(176, 176, 176))
         );
         nomeProduto5Layout.setVerticalGroup(
@@ -789,7 +815,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto5Layout.createSequentialGroup()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nomeDoProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(valorTotalVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -819,16 +845,16 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        nomeDoProduto3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        nomeDoProduto3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nomeDoProduto3.setText("R$ 0.00");
-        nomeDoProduto3.setBorder(null);
-        nomeDoProduto3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        nomeDoProduto3.setEnabled(false);
-        nomeDoProduto3.setFocusable(false);
-        nomeDoProduto3.addActionListener(new java.awt.event.ActionListener() {
+        valorRecebido.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        valorRecebido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        valorRecebido.setText("R$ 0.00");
+        valorRecebido.setBorder(null);
+        valorRecebido.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        valorRecebido.setEnabled(false);
+        valorRecebido.setFocusable(false);
+        valorRecebido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeDoProduto3ActionPerformed(evt);
+                valorRecebidoActionPerformed(evt);
             }
         });
 
@@ -839,7 +865,7 @@ public class Vendas extends javax.swing.JFrame {
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto6Layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(nomeDoProduto3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(valorRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         nomeProduto6Layout.setVerticalGroup(
@@ -847,7 +873,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto6Layout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(nomeDoProduto3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(valorRecebido, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
 
@@ -877,16 +903,16 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        nomeDoProduto2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        nomeDoProduto2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nomeDoProduto2.setText("R$ 0.00");
-        nomeDoProduto2.setBorder(null);
-        nomeDoProduto2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        nomeDoProduto2.setEnabled(false);
-        nomeDoProduto2.setFocusable(false);
-        nomeDoProduto2.addActionListener(new java.awt.event.ActionListener() {
+        troco.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        troco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        troco.setText("R$ 0.00");
+        troco.setBorder(null);
+        troco.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        troco.setEnabled(false);
+        troco.setFocusable(false);
+        troco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeDoProduto2ActionPerformed(evt);
+                trocoActionPerformed(evt);
             }
         });
 
@@ -897,7 +923,7 @@ public class Vendas extends javax.swing.JFrame {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nomeDoProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(troco, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
         nomeProduto7Layout.setVerticalGroup(
@@ -905,7 +931,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nomeProduto7Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(nomeDoProduto2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(troco, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
 
@@ -1015,17 +1041,17 @@ public class Vendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeFuncionarioActionPerformed
 
-    private void nomeDoProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeDoProduto1ActionPerformed
+    private void valorTotalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorTotalVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomeDoProduto1ActionPerformed
+    }//GEN-LAST:event_valorTotalVendaActionPerformed
 
-    private void nomeDoProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeDoProduto2ActionPerformed
+    private void trocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trocoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomeDoProduto2ActionPerformed
+    }//GEN-LAST:event_trocoActionPerformed
 
-    private void nomeDoProduto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeDoProduto3ActionPerformed
+    private void valorRecebidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorRecebidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomeDoProduto3ActionPerformed
+    }//GEN-LAST:event_valorRecebidoActionPerformed
 
     private void codigoBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoBarrasActionPerformed
         // TODO add your handling code here:
@@ -1173,9 +1199,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JLabel labelValorTotalItem;
     private javax.swing.JLabel labelValorUnitarioItem;
     private javax.swing.JTextField nomeDoProduto;
-    private javax.swing.JTextField nomeDoProduto1;
-    private javax.swing.JTextField nomeDoProduto2;
-    private javax.swing.JTextField nomeDoProduto3;
     private javax.swing.JTextField nomeFuncionario;
     private javax.swing.JPanel nomeProduto;
     private javax.swing.JPanel nomeProduto1;
@@ -1189,5 +1212,8 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JPanel painelStatusVenda;
     private javax.swing.JPanel painelTitulo;
     private javax.swing.JPanel painelVenda;
+    private javax.swing.JTextField troco;
+    private javax.swing.JTextField valorRecebido;
+    private javax.swing.JTextField valorTotalVenda;
     // End of variables declaration//GEN-END:variables
 }

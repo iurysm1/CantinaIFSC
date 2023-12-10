@@ -205,6 +205,61 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha>{
     }
     }
     
+    public Carteirinha retrieveCodigoBarras(String parPK) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "select cli.*, crt.*, date_format(cli.dataNascimento, '%d/%m/%Y') as data_formatada_cli, date_format(crt.datageracao, '%d/%m/%Y')as data_geracao,  date_format(crt.datacancelamento, '%d/%m/%Y')as data_cancelamento from carteirinha crt left outer join cliente cli on crt.cliente_id = cli.id where codigobarra = ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
+        Carteirinha carteirinha = new Carteirinha();
+        
+
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            
+            pstm.setString(1, parPK);
+
+            rst = pstm.executeQuery();
+            
+            
+            if(rst.next()){
+                
+                Cliente objeto = new Cliente();
+                
+                carteirinha.setId(rst.getInt("crt.id"));
+                carteirinha.setStatus(rst.getString("crt.status"));
+                carteirinha.setCodigobarra(rst.getString("crt.codigobarra"));
+                carteirinha.setDatageracao(rst.getString("data_geracao"));
+                carteirinha.setDatacancelamento(rst.getString("data_cancelamento"));
+                
+                
+                objeto.setId(rst.getInt("cli.id"));
+                objeto.setNome(rst.getString("cli.nome"));
+                objeto.setFone1(rst.getString("cli.fone1"));
+                objeto.setFone2(rst.getString("cli.fone2"));
+                objeto.setCpf(rst.getString("cli.cpf"));
+                objeto.setComplementoEndereco(rst.getString("cli.complementoEndereco"));
+                objeto.setEmail(rst.getString("cli.email"));
+                objeto.setRg(rst.getString("cli.rg"));
+                objeto.setMatricula(rst.getString("cli.matricula"));
+                objeto.setDataNascimento(rst.getString("data_formatada_cli"));
+                objeto.setStatus(rst.getString("cli.status"));
+                objeto.setEndereco(EnderecoService.carregar(rst.getInt("cli.endereco_id")));
+                carteirinha.setCliente(objeto);
+                
+                
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return carteirinha;
+    }
+    }
+    
     
 
     @Override
