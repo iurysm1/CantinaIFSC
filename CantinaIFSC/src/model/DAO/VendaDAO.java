@@ -132,4 +132,48 @@ public class VendaDAO implements InterfaceDAO<Venda>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public List<Venda> retornarVendas(String dataAbertura, String dataFechamento){
+         Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "select * from venda where datahoravenda between ? AND ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
+        List<Venda> listaObjeto = new ArrayList<Venda>();
+        
+
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, utilities.Utilities.converterFormato(dataAbertura));
+            pstm.setString(2, utilities.Utilities.converterFormato(dataFechamento));
+            System.out.println(utilities.Utilities.stringToDateTime(dataAbertura)+"+"+utilities.Utilities.stringToDateTime(dataFechamento));
+            
+            rst = pstm.executeQuery();
+            
+            
+            while(rst.next()){
+                Venda objeto = new Venda();
+                
+                objeto.setId(rst.getInt("id"));
+                objeto.setDatahoravenda(rst.getString("datahoravenda"));
+                objeto.setFlagtipodesconto(rst.getString("flagtipodesconto"));
+                objeto.setObeservacao(rst.getString("observacao"));
+                objeto.setValordesconto(rst.getInt("valordesconto"));
+                objeto.setStatus(rst.getString("status"));
+                
+                objeto.setCarteirinha(service.CarteirinhaService.carregar(rst.getInt("carteirinha_id")));
+                objeto.setFuncionario(service.FuncionarioService.carregar(rst.getInt("funcionario_id")));
+                
+                listaObjeto.add(objeto);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaObjeto;
+        }
+    }
+    
 }

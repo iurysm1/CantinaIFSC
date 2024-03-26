@@ -84,6 +84,39 @@ public class Utilities {
         
     }
     
+    public static String stringToDateTime(String Antigadata) throws ParseException{
+        
+        Date dataSQL = null;
+
+        
+        SimpleDateFormat old = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat newDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date utilDate = old.parse(Antigadata);
+        
+        return newDate.format(utilDate);
+        
+    }
+    
+     public static String converterFormato(String dataHoraOriginal) {
+        try {
+            // Criar um objeto SimpleDateFormat para o formato de entrada
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            // Converter a string de data e hora para um objeto Date
+            Date data = formatoEntrada.parse(dataHoraOriginal);
+
+            // Criar um objeto SimpleDateFormat para o formato de saída desejado
+            SimpleDateFormat formatoSaida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            // Formatar a data no novo formato
+            return formatoSaida.format(data);
+
+        } catch (ParseException e) {
+            // Tratar exceções de análise (por exemplo, formato de entrada inválido)
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     
     public static boolean isDataEmpty(JTextField... campos){
         

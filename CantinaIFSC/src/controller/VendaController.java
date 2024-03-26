@@ -28,7 +28,7 @@ import view.Vendas;
 
 public class VendaController{
 
-    public static int idCarteirinha=0, valorEmCedulas=0;
+    public static int idCarteirinha=0, valorEmCedulas=0,idFuncionario=0;
     public static String tipopagamento="";
     float valorTotalVenda=0;
     
@@ -80,6 +80,8 @@ public class VendaController{
                          novaFaturacao();
                          vendas.getCodigoBarras().requestFocus();
                         break;
+                    case KeyEvent.VK_ESCAPE:
+                        vendas.dispose();
                     default:
                         break;
                 }
@@ -95,10 +97,11 @@ public class VendaController{
     public VendaController(Vendas vendas) {
         
         this.vendas=vendas;
+        this.funcionario=service.FuncionarioService.carregar(idFuncionario);
         this.vendas.getIdFuncionario().setText(this.funcionario.getId()+"");
         this.vendas.getNomeFuncionario().setText(this.funcionario.getNome());
         this.vendas.getCodigoBarras().addKeyListener(atalhos);
-        this.funcionario=service.FuncionarioService.carregar(1);
+        
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(iniciarFaturacao);
     }
 
@@ -222,9 +225,7 @@ public class VendaController{
             FeedbackController feedbackController= new FeedbackController(feedback);
             feedbackController.cadastroClasse(9);
             feedback.setVisible(true);
-            
-            ControllerCaixa.listaVendas.add(this.faturacao);
-            
+                        
         }
     }
     

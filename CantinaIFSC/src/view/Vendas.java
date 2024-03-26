@@ -205,7 +205,7 @@ public class Vendas extends javax.swing.JFrame {
         painelStatusVenda = new javax.swing.JPanel();
         labelStatusCaixa = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
 
         painelGeral.setBackground(java.awt.Color.white);
@@ -620,8 +620,8 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        idFuncionario.setBackground(new java.awt.Color(242, 242, 242));
-        idFuncionario.setBorder(null);
+        idFuncionario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        idFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 5, true));
         idFuncionario.setEnabled(false);
         idFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -629,7 +629,8 @@ public class Vendas extends javax.swing.JFrame {
             }
         });
 
-        nomeFuncionario.setBorder(null);
+        nomeFuncionario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        nomeFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 5, true));
         nomeFuncionario.setEnabled(false);
         nomeFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -986,7 +987,7 @@ public class Vendas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelStatusVendaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelStatusCaixa)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout painelGeralLayout = new javax.swing.GroupLayout(painelGeral);
@@ -1009,8 +1010,8 @@ public class Vendas extends javax.swing.JFrame {
             painelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralLayout.createSequentialGroup()
                 .addComponent(painelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelStatusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(painelStatusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(painelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(painelDados, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)

@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 import model.bo.Caixa;
+import model.bo.Venda;
 
 public class CaixaDAO implements InterfaceDAO<Caixa>{
 
@@ -47,14 +49,13 @@ public class CaixaDAO implements InterfaceDAO<Caixa>{
     public String returnDateNow(){
         
         try (Connection connection = ConnectionFactory.getConnection();) {
-            String sql = "SELECT NOW() AS data_atual";
+            String sql = "SELECT date_format(NOW(), '%d/%m/%Y %H:%i:%s') AS data_atual;";
             try (PreparedStatement statement = connection.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                     
-                    return sdf.format(resultSet.getTimestamp("data_atual"));
+                    return resultSet.getString("data_atual");
                 }
             }
         } catch (SQLException e) {
@@ -62,6 +63,8 @@ public class CaixaDAO implements InterfaceDAO<Caixa>{
         }
         return null;
     }
+    
+    
     
     
 }
