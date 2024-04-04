@@ -108,7 +108,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade>{
     }
 
     @Override
-    public List<Cidade> retrieve(String parString) {
+    public List<Cidade> retrieve(String parString, String parParametro) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "Select * from cidade where descricao like ?";
         PreparedStatement pstm = null;

@@ -263,7 +263,7 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha>{
     
 
     @Override
-    public List<Carteirinha> retrieve(String parString) {
+    public List<Carteirinha> retrieve(String parString, String parParametro) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select cli.*, crt.*, date_format(cli.dataNascimento, '%d/%m/%Y') as data_formatada_cli, date_format(crt.datageracao, '%d/%m/%Y')as data_geracao,  date_format(crt.datacancelamento, '%d/%m/%Y')as data_cancelamento from carteirinha crt left outer join cliente cli on crt.cliente_id = cli.id where cli.nome like ?";
         PreparedStatement pstm = null;

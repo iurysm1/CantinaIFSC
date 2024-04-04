@@ -56,40 +56,20 @@ public class EnderecoPesquisaController implements ActionListener{
                         }
                 }else{
                         String filtro = this.enderecoPesquisa.getPesquisa().getText();
+                        String filtroParametro = "cidade.descricao";
+                        //Voltar com o case ou fazer uma outra lógica
                         List<Endereco> listaObjetos = new ArrayList<>();
                         
-                        switch (this.enderecoPesquisa.getFiltro().getSelectedIndex()) {
-                        case 0:
+                        if(this.enderecoPesquisa.getFiltro().getSelectedIndex()==0){
                             Endereco objeto = EnderecoService.carregar(Integer.parseInt(filtro));
                             tabela.addRow(new Object[]{objeto.getId(), objeto.getLogradouro(), objeto.getCidade().getDescricao(), objeto.getBairro().getDescricao()});
-                            break;
-                        case 1:
-                            listaObjetos = EnderecoService.carregar(filtro);
+                        }else{
+                            System.out.println(filtro+" "+filtroParametro);
+                            listaObjetos = EnderecoService.carregar(filtro, filtroParametro);
                             for (Endereco listaObjetoAtual : listaObjetos) {
                                tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getLogradouro(), listaObjetoAtual.getCidade().getDescricao(), listaObjetoAtual.getBairro().getDescricao()});
-                           
                             }
-                            break;
-                        case 2:
-                            listaObjetos = EnderecoService.carregarCidade(filtro);
-                            for (Endereco listaObjetoAtual : listaObjetos) {
-                               tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getLogradouro(), listaObjetoAtual.getCidade().getDescricao(), listaObjetoAtual.getBairro().getDescricao()});
-                           
-                            }
-                            break;
-                            case 3:
-                            listaObjetos = EnderecoService.carregarBairro(filtro);
-                            for (Endereco listaObjetoAtual : listaObjetos) {
-                               tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getLogradouro(), listaObjetoAtual.getCidade().getDescricao(), listaObjetoAtual.getBairro().getDescricao()});
-                           
-                            }
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(enderecoPesquisa, "Erro");
-                    }
-                        
-                        
-                        
+                       }
                 }
          
             Utilities.limpaComponentes(true, this.enderecoPesquisa.getPainelPesquisa());

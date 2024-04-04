@@ -1,6 +1,7 @@
 
 package model.bo;
 
+import java.io.Serializable;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class ItemCompra {
+public class ItemCompra implements Serializable{
     
     
     @Id

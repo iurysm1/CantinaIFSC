@@ -173,7 +173,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     }
 
     @Override
-    public List<Fornecedor> retrieve(String parString) {
+    public List<Fornecedor> retrieve(String parString, String parParametro) {
        Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select objeto.*, e.*, c.*, b.* from fornecedor objeto left outer join endereco e on objeto.endereco_id = e.id left outer join cidade c on e.cidade_id = c.id left outer join bairro b on e.bairro_id = b.id where nome like ?";
         PreparedStatement pstm = null;

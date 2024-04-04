@@ -31,7 +31,7 @@ public class CaixaDAO implements InterfaceDAO<Caixa>{
     }
 
     @Override
-    public List<Caixa> retrieve(String parString) {
+    public List<Caixa> retrieve(String parString, String parParametro) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -21,24 +21,9 @@ public class EnderecoService{
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Endereco> carregar(String parString) {
+    public static List<Endereco> carregar(String parString, String parParametro) {
         EnderecoDAO objetoDAO = new EnderecoDAO();
-        return objetoDAO.retrieve(parString);
-        }
-    
-    public static Endereco carregarCEP(String cep) {
-        EnderecoDAO objetoDAO = new EnderecoDAO();
-        return objetoDAO.retrieveCEP(cep);
-        }
-    
-    public static List<Endereco> carregarCidade(String parString) {
-        EnderecoDAO objetoDAO = new EnderecoDAO();
-        return objetoDAO.retrieveCidade(parString);
-        }
-    
-    public static List<Endereco> carregarBairro(String parString) {
-        EnderecoDAO objetoDAO = new EnderecoDAO();
-        return objetoDAO.retrieveBairro(parString);
+        return objetoDAO.retrieve(parString, parParametro);
         }
     
     public static void atualizar(Endereco objeto) {

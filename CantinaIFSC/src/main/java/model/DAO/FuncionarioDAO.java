@@ -202,7 +202,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario>{
     }
 
     @Override
-    public List<Funcionario> retrieve(String parString) {
+    public List<Funcionario> retrieve(String parString, String parParametro) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select objeto.*, e.*, c.*, b.* from funcionario objeto  left outer join endereco e on objeto.endereco_id = e.id left outer join cidade c on e.cidade_id = c.id left outer join bairro b on e.bairro_id = b.id where objeto.nome like ?";
         PreparedStatement pstm = null;

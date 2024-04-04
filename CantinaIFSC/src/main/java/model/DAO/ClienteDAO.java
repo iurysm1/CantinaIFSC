@@ -178,7 +178,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente>{
     }
 
     @Override
-    public List<Cliente> retrieve(String parString) {
+    public List<Cliente> retrieve(String parString, String parParametro) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select cli.*, e.*, c.*, b.* from cliente cli  left outer join endereco e on cli.endereco_id = e.id left outer join cidade c on e.cidade_id = c.id left outer join bairro b on e.bairro_id = b.id where cli.nome like ?";
         PreparedStatement pstm = null;

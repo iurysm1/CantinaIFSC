@@ -21,9 +21,9 @@ public class BairroService{
         return bairroDAO.retrieve(parPK);
     }
 
-    public static List<Bairro> carregar(String parString) {
+    public static List<Bairro> carregar(String parString, String parParametro) {
         BairroDAO bairroDAO = new BairroDAO();
-        return bairroDAO.retrieve(parString);
+        return bairroDAO.retrieve(parString, parParametro);
         }
 
     public static void atualizar(Bairro objeto) {

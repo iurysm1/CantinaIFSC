@@ -115,7 +115,7 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
     
 
     @Override
-    public List<Produto> retrieve(String parString) {
+    public List<Produto> retrieve(String parString, String parParametro) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "select * from produto where descricao like ?";
         PreparedStatement pstm = null;

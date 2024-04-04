@@ -44,7 +44,7 @@ public class ItemVendaDAO implements InterfaceDAO<ItemVenda>{
     }
 
     @Override
-    public List<ItemVenda> retrieve(String parString) {
+    public List<ItemVenda> retrieve(String parString, String parParametro) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -1,6 +1,7 @@
 
 package model.bo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class Venda {
+public class Venda implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

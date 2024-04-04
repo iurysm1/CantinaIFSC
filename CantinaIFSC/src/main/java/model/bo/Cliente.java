@@ -1,11 +1,12 @@
 
 package model.bo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements Serializable{
     
     @Column
     private String cpf;

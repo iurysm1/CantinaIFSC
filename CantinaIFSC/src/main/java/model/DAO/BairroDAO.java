@@ -58,7 +58,7 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
         
         List<Bairro> listaObjetos;
         
-        listaObjetos= entityManager.createQuery("Select b from bairro b",Bairro.class).getResultList();
+        listaObjetos= entityManager.createQuery("Select b from Bairro b",Bairro.class).getResultList();
         return listaObjetos;
 
     }
@@ -69,53 +69,39 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
     }
 
     @Override
-    public List<Bairro> retrieve(String parString) {
+    public List<Bairro> retrieve(String parString, String parParametro) {
         
         List<Bairro> listaObjetos;
-        listaObjetos= entityManager.createQuery("Select b from bairro b where b.descricao LIKE :parDescricao",Bairro.class).setParameter("parDescricao", "%"+parString+"%").getResultList();
+        listaObjetos= entityManager.createQuery("Select b from Bairro b where b." +parParametro+ "LIKE :parDescricao",Bairro.class).setParameter("parDescricao", "%"+parString+"%").getResultList();
+
                 
         return listaObjetos;
     }
 
     @Override
     public void update(Bairro objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE bairro "
-                + " SET bairro.descricao =?, "
-                + "bairro.status = ?"
-                + " WHERE bairro.id=?";
-
-        PreparedStatement pstm = null;
-
         try {
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getDescricao());
-            pstm.setInt(3, objeto.getId());
-            pstm.setString(2, objeto.getStatus());
-            pstm.execute();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm);
+            Bairro bairro = entityManager.find(Bairro.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
         }
 
     }
 
     @Override
     public void delete(Bairro objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "DELETE FROM bairro WHERE id = ?;";
-
-        PreparedStatement pstm = null;
-
         try {
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setInt(1, objeto.getId());
-            pstm.execute();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm);
+            Bairro bairro = entityManager.find(Bairro.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
         }
     }
 

@@ -69,22 +69,20 @@ public class BairroPesquisaController implements ActionListener {
                         tabela.addRow(new Object[]{listaObjetoAtual.getId(),listaObjetoAtual.getDescricao()});
                         }
                 }else{
-                        String filtro = this.bairroPesquisa.getPesquisa().getText();
+                        String filtro = this.bairroPesquisa.getPesquisa().getText().toLowerCase();
+                        String filtroParametro=this.bairroPesquisa.getFiltro().getSelectedItem().toString().toLowerCase();
                         List<Bairro> listaObjetos = new ArrayList<>();
-                        
-                        switch (this.bairroPesquisa.getFiltro().getSelectedIndex()) {
-                        case 0:
+                        System.out.println(filtro+filtroParametro);
+                        if(this.bairroPesquisa.getFiltro().getSelectedIndex()==0){
                             Bairro objeto = BairroService.carregar(Integer.parseInt(filtro));
                             tabela.addRow(new Object[]{objeto.getId(),objeto.getDescricao()});
-                            break;
-                        case 1:
-                            listaObjetos = BairroService.carregar(filtro);
-                            for (Bairro ObjetoAtual : listaObjetos) {
+                        }else{
+                            listaObjetos = BairroService.carregar(filtro, filtroParametro);
+
+                             for (Bairro ObjetoAtual : listaObjetos) {
                                tabela.addRow(new Object[]{ObjetoAtual.getId(), ObjetoAtual.getDescricao()});    
-                            }
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(bairroPesquisa, "Erro");
+                            }   
+                        }
                     }
                         
                         
@@ -97,4 +95,4 @@ public class BairroPesquisaController implements ActionListener {
     }
     
 
-}
+

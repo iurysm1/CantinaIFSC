@@ -1,15 +1,18 @@
  
 package model.bo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
-public class Carteirinha {
+public class Carteirinha implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,8 @@ public class Carteirinha {
     @Column
     private String datacancelamento;
     
-    @Column
+    @JoinColumn
+    @ManyToOne
     private Cliente cliente;
     
     @Column
