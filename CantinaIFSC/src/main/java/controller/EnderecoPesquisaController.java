@@ -56,7 +56,7 @@ public class EnderecoPesquisaController implements ActionListener{
                         }
                 }else{
                         String filtro = this.enderecoPesquisa.getPesquisa().getText();
-                        String filtroParametro = "cidade.descricao";
+                        String filtroParametro="";
                         //Voltar com o case ou fazer uma outra lógica
                         List<Endereco> listaObjetos = new ArrayList<>();
                         
@@ -64,7 +64,19 @@ public class EnderecoPesquisaController implements ActionListener{
                             Endereco objeto = EnderecoService.carregar(Integer.parseInt(filtro));
                             tabela.addRow(new Object[]{objeto.getId(), objeto.getLogradouro(), objeto.getCidade().getDescricao(), objeto.getBairro().getDescricao()});
                         }else{
-                            System.out.println(filtro+" "+filtroParametro);
+                            switch (this.enderecoPesquisa.getFiltro().getSelectedIndex()) {
+                                case 1:
+                                    //desc
+                                    filtroParametro="logradouro";
+                                    break;
+                                case 2:
+                                    filtroParametro="cidade.descricao";
+                                    break;
+                                case 3:
+                                    filtroParametro="bairro.descricao";
+                                    break;
+                            }
+                            System.out.println(filtroParametro+""+filtro);
                             listaObjetos = EnderecoService.carregar(filtro, filtroParametro);
                             for (Endereco listaObjetoAtual : listaObjetos) {
                                tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getLogradouro(), listaObjetoAtual.getCidade().getDescricao(), listaObjetoAtual.getBairro().getDescricao()});

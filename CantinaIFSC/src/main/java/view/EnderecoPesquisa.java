@@ -187,6 +187,11 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
         filtro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(231, 231, 231), 1, true));
         filtro.setLightWeightPopupEnabled(false);
         filtro.setVerifyInputWhenFocusTarget(false);
+        filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelPesquisaLayout = new javax.swing.GroupLayout(PainelPesquisa);
         PainelPesquisa.setLayout(PainelPesquisaLayout);
@@ -276,6 +281,10 @@ public class EnderecoPesquisa extends javax.swing.JFrame {
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
        
     }//GEN-LAST:event_sairActionPerformed
+
+    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filtroActionPerformed
 
     /**
      * @param args the command line arguments
