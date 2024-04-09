@@ -56,13 +56,13 @@ public class CarteirinhaTelaVendasController implements ActionListener{
     
 
     public void pesquisarCarteirinha(){
-        this.carteirinha =  service.CarteirinhaService.carregarCodigoBarras(this.carteirinhaTelaVendas.getCodigoBarras().getText());
+        this.carteirinha =  service.CarteirinhaService.carregar(this.carteirinhaTelaVendas.getCodigoBarras().getText(), "codigobarra").get(0);
         
         
         if(carteirinha.getCodigobarra()!=null){
             this.carteirinhaTelaVendas.getNomeCliente().setText(carteirinha.getCliente().getNome());
             this.carteirinhaTelaVendas.getIdCliente().setText(carteirinha.getCliente().getId()+"");
-            this.carteirinhaTelaVendas.getDataCancelamento().setText(carteirinha.getDatacancelamento());
+            this.carteirinhaTelaVendas.getDataCancelamento().setText(utilities.Utilities.dateToString(carteirinha.getDatacancelamento()));
 
             this.carteirinhaTelaVendas.getComputarVenda().setEnabled(true);
             this.carteirinhaTelaVendas.getLabelEND().setEnabled(true);

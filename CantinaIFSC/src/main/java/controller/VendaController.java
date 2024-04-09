@@ -156,11 +156,11 @@ public class VendaController{
             
             String codigodebarras=this.vendas.getCodigoBarras().getText().substring(parametroQuantidade+1);
             
-            produtoAtual=service.ProdutoService.carregarCodigoBarra(codigodebarras);
+            produtoAtual=service.ProdutoService.carregar(codigodebarras, "codigobarra").get(0);
             
         }else{
             String codigodebarras=this.vendas.getCodigoBarras().getText();
-            produtoAtual=service.ProdutoService.carregarCodigoBarra(codigodebarras);
+            produtoAtual=service.ProdutoService.carregar(codigodebarras, "codigobarra").get(0);
         }
         
         
