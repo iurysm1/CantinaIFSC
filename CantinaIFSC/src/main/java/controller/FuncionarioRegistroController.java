@@ -112,14 +112,12 @@ public class FuncionarioRegistroController implements ActionListener {
 
                 funcionarioRegistro.getId().setText(funcionario.getId() + "");
                 funcionarioRegistro.getNome().setText(funcionario.getNome());
-                funcionarioRegistro.getData().setText(funcionario.getDataNascimento());
+                funcionarioRegistro.getData().setText(Utilities.dateToString(funcionario.getDataNascimento()));
                 funcionarioRegistro.getCpf1().setText(funcionario.getCpf());
                 funcionarioRegistro.getRg().setText(funcionario.getRg());
                 funcionarioRegistro.getFone1().setText(funcionario.getFone1());
                 funcionarioRegistro.getFone2().setText(funcionario.getFone2());
                 funcionarioRegistro.getEmail().setText(funcionario.getEmail());
-                System.out.println(funcionario.getRg());
-                System.out.println(funcionario.getDataNascimento());
                 senha=funcionario.getSenha();
                 usuario=funcionario.getUsuario();
 
@@ -143,7 +141,6 @@ public class FuncionarioRegistroController implements ActionListener {
                 }
                 
                 idEndereco=funcionario.getEndereco().getId();
-                System.out.println(funcionario.getSenha()+"; usuario: "+funcionario.getUsuario());
             }
         }
     };
@@ -226,7 +223,7 @@ public class FuncionarioRegistroController implements ActionListener {
             funcionario.setNome(this.funcionarioRegistro.getNome().getText());
             funcionario.setCpf(this.funcionarioRegistro.getCpf1().getText());
             funcionario.setRg(this.funcionarioRegistro.getRg().getText());
-            funcionario.setDataNascimento(this.funcionarioRegistro.getData().getText());
+            funcionario.setDataNascimento(Utilities.stringToDate(this.funcionarioRegistro.getData().getText()));
             funcionario.setFone1(this.funcionarioRegistro.getFone1().getText());
             funcionario.setFone2(this.funcionarioRegistro.getFone2().getText());
             funcionario.setEmail(this.funcionarioRegistro.getEmail().getText());
@@ -248,8 +245,6 @@ public class FuncionarioRegistroController implements ActionListener {
                 
                 funcionarioSenha.setVisible(true);
                 FuncionarioService.adicionar(funcionario);
-                
-                System.out.println(senha+"; usuario: "+usuario);
                 
             } else {
                 Feedback feedback=new Feedback();
@@ -309,7 +304,7 @@ public class FuncionarioRegistroController implements ActionListener {
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
                     }else{
-                    Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.funcionarioRegistro.getCep().getText());
+                    Endereco enderecoPesquisa = EnderecoService.carregar(this.funcionarioRegistro.getCep().getText(), "cep").get(0);
                     idEndereco=enderecoPesquisa.getId();
                     this.funcionarioRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
                     this.funcionarioRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());     

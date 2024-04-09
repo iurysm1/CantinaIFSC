@@ -21,16 +21,11 @@ public class CidadeService {
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Cidade> carregar(String parString) {
+    public static List<Cidade> carregar(String parString, String parParametro) {
         CidadeDAO objetoDAO = new CidadeDAO();
-        return objetoDAO.retrieve(parString);
-        }
+        return objetoDAO.retrieve(parString, parParametro);
+    }
     
-    public static List<Cidade> carregarUF(String parString) {
-        CidadeDAO objetoDAO = new CidadeDAO();
-        return objetoDAO.retrieveUF(parString);
-        }
-
     public static void atualizar(Cidade objeto) {
        CidadeDAO objetoDAO = new CidadeDAO();
         objetoDAO.update(objeto);

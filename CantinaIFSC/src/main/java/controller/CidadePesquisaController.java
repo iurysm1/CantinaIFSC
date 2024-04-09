@@ -67,6 +67,7 @@ public class CidadePesquisaController implements ActionListener{
                         }
                 }else{
                         String filtro = this.cidadePesquisa.getPesquisa().getText();
+                        String filtroParametro="";
                         List<Cidade> listaObjetos = new ArrayList<>();
                         
                         switch (this.cidadePesquisa.getFiltro().getSelectedIndex()) {
@@ -75,20 +76,20 @@ public class CidadePesquisaController implements ActionListener{
                             tabela.addRow(new Object[]{objeto.getId(), objeto.getUf(),objeto.getDescricao()});
                             break;
                         case 1:
-                            listaObjetos = CidadeService.carregarUF(filtro);
-                            for (Cidade ObjetoAtual : listaObjetos) {
-                               tabela.addRow(new Object[]{ObjetoAtual.getId(), ObjetoAtual.getUf(), ObjetoAtual.getDescricao()});    
-                            }
+                            filtroParametro="uf";   
                             break;
+                            
                         case 2:
-                            listaObjetos = CidadeService.carregar(filtro);
-                            for (Cidade ObjetoAtual : listaObjetos) {
-                               tabela.addRow(new Object[]{ObjetoAtual.getId(), ObjetoAtual.getUf(), ObjetoAtual.getDescricao()});    
-                            }
+                            filtroParametro="descricao";
                             break;
                         default:
                             JOptionPane.showMessageDialog(cidadePesquisa, "Erro");
                     }
+                        
+                    listaObjetos = CidadeService.carregar(filtro, filtroParametro);
+                            for (Cidade ObjetoAtual : listaObjetos) {
+                               tabela.addRow(new Object[]{ObjetoAtual.getId(), ObjetoAtual.getUf(), ObjetoAtual.getDescricao()});    
+                            }
                         
                         
                         

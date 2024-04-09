@@ -110,6 +110,7 @@ public class FornecedorRegistroController implements ActionListener {
                 fornecedorRegistro.getEmail().setText(fornecedor.getEmail());
                 fornecedorRegistro.getCnpj().setText(fornecedor.getCnpj());
                 fornecedorRegistro.getFone1().setText(fornecedor.getFone1());
+                System.out.println(fornecedor.getFone1());
                 fornecedorRegistro.getFone2().setText(fornecedor.getFone2());
                 fornecedorRegistro.getInscricaoEstadual().setText(fornecedor.getInscricaoestadual());
 
@@ -267,7 +268,7 @@ public class FornecedorRegistroController implements ActionListener {
                     feedbackEnderecoController.atualizacaoLabel();
                     feedbackENDERECO.setVisible(true);
                     }else{
-                        Endereco enderecoPesquisa = EnderecoService.carregarCEP(this.fornecedorRegistro.getCep().getText());
+                        Endereco enderecoPesquisa = EnderecoService.carregar(this.fornecedorRegistro.getCep().getText(), "cep").get(0);
                         idEndereco=enderecoPesquisa.getId();
                         this.fornecedorRegistro.getBairro().setText(enderecoPesquisa.getBairro().getDescricao());
                         this.fornecedorRegistro.getCidade().setText(enderecoPesquisa.getCidade().getDescricao());

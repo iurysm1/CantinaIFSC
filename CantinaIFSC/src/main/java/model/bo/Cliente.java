@@ -2,6 +2,7 @@
 package model.bo;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -18,14 +19,14 @@ public class Cliente extends Pessoa implements Serializable{
     private String matricula;
     
     @Column
-    private String dataNascimento;
+    private Date dataNascimento;
     
     
 
     public Cliente() {
     }
 
-    public Cliente(String cpf, String rg, String matricula, String dataNascimento, int id, String nome, String fone1, String fone2, String email, String status, String complementoEndereco, Endereco endereco) {
+    public Cliente(String cpf, String rg, String matricula, Date dataNascimento, int id, String nome, String fone1, String fone2, String email, String status, String complementoEndereco, Endereco endereco) {
         super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cpf = cpf;
         this.rg = rg;
@@ -61,11 +62,11 @@ public class Cliente extends Pessoa implements Serializable{
         this.matricula = matricula;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

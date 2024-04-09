@@ -84,6 +84,18 @@ public class Utilities {
         
     }
     
+    public static String dateToString(Date data){
+        try {
+            SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+
+            return formatoSaida.format(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+    
     public static String stringToDateTime(String Antigadata) throws ParseException{
         
         Date dataSQL = null;

@@ -27,20 +27,10 @@ public class CarteirinhaService {
        CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
         return objetoDAO.retrieve(parPK);
     }
-    
-    public static Carteirinha carregarIdCliente(int parPK) {
-       CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
-        return objetoDAO.retrieveIdCliente(parPK);
-    }
-    
-    public static Carteirinha carregarCodigoBarras(String parPK) {
-       CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
-        return objetoDAO.retrieveCodigoBarras(parPK);
-    }
 
-    public static List<Carteirinha> carregar(String parString) {
+    public static List<Carteirinha> carregar(String parString, String parParametro) {
         CarteirinhaDAO objetoDAO = new CarteirinhaDAO();
-        return objetoDAO.retrieve(parString);
+        return objetoDAO.retrieve(parString, parParametro);
         }
 
     

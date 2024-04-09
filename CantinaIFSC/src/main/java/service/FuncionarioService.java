@@ -22,15 +22,10 @@ public class FuncionarioService {
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Funcionario> carregar(String parString) {
+    public static List<Funcionario> carregar(String parString, String parParametro) {
         FuncionarioDAO objetoDAO = new FuncionarioDAO();
-        return objetoDAO.retrieve(parString);
-        }
-    
-    public static List<Funcionario> carregarCPF(String parString) {
-        FuncionarioDAO objetoDAO = new FuncionarioDAO();
-        return objetoDAO.retrieveCPF(parString);
-        }
+        return objetoDAO.retrieve(parString, parParametro);
+    }
     
     public static void atualizar(Funcionario objeto) {
        FuncionarioDAO objetoDAO = new FuncionarioDAO();

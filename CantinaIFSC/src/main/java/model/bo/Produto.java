@@ -27,7 +27,7 @@ public class Produto implements Serializable{
     @Column
     private float preco;
     
-    @Column
+    @Column(name="caminho_foto")
     private String CaminhoFotoProduto;
     
 

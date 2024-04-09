@@ -2,6 +2,7 @@
 package model.bo;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +23,10 @@ public class Carteirinha implements Serializable{
     private String codigobarra;
     
     @Column
-    private String datageracao;
+    private Date datageracao;
     
     @Column
-    private String datacancelamento;
+    private Date datacancelamento;
     
     @JoinColumn
     @ManyToOne
@@ -38,7 +39,7 @@ public class Carteirinha implements Serializable{
     public Carteirinha() {
     }
 
-    public Carteirinha(int id, String codigobarra, String datageracao, String datacancelamento, Cliente cliente, String status) {
+    public Carteirinha(int id, String codigobarra, Date datageracao, Date datacancelamento, Cliente cliente, String status) {
         this.id = id;
         this.codigobarra = codigobarra;
         this.datageracao = datageracao;
@@ -66,19 +67,19 @@ public class Carteirinha implements Serializable{
         this.codigobarra = codigobarra;
     }
 
-    public String getDatageracao() {
+    public Date getDatageracao() {
         return datageracao;
     }
 
-    public void setDatageracao(String datageracao) {
+    public void setDatageracao(Date datageracao) {
         this.datageracao = datageracao;
     }
 
-    public String getDatacancelamento() {
+    public Date getDatacancelamento() {
         return datacancelamento;
     }
 
-    public void setDatacancelamento(String datacancelamento) {
+    public void setDatacancelamento(Date datacancelamento) {
         this.datacancelamento = datacancelamento;
     }
 

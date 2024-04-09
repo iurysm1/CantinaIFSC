@@ -1,4 +1,3 @@
-
 package controller;
 
 import model.DAO.Persiste;
@@ -16,40 +15,38 @@ import model.bo.Produto;
 import service.ProdutoService;
 import view.ProdutoPesquisa;
 
-public class ProdutoPesquisaController implements ActionListener{
-    
+public class ProdutoPesquisaController implements ActionListener {
+
     ProdutoPesquisa produtoPesquisa;
-    
 
     public ProdutoPesquisaController(ProdutoPesquisa produtoPesquisa) {
         this.produtoPesquisa = produtoPesquisa;
-        
+
         this.produtoPesquisa.getSair().addActionListener(this);
         this.produtoPesquisa.getPesquisar().addActionListener(this);
         this.produtoPesquisa.getCarregar().addActionListener(this);
-        
-        
+
         DefaultTableModel tabela = (DefaultTableModel) this.produtoPesquisa.getTabelaDados().getModel();
-        List<Produto> listaObjetos=new ArrayList<>();
-        listaObjetos=ProdutoService.carregar();
-        
+        List<Produto> listaObjetos = new ArrayList<>();
+        listaObjetos = ProdutoService.carregar();
+
         for (Produto listaObjeto : listaObjetos) {
-            tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
+            tabela.addRow(new Object[]{listaObjeto.getId(), listaObjeto.getDescricao(), listaObjeto.getCodigobarra(), listaObjeto.getPreco()});
         }
-        
+
         this.produtoPesquisa.getTabelaDados().getSelectionModel().addListSelectionListener(selectionListener);
     }
-    
+
     ListSelectionListener selectionListener = new ListSelectionListener() {
-        
+
         @Override
-        public void valueChanged(ListSelectionEvent e){
-            if(e.getValueIsAdjusting()){
+        public void valueChanged(ListSelectionEvent e) {
+            if (e.getValueIsAdjusting()) {
                 int selectedRow = produtoPesquisa.getTabelaDados().getSelectedRow();
-                if(selectedRow!=-1){
-                    int selectedItem= (int) produtoPesquisa.getTabelaDados().getValueAt(selectedRow, 0);
+                if (selectedRow != -1) {
+                    int selectedItem = (int) produtoPesquisa.getTabelaDados().getValueAt(selectedRow, 0);
                     ImageIcon icon = new ImageIcon(ProdutoService.carregar(selectedItem).getCaminhoFotoProduto());
-                    
+
                     produtoPesquisa.setIcon(icon);
                     produtoPesquisa.getPainelFoto().setBackground(Color.white);
                 }
@@ -59,67 +56,57 @@ public class ProdutoPesquisaController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if(e.getSource()==this.produtoPesquisa.getSair()){
-            controller.ProdutoRegistroController.codigo=0;
+
+        if (e.getSource() == this.produtoPesquisa.getSair()) {
+            controller.ProdutoRegistroController.codigo = 0;
             this.produtoPesquisa.dispose();
-            
-        }else if(e.getSource()==this.produtoPesquisa.getPesquisar()){
+
+        } else if (e.getSource() == this.produtoPesquisa.getPesquisar()) {
             DefaultTableModel tabela = (DefaultTableModel) this.produtoPesquisa.getTabelaDados().getModel();
             tabela.setRowCount(0);
-            
-            List<Produto> listaObjetos=new ArrayList<>();
-            
-            if(this.produtoPesquisa.getPesquisa().getText().equals("")){
-                listaObjetos=ProdutoService.carregar();
+
+            List<Produto> listaObjetos = new ArrayList<>();
+
+            if (this.produtoPesquisa.getPesquisa().getText().equals("")) {
+                listaObjetos = ProdutoService.carregar();
                 for (Produto listaObjeto : listaObjetos) {
-                    tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
+                    tabela.addRow(new Object[]{listaObjeto.getId(), listaObjeto.getDescricao(), listaObjeto.getCodigobarra(), listaObjeto.getPreco()});
                 }
-            }else{
-                String filtro= this.produtoPesquisa.getPesquisa().getText();
-                
+            } else {
+                String filtro = this.produtoPesquisa.getPesquisa().getText();
+                String filtroParametro = "";
                 switch (this.produtoPesquisa.getFiltro().getSelectedIndex()) {
                     case 0:
                         Produto objeto = ProdutoService.carregar(Integer.parseInt(filtro));
-                        tabela.addRow(new Object[]{objeto.getId(),objeto.getDescricao(),objeto.getCodigobarra(),objeto.getPreco()});
+                        tabela.addRow(new Object[]{objeto.getId(), objeto.getDescricao(), objeto.getCodigobarra(), objeto.getPreco()});
                         break;
-                    
+
                     case 1:
-                        listaObjetos = ProdutoService.carregarDescricao(filtro);
-
-                        for (Produto listaObjeto : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
-                        } 
+                        filtroParametro = "descricao";
                         break;
-                        
+
                     case 2:
-                        objeto = ProdutoService.carregarCodigoBarra(filtro);
-                        tabela.addRow(new Object[]{objeto.getId(),objeto.getDescricao(),objeto.getCodigobarra(),objeto.getPreco()});
+                        filtroParametro = "codigobarra";
                         break;
-                        case 3:
-                       listaObjetos = ProdutoService.carregarPreco(Float.parseFloat(filtro));
-
-                        for (Produto listaObjeto : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjeto.getId(),listaObjeto.getDescricao(),listaObjeto.getCodigobarra(),listaObjeto.getPreco()});
-                        } 
+                    case 3:
+                        filtroParametro = "preco";
                         break;
                     default:
                         throw new AssertionError();
                 }
+
+                listaObjetos = ProdutoService.carregar(filtro, filtroParametro);
+
+                for (Produto listaObjeto : listaObjetos) {
+                    tabela.addRow(new Object[]{listaObjeto.getId(), listaObjeto.getDescricao(), listaObjeto.getCodigobarra(), listaObjeto.getPreco()});
+                }
             }
-            
-            
-            
-            
-            
-            
-        }else if(e.getSource()==this.produtoPesquisa.getCarregar()){
-            controller.ProdutoRegistroController.codigo=(int) this.produtoPesquisa.getTabelaDados().getValueAt(this.produtoPesquisa.getTabelaDados().getSelectedRow(), 0);
-            
+
+        } else if (e.getSource() == this.produtoPesquisa.getCarregar()) {
+            controller.ProdutoRegistroController.codigo = (int) this.produtoPesquisa.getTabelaDados().getValueAt(this.produtoPesquisa.getTabelaDados().getSelectedRow(), 0);
+
             this.produtoPesquisa.dispose();
         }
     }
-    
-    
-    
+
 }

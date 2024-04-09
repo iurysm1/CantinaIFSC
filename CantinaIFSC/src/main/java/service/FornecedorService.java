@@ -21,15 +21,10 @@ public class FornecedorService {
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Fornecedor> carregar(String parString) {
+    public static List<Fornecedor> carregar(String parString, String parParametro) {
         FornecedorDAO objetoDAO = new FornecedorDAO();
-        return objetoDAO.retrieve(parString);
-        }
-    
-    public static List<Fornecedor> carregarCNPJ(String parString) {
-        FornecedorDAO objetoDAO = new FornecedorDAO();
-        return objetoDAO.retrieveCNPJ(parString);
-        }
+        return objetoDAO.retrieve(parString, parParametro);
+    }
     
     public static void atualizar(Fornecedor objeto) {
        FornecedorDAO objetoDAO = new FornecedorDAO();

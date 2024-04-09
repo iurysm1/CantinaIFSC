@@ -22,14 +22,9 @@ public class ClienteService {
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Cliente> carregar(String parString) {
+    public static List<Cliente> carregar(String parString, String parParametro) {
         ClienteDAO objetoDAO = new ClienteDAO();
-        return objetoDAO.retrieve(parString);
-        }
-    
-    public static List<Cliente> carregarCPF(String parString) {
-        ClienteDAO objetoDAO = new ClienteDAO();
-        return objetoDAO.retrieveCPF(parString);
+        return objetoDAO.retrieve(parString, parParametro);
         }
     
     public static void atualizar(Cliente objeto) {

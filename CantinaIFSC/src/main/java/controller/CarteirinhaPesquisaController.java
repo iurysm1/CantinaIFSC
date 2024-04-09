@@ -4,6 +4,7 @@ package controller;
 import static model.DAO.Persiste.carteirinhas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.DAO.Persiste;
@@ -42,12 +43,19 @@ public class CarteirinhaPesquisaController implements ActionListener{
             DefaultTableModel tabela = (DefaultTableModel) this.carteirinhaPesquisa.getTabelaDados().getModel();
             tabela.setRowCount(0);
             if(this.carteirinhaPesquisa.getPesquisa().getText().equals("")){
+                
+                
                 for (Carteirinha carteirinha : CarteirinhaService.carregar()) {
                 tabela.addRow(new Object[]{carteirinha.getId(), carteirinha.getCliente().getId(), carteirinha.getCliente().getNome()});
             }
-            }else{
-                String filtro= this.carteirinhaPesquisa.getPesquisa().getText();
                 
+                
+            }else{
+                
+                
+                String filtro= this.carteirinhaPesquisa.getPesquisa().getText();
+                String filtroParametro="";
+                List<Carteirinha> listaObjetos= new ArrayList<>();
                 switch (this.carteirinhaPesquisa.getFiltro1().getSelectedIndex()) {
                     case 0:
                         Carteirinha objetoAtual = CarteirinhaService.carregar(Integer.parseInt(filtro));
@@ -55,20 +63,19 @@ public class CarteirinhaPesquisaController implements ActionListener{
                         break;
                     
                     case 1:
-                        Carteirinha objetoAtual2 = CarteirinhaService.carregarIdCliente(Integer.parseInt(filtro));
-                        tabela.addRow(new Object[]{objetoAtual2.getId(),objetoAtual2.getCliente().getId(),objetoAtual2.getCliente().getNome()});
+                        filtroParametro="cliente.id";
                         break;
                         
                     case 2:
-                        List<Carteirinha>listaObjetos = CarteirinhaService.carregar(filtro);
-
-                        for (Carteirinha listaObjetoAtual : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCliente().getId(), listaObjetoAtual.getCliente().getNome()});
-                        } 
+                        filtroParametro="cliente.nome";
                         break;
                     default:
                         throw new AssertionError();
                 }
+                listaObjetos=CarteirinhaService.carregar(filtro, filtroParametro);
+                for (Carteirinha listaObjetoAtual : listaObjetos) {
+                    tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCliente().getId(), listaObjetoAtual.getCliente().getNome()});
+                        } 
             }
             
            

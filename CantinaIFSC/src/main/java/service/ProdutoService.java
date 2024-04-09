@@ -21,19 +21,9 @@ public class ProdutoService {
         return objetoDAO.retrieve(parPK);
     }
 
-    public static List<Produto> carregarDescricao(String parString) {
+    public static List<Produto> carregar(String parString, String parParametro) {
         ProdutoDAO objetoDAO = new ProdutoDAO();
-        return objetoDAO.retrieve(parString);
-        }
-    
-    public static Produto carregarCodigoBarra(String parString) {
-        ProdutoDAO objetoDAO = new ProdutoDAO();
-        return objetoDAO.retrieveCodigoBarras(parString);
-        }
-    
-    public static List<Produto> carregarPreco(Float parFloat) {
-        ProdutoDAO objetoDAO = new ProdutoDAO();
-        return objetoDAO.retrievePreco(parFloat);
+        return objetoDAO.retrieve(parString, parParametro);
         }
     
     public static void atualizar(Produto objeto) {

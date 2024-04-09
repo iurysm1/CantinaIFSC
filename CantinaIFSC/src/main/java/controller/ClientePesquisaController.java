@@ -53,6 +53,7 @@ public class ClientePesquisaController implements ActionListener{
             
             tabela.setRowCount(0);
             List<Cliente> listaObjetos = new ArrayList<>();
+            
             if(this.clientePesquisa.getPesquisa().getText().equalsIgnoreCase("")){
                listaObjetos = ClienteService.carregar();
 
@@ -61,6 +62,7 @@ public class ClientePesquisaController implements ActionListener{
             } 
             }else{
                 String filtro= this.clientePesquisa.getPesquisa().getText();
+                String filtroParametro="";
                 
                 switch (this.clientePesquisa.getFiltro().getSelectedIndex()) {
                     case 0:
@@ -69,23 +71,21 @@ public class ClientePesquisaController implements ActionListener{
                         break;
                     
                     case 1:
-                        listaObjetos = ClienteService.carregarCPF(filtro);
-
-                        for (Cliente listaObjetoAtual : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
-                        } 
+                        filtroParametro="cpf";
                         break;
                         
                     case 2:
-                        listaObjetos = ClienteService.carregar(filtro);
-
-                        for (Cliente listaObjetoAtual : listaObjetos) {
-                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
-                        } 
+                        filtroParametro="nome";
                         break;
                     default:
                         throw new AssertionError();
                 }
+                
+                listaObjetos = ClienteService.carregar(filtro, filtroParametro);
+
+                        for (Cliente listaObjetoAtual : listaObjetos) {
+                            tabela.addRow(new Object[]{listaObjetoAtual.getId(), listaObjetoAtual.getCpf(), listaObjetoAtual.getNome()});
+                        } 
             }
             
             
