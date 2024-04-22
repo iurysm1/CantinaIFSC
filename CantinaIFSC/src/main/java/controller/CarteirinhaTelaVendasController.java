@@ -20,6 +20,8 @@ public class CarteirinhaTelaVendasController implements ActionListener{
         
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(atalhos);
         this.carteirinhaTelaVendas.getPesquisar().addActionListener(this);
+        this.carteirinhaTelaVendas.getComputarVenda().addActionListener(this);
+
     }
     
     private KeyEventDispatcher atalhos = new KeyEventDispatcher() {
@@ -57,8 +59,6 @@ public class CarteirinhaTelaVendasController implements ActionListener{
 
     public void pesquisarCarteirinha(){
         this.carteirinha =  service.CarteirinhaService.carregar(this.carteirinhaTelaVendas.getCodigoBarras().getText(), "codigobarra").get(0);
-        
-        
         if(carteirinha.getCodigobarra()!=null){
             this.carteirinhaTelaVendas.getNomeCliente().setText(carteirinha.getCliente().getNome());
             this.carteirinhaTelaVendas.getIdCliente().setText(carteirinha.getCliente().getId()+"");
@@ -72,6 +72,7 @@ public class CarteirinhaTelaVendasController implements ActionListener{
     }
     
     public void cadastroCarteirinha(){
+        System.out.println(this.carteirinha.getId());
         VendaController.idCarteirinha=this.carteirinha.getId();
         this.carteirinhaTelaVendas.dispose();
     }

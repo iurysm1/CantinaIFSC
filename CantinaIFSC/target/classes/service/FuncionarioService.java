@@ -7,7 +7,7 @@ import model.bo.Funcionario;
 
 public class FuncionarioService {
     
-    public static void  adicionar(Funcionario objeto) {
+    public static void adicionar(Funcionario objeto) {
         FuncionarioDAO objetoDAO = new FuncionarioDAO();
         objetoDAO.create(objeto);
     }

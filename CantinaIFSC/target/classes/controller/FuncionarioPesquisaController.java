@@ -38,8 +38,6 @@ class FuncionarioPesquisaController implements ActionListener {
             this.funcionarioPesquisa.dispose();
 
         } else if (e.getSource() == this.funcionarioPesquisa.getPesquisar()) {
-            Persiste.getInstance();
-
             DefaultTableModel tabela = (DefaultTableModel) this.funcionarioPesquisa.getTabelaDados().getModel();
             tabela.setRowCount(0);
             List<Funcionario> listaObjetos = new ArrayList<>();

@@ -4,6 +4,7 @@ package utilities;
 import controller.FeedbackEnderecoController;
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -109,25 +110,16 @@ public class Utilities {
         
     }
     
-     public static String converterFormato(String dataHoraOriginal) {
-        try {
-            // Criar um objeto SimpleDateFormat para o formato de entrada
-            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            // Converter a string de data e hora para um objeto Date
-            Date data = formatoEntrada.parse(dataHoraOriginal);
+    public static String formatToDateTime(Timestamp Antigadata) throws ParseException{
+        
+        Date dataSQL = null;
 
-            // Criar um objeto SimpleDateFormat para o formato de saída desejado
-            SimpleDateFormat formatoSaida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
-            // Formatar a data no novo formato
-            return formatoSaida.format(data);
-
-        } catch (ParseException e) {
-            // Tratar exceções de análise (por exemplo, formato de entrada inválido)
-            e.printStackTrace();
-            return null;
-        }
+        
+        SimpleDateFormat newDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat old = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return newDate.format(Antigadata);        
     }
+
     
     
     public static boolean isDataEmpty(JTextField... campos){

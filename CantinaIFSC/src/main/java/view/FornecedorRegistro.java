@@ -92,7 +92,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         this.email = email;
     }
 
-    public JTextField getFone1() {
+    public JFormattedTextField getFone1() {
         return fone1;
     }
 
@@ -100,7 +100,7 @@ public class FornecedorRegistro extends javax.swing.JFrame {
         this.fone1 = fone1;
     }
 
-    public JTextField getFone2() {
+    public JFormattedTextField getFone2() {
         return fone2;
     }
 

@@ -2,6 +2,7 @@
 package model.bo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,10 +20,10 @@ public class Venda implements Serializable{
     private int id;
     
     @Column
-    private String datahoravenda;
+    private Timestamp datahoravenda;
     
     @Column
-    private String obeservacao;
+    private String observacao;
     
     @Column
     private float valordesconto;
@@ -45,10 +46,10 @@ public class Venda implements Serializable{
     public Venda() {
     }
 
-    public Venda(int id, String datahoravenda, String obeservacao, float valordesconto, String flagtipodesconto, String status, Funcionario funcionario, Carteirinha carteirinha) {
+    public Venda(int id, Timestamp datahoravenda, String obeservacao, float valordesconto, String flagtipodesconto, String status, Funcionario funcionario, Carteirinha carteirinha) {
         this.id = id;
         this.datahoravenda = datahoravenda;
-        this.obeservacao = obeservacao;
+        this.observacao = obeservacao;
         this.valordesconto = valordesconto;
         this.flagtipodesconto = flagtipodesconto;
         this.status = status;
@@ -66,20 +67,20 @@ public class Venda implements Serializable{
         this.id = id;
     }
 
-    public String getDatahoravenda() {
+    public Timestamp getDatahoravenda() {
         return datahoravenda;
     }
 
-    public void setDatahoravenda(String datahoravenda) {
+    public void setDatahoravenda(Timestamp datahoravenda) {
         this.datahoravenda = datahoravenda;
     }
 
     public String getObeservacao() {
-        return obeservacao;
+        return observacao;
     }
 
     public void setObeservacao(String obeservacao) {
-        this.obeservacao = obeservacao;
+        this.observacao = obeservacao;
     }
 
     public float getValordesconto() {

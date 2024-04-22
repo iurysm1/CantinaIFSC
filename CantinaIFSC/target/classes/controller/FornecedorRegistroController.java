@@ -8,6 +8,11 @@ import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import model.DAO.Persiste;
 import model.bo.Endereco;
 import model.bo.Fornecedor;
@@ -109,8 +114,15 @@ public class FornecedorRegistroController implements ActionListener {
                 fornecedorRegistro.getNome().setText(fornecedor.getNome());// ou razao social
                 fornecedorRegistro.getEmail().setText(fornecedor.getEmail());
                 fornecedorRegistro.getCnpj().setText(fornecedor.getCnpj());
+                
+                try {
+                    verificaPhone1(fornecedor.getFone1());
+                    verificaPhone2(fornecedor.getFone2());
+                } catch (ParseException ex) {
+                    Logger.getLogger(FornecedorRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 fornecedorRegistro.getFone1().setText(fornecedor.getFone1());
-                System.out.println(fornecedor.getFone1());
                 fornecedorRegistro.getFone2().setText(fornecedor.getFone2());
                 fornecedorRegistro.getInscricaoEstadual().setText(fornecedor.getInscricaoestadual());
 
@@ -277,6 +289,25 @@ public class FornecedorRegistroController implements ActionListener {
                         this.fornecedorRegistro.getCep().setText(enderecoPesquisa.getCep());
                 }
             }
+        }
+    }
+    
+    
+    public void verificaPhone1(String texto) throws ParseException{
+        if(texto.length()==13){
+            this.fornecedorRegistro.getFone1().setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
+        }else{
+            this.fornecedorRegistro.getFone1().setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)#####-####")));
+            
+        }
+    }
+    
+    public void verificaPhone2(String texto) throws ParseException{
+        if(texto.length()==13){
+            this.fornecedorRegistro.getFone2().setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
+        }else{
+            this.fornecedorRegistro.getFone2().setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)#####-####")));
+            
         }
     }
 

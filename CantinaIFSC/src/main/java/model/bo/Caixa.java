@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import java.sql.Timestamp;
 @Entity
 public class Caixa implements Serializable{
     
@@ -18,10 +18,10 @@ public class Caixa implements Serializable{
     private int id;
     
     @Column
-    private String datahoraabertura;
+    private Timestamp datahoraabertura;
     
     @Column
-    private String datahorafechamento;
+    private Timestamp datahorafechamento;
     
     @Column
     private float valorabertura;
@@ -42,7 +42,7 @@ public class Caixa implements Serializable{
     public Caixa() {
     }
 
-    public Caixa(int id, String datahoraabertura, String datahorafechamento, float valorabertura, float valorfechamento, String observacao, String status, Funcionario funcionario) {
+    public Caixa(int id, Timestamp datahoraabertura, Timestamp datahorafechamento, float valorabertura, float valorfechamento, String observacao, String status, Funcionario funcionario) {
         this.id = id;
         this.datahoraabertura = datahoraabertura;
         this.datahorafechamento = datahorafechamento;
@@ -61,19 +61,19 @@ public class Caixa implements Serializable{
         this.id = id;
     }
 
-    public String getDatahoraabertura() {
+    public Timestamp getDatahoraabertura() {
         return datahoraabertura;
     }
 
-    public void setDatahoraabertura(String datahoraabertura) {
+    public void setDatahoraabertura(Timestamp datahoraabertura) {
         this.datahoraabertura = datahoraabertura;
     }
 
-    public String getDatahorafechamento() {
+    public Timestamp getDatahorafechamento() {
         return datahorafechamento;
     }
 
-    public void setDatahorafechamento(String datahorafechamento) {
+    public void setDatahorafechamento(Timestamp datahorafechamento) {
         this.datahorafechamento = datahorafechamento;
     }
 

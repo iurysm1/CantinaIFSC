@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -39,6 +43,14 @@ public class VendaController{
     Funcionario funcionario = new Funcionario();
     List<ItemVenda> itensDaTabela = new ArrayList<>();
    
+    WindowListener disposeCarteirinhaListener = new WindowAdapter() {
+    
+        @Override
+        public void windowClosed(WindowEvent e){
+            
+        }
+    
+    };
     
     KeyAdapter atalhos = new KeyAdapter() {
         @Override
@@ -92,38 +104,50 @@ public class VendaController{
         }
     };
     
-    
-    
+    WindowListener disposeListener;
     public VendaController(Vendas vendas) {
+        
+        disposeListener= new WindowAdapter() {
+            
+            @Override
+            public void windowClosed(WindowEvent e){
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(iniciarFaturacao);
+                cancelarVenda();
+            }
+        };
         
         this.vendas=vendas;
         this.funcionario=service.FuncionarioService.carregar(idFuncionario);
         this.vendas.getIdFuncionario().setText(this.funcionario.getId()+"");
         this.vendas.getNomeFuncionario().setText(this.funcionario.getNome());
         this.vendas.getCodigoBarras().addKeyListener(atalhos);
-        
+        this.vendas.addWindowListener(disposeListener);
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(iniciarFaturacao);
     }
 
     
     public void novaFaturacao(){
-        abrirFechar(true);
-        Venda venda = new Venda();
         
-        venda.setStatus("A");
-        venda.setObeservacao("");
-        venda.setFuncionario(funcionario);
         
         CarteirinhaTelaVendas carteirinha = new CarteirinhaTelaVendas(vendas, true);
         CarteirinhaTelaVendasController carteirinhaController = new CarteirinhaTelaVendasController(carteirinha);
         carteirinha.setVisible(true);
-        venda.setCarteirinha(service.CarteirinhaService.carregar(idCarteirinha));
-        
-        vendas.getCodigoBarras().setEnabled(true);
-        venda.setFlagtipodesconto("S");
-        venda.setValordesconto(0);
-        this.vendas.getCodigoBarras().requestFocus();
-        this.faturacao=venda;
+        System.out.println("teste");
+        if(idCarteirinha!=0){
+            Venda venda = new Venda();
+            venda.setCarteirinha(service.CarteirinhaService.carregar(idCarteirinha));
+            abrirFechar(true);
+
+            venda.setStatus("A");
+            venda.setObeservacao("");
+            venda.setFuncionario(funcionario);
+
+            vendas.getCodigoBarras().setEnabled(true);
+            venda.setFlagtipodesconto("S");
+            venda.setValordesconto(0);
+            this.vendas.getCodigoBarras().requestFocus();
+            this.faturacao=venda;
+        } 
         }
     
     public ItemVenda itemVenda(){
@@ -201,7 +225,8 @@ public class VendaController{
     
     public void computarVenda(){
         DefaultTableModel tabelaItens = (DefaultTableModel) vendas.getItens().getModel();
-        
+        Timestamp datahoravenda = new Timestamp(System.currentTimeMillis());
+        this.faturacao.setDatahoravenda(datahoravenda);
         if(tabelaItens.getRowCount()==0){
             Utilities.feedbackErros(6);
         }else{
@@ -225,6 +250,7 @@ public class VendaController{
             FeedbackController feedbackController= new FeedbackController(feedback);
             feedbackController.cadastroClasse(9);
             feedback.setVisible(true);
+            
                         
         }
     }
@@ -281,6 +307,17 @@ public class VendaController{
     
     public void setObservacao(){
         this.faturacao.setObeservacao(tipopagamento);       
+    }
+    
+    public void cancelarVenda(){
+        idCarteirinha=0;
+        idFuncionario=0;
+        valorEmCedulas=0;
+        tipopagamento="";
+        valorTotalVenda=0;
+        faturacao=null;
+        funcionario =null;
+        itensDaTabela = null;
     }
 
     

@@ -363,7 +363,7 @@ public class CaixaView extends javax.swing.JFrame {
         jLabel6.setText("Nome do funcionário");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("Valor inicial do caixa");
+        jLabel7.setText("Valor de abertura de caixa");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Data de abertura:");
@@ -381,10 +381,10 @@ public class CaixaView extends javax.swing.JFrame {
         jLabel13.setText("Valor em Cédula:");
 
         dataAbertura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dataAbertura.setText("00/00/0000");
+        dataAbertura.setText("00/00/0000 00:00:00");
 
         dataFechamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dataFechamento.setText("00/00/0000");
+        dataFechamento.setText("00/00/0000 00:00:00");
 
         valorDebito.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         valorDebito.setText("0.00");
@@ -396,7 +396,7 @@ public class CaixaView extends javax.swing.JFrame {
         valorCedula.setText("0.00");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("Valor fechamento:");
+        jLabel14.setText("Valor fechamento de caixa:");
 
         valorFechamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         valorFechamento.setText("0.00");

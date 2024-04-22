@@ -1,6 +1,7 @@
 
 package service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import model.DAO.VendaDAO;
 import model.bo.Venda;
@@ -21,7 +22,7 @@ public class VendaService {
         return objetoDAO.retrieve(parPK);
     }
      
-     public static List<Venda> VendasDateTime(String dataAbertura, String dataFechamento) {
+     public static List<Venda> VendasDateTime(Timestamp dataAbertura, Timestamp dataFechamento) {
         VendaDAO objetoDAO = new VendaDAO();
         return objetoDAO.retornarVendas(dataAbertura, dataFechamento);
     }

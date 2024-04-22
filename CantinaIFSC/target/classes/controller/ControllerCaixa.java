@@ -4,12 +4,17 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.bo.Caixa;
 import model.bo.Funcionario;
 import model.bo.ItemVenda;
 import model.bo.Venda;
+import service.FuncionarioService;
 import view.CaixaView;
 
 public class ControllerCaixa implements ActionListener{
@@ -43,15 +48,15 @@ public class ControllerCaixa implements ActionListener{
                  
               utilities.Utilities.feedbackErros(11);
             }else{
-                Funcionario funcionarioAtual=service.FuncionarioService.carregar(Integer.parseInt(this.caixaView.getIdFuncionario().getText()));  
+                Funcionario funcionarioAtual= FuncionarioService.carregar(Integer.parseInt(this.caixaView.getIdFuncionario().getText()));  
               
                 if(funcionarioAtual.getNome()==null){
-                 utilities.Utilities.feedbackErros(11);
-              }else{
+                    utilities.Utilities.feedbackErros(11);
+                }else{
 
-                 this.funcionario=funcionarioAtual;
-                 VendaController.idFuncionario=funcionarioAtual.getId();
-                 this.caixaView.getNomeFuncionario().setText(this.funcionario.getNome());             
+                    this.funcionario=funcionarioAtual;
+                    VendaController.idFuncionario=funcionarioAtual.getId();
+                    this.caixaView.getNomeFuncionario().setText(this.funcionario.getNome());             
               } 
             }
           
@@ -62,14 +67,16 @@ public class ControllerCaixa implements ActionListener{
             if(this.funcionario.getNome()!=null){               
                 if(!this.caixaView.getValorAbertura().getText().equalsIgnoreCase("")){
                     if(utilities.Utilities.isNumeric(this.caixaView.getValorAbertura().getText())){
+                        Timestamp dataAbertura = new Timestamp(System.currentTimeMillis());
                         this.caixa.setStatus("A");
                         this.caixa.setObservacao("Testes");
                         this.caixa.setFuncionario(this.funcionario);
-                        this.caixa.setDatahoraabertura(service.CaixaService.retornarDataAtual());
+                        this.caixa.setDatahoraabertura(dataAbertura);
                         this.caixa.setValorabertura(Integer.parseInt(this.caixaView.getValorAbertura().getText()));
                         this.caixaView.getAbrirCaixa().setEnabled(false);
                         this.caixaView.getNovoCaixa().setEnabled(false);
                         this.caixaView.getPesquisarFuncionario().setEnabled(false);
+                        this.caixaView.getFecharCaixa().setEnabled(true);
                         this.caixaView.setStatusCaixa("  Aberto");
                         this.caixaView.getPainelStatus().setBackground(new Color(40,150,90));
                         this.caixaView.getIdFuncionario().setEnabled(false);
@@ -85,7 +92,11 @@ public class ControllerCaixa implements ActionListener{
             
             
         }else if(e.getSource()==this.caixaView.getFecharCaixa()){
-            fecharCaixa();
+            try {
+                fecharCaixa();
+            } catch (ParseException ex) {
+                Logger.getLogger(ControllerCaixa.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.caixaView.getAbrirCaixa().setEnabled(false);
             this.caixaView.getFecharCaixa().setEnabled(false);
             this.caixaView.getPesquisarFuncionario().setEnabled(false);
@@ -96,11 +107,12 @@ public class ControllerCaixa implements ActionListener{
     
     
     
-    public void fecharCaixa(){
+    public void fecharCaixa() throws ParseException{
         this.caixaView.getNovoCaixa().setEnabled(false);
-        String dataFechamento=service.CaixaService.retornarDataAtual();
+        Timestamp dataFechamento = new Timestamp(System.currentTimeMillis());
+        
         List<Venda> listaVendas= service.VendaService.VendasDateTime(this.caixa.getDatahoraabertura(), dataFechamento);
-        //List<Venda> listaVendas= service.VendaService.VendasDateTime("2023-12-11 13:55:06", "2023-12-11 13:55:29");
+
         System.out.println(dataFechamento+"| data abertura: "+this.caixa.getDatahoraabertura());
         float valorDebito=0, valorCredito=0, valorCedula=0;
         
@@ -128,10 +140,10 @@ public class ControllerCaixa implements ActionListener{
         }
         
         this.caixa.setDatahorafechamento(dataFechamento);
-        this.caixa.setValorfechamento(valorCredito+valorCedula+valorDebito);
+        this.caixa.setValorfechamento(Integer.parseInt(this.caixaView.getValorAbertura().getText())+valorCedula);
         
-        this.caixaView.setDataAbertura(this.caixa.getDatahoraabertura());
-        this.caixaView.setDataFechamento(dataFechamento);
+        this.caixaView.setDataAbertura(utilities.Utilities.formatToDateTime(this.caixa.getDatahoraabertura()));
+        this.caixaView.setDataFechamento(utilities.Utilities.formatToDateTime(dataFechamento));
         this.caixaView.setValorCedula(valorCedula+"");
         this.caixaView.setValorCredito(valorCredito+"");
         this.caixaView.setValorDebito(valorDebito+"");
@@ -143,6 +155,8 @@ public class ControllerCaixa implements ActionListener{
         this.caixaView.getNovoCaixa().setEnabled(true);
         this.caixaView.getIdFuncionario().setEnabled(false);
         this.caixaView.getValorAbertura().setEnabled(false);
+        service.CaixaService.adicionar(this.caixa);
+        
         statusCaixa=false;
     }
     
@@ -159,6 +173,7 @@ public class ControllerCaixa implements ActionListener{
         this.caixaView.getIdFuncionario().setEnabled(true);
         this.caixaView.getValorAbertura().setEnabled(true);
         this.caixaView.getNomeFuncionario().setEnabled(false);
+        this.caixaView.getFecharCaixa().setEnabled(false);
         this.caixa=null;
         
     }

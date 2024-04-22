@@ -7,29 +7,49 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import model.bo.ItemVenda;
 
 public class ItemVendaDAO implements InterfaceDAO<ItemVenda>{
 
+    
+     private static ItemVendaDAO instance;
+    protected EntityManager entityManager;
+            
+    public static ItemVendaDAO getInstance(){
+        if(instance==null){
+            instance=new ItemVendaDAO();
+        }
+        
+        return instance;
+    }
+
+    public ItemVendaDAO() {
+        entityManager=getEntityManager();
+    }
+    
+    
+    
+    private EntityManager getEntityManager(){
+        EntityManagerFactory factory= Persistence.createEntityManagerFactory("pu_Cantina");
+        
+        if(entityManager == null){
+            entityManager=factory.createEntityManager();
+        }
+        return entityManager;
+    }
+    
     @Override
     public void create(ItemVenda objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "insert into cantina.itemvenda(qtdProduto, status, venda_id, produto_id) values (?, ?, ?, ?)";
-        
-        PreparedStatement pstm =null;
-        
         try {
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setInt(1, objeto.getQtdproduto());
-            pstm.setString(2, objeto.getStatus());
-            pstm.setInt(3, objeto.getVenda().getId());
-            pstm.setInt(4, objeto.getProduto().getId());
-            
-            pstm.execute();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }finally{
-            ConnectionFactory.closeConnection(conexao, pstm);
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
         }
     }
 
@@ -60,40 +80,11 @@ public class ItemVendaDAO implements InterfaceDAO<ItemVenda>{
     
     
     public List<ItemVenda> totalItemVenda(int parPK) {
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "select * from itemvenda where itemvenda.venda_id=?";
-        PreparedStatement pstm = null;
-        ResultSet rst = null;
-        List<ItemVenda> listaObjeto = new ArrayList<ItemVenda>();
         
-
+        List<ItemVenda> listaObjetos;
         
-        try {
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setInt(1, parPK);
-            rst = pstm.executeQuery();
-            
-            
-            while(rst.next()){
-                
-                ItemVenda objeto = new ItemVenda();
-                
-                objeto.setId(rst.getInt("id"));
-                objeto.setQtdproduto(rst.getInt("qtdProduto"));
-                objeto.setStatus(rst.getString("status"));
-                objeto.setProduto(service.ProdutoService.carregar(rst.getInt("produto_id")));
-                objeto.setVenda(service.VendaService.carregar(rst.getInt("venda_id")));
-                listaObjeto.add(objeto);
-            }
-            
-            
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }finally{
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return listaObjeto;
-        }
+        listaObjetos=entityManager.createQuery("Select iv from ItemVenda iv where iv.venda.id = :parPK", ItemVenda.class).setParameter("parPK", parPK).getResultList();
+        return listaObjetos;
     }
     
 }
